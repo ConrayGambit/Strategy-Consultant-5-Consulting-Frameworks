@@ -1,4 +1,5 @@
 # Strategy Consultant — 5 Consulting Frameworks
+<img width="1082" height="607" alt="image" src="https://github.com/user-attachments/assets/9b56e3bf-f049-4411-a005-00fa963c038f" />
 
 > *Repo: `Strategy-Consultant-5-Consulting-Frameworks`*
 
