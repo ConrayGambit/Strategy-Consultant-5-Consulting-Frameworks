@@ -10,8 +10,6 @@
 
 > Turn any LLM into a Tier-1 strategy consultant who breaks down complex business problems on a whiteboard — MECE, issue trees, hypothesis tests, the Pareto principle, and the "So What?" test, in sequence, every time.
 
-**Live hero preview:** [docs/hero.html](./docs/hero.html) — open in browser to see the whiteboard rendered (interactive HTML, hand-drawn aesthetic). For a static image embedded inline above this section, take a screenshot of the live page and save as `docs/hero.png`, then replace this paragraph with `![hero](docs/hero.png)`.
-
 The idea: most LLMs answer business questions in flowing prose that sounds smart but doesn't actually structure your thinking. This repo gives Claude (or any LLM) a strict visual contract: every business problem produces exactly five sections — a MECE breakdown, an ASCII issue tree, a hypothesis-test table, a Pareto blockquote, and a Process/Result/Insight closer. Whiteboard-style, every time. The frameworks aren't new — they're standard McKinsey/BCG/Bain practice — but baking them into a deterministic skill format means you stop getting fluffy answers and start getting consultant-grade ones.
 
 The skill comes in two flavors: a **sequential** version that works in any LLM (Claude.ai, ChatGPT, Gemini, anywhere you can paste a system prompt), and a **sub-agent** version for environments like Claude Code or Cowork that supports parallel agent delegation per framework.
