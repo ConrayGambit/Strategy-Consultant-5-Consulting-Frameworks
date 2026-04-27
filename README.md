@@ -173,7 +173,6 @@ Shipped in v1.x:
 - [x] **Industry packs** — [`vsc-saas`](./industry-packs/saas/SKILL.md), [`vsc-retail`](./industry-packs/retail/SKILL.md), [`vsc-healthcare`](./industry-packs/healthcare/SKILL.md) with industry-specific MECE defaults, vocabulary, and root-cause priors. ✅
 - [x] **Eval suite** — automated structural scorer + content rubric in [`evals/`](./evals/). Run `python evals/score.py < output.txt`. ✅
 - [x] **8 worked examples** across SaaS, retail, nonprofit, manufacturing, government, logistics, and 5 single-framework industry demos. ✅
-- [x] **Claude Design prompt** for the hero image and per-framework icon set in [`docs/CLAUDE-DESIGN-PROMPT.md`](./docs/CLAUDE-DESIGN-PROMPT.md). ✅
 
 Still in flight:
 
