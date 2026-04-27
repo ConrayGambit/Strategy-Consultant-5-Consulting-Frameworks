@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Strategy Consultant — 5 Consulting Frameworks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F8F4EC;
+    --paper-2: #F1ECDF;
+    --ink: #161412;
+    --ink-soft: #3a342c;
+    --ink-faint: #8a8275;
+    --accent: #7A5A2E;       /* aged-paper sepia */
+    --accent-soft: #B79766;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2724; }
+  body {
+    font-family: "Inter Tight", system-ui, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+  }
+
+  /* ---------- The whiteboard / paper ---------- */
+  .board-shell {
+    width: min(1600px, 100%);
+    aspect-ratio: 16 / 9;
+    position: relative;
+    background: var(--paper);
+    container-type: inline-size;
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,.55),
+      0 8px 20px -10px rgba(0,0,0,.5),
+      inset 0 0 0 1px rgba(0,0,0,.04);
+    border-radius: 4px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* slight uneven warmth on the paper */
+  .board-shell::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 80% at 20% 15%, rgba(255,245,220,.55), transparent 70%),
+      radial-gradient(70% 90% at 85% 85%, rgba(180,150,100,.18), transparent 70%),
+      radial-gradient(40% 60% at 50% 50%, rgba(255,250,235,.35), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* paper grain via SVG noise */
+  .grain {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--grain-opacity, 0.35);
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.4  0 0 0 0 0.3  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+  }
+  .grain.coarse {
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>"),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.32  0 0 0 0 0.18  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/></svg>");
+  }
+
+  /* corner tape — small touch of "physical board" */
+  .tape {
+    position: absolute;
+    width: 110px; height: 28px;
+    background: rgba(220, 200, 150, 0.55);
+    border-left: 1px dashed rgba(0,0,0,.12);
+    border-right: 1px dashed rgba(0,0,0,.12);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .tape.tl { top: -10px; left: 38px; transform: rotate(-6deg); }
+  .tape.tr { top: -8px; right: 60px; transform: rotate(4deg); }
+  .tape.bl { bottom: -8px; left: 22%; transform: rotate(3deg); }
+  .tape.br { bottom: -10px; right: 18%; transform: rotate(-5deg); }
+
+  /* Stage holds the SVG board */
+  .stage {
+    position: absolute; inset: 0;
+    z-index: 2;
+  }
+  .stage svg { width: 100%; height: 100%; display: block; }
+
+  /* Title block ABOVE the artifacts (rendered as DOM, not SVG, for crisp font) */
+  .title-block {
+    position: absolute;
+    top: 2.4%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-0.6deg);
+    text-align: center;
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity .25s ease;
+    width: max-content;
+    max-width: 92%;
+  }
+  .title-block.hidden { opacity: 0; }
+  .title {
+    font-family: "Caveat", "Kalam", cursive;
+    font-weight: 700;
+    /* sized off the BOARD, not the viewport, and capped so it never wraps */
+    font-size: clamp(28px, 4.4cqw, 58px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-transform: uppercase;
+    white-space: nowrap;
+    /* fake marker irregularity */
+    text-shadow:
+      0.3px 0 0 rgba(22,20,18,.4),
+     -0.3px 0 0 rgba(22,20,18,.3);
+  }
+  .subtitle {
+    margin-top: 4px;
+    font-family: "Caveat", cursive;
+    font-weight: 400;
+    font-size: clamp(13px, 1.3cqw, 22px);
+    color: var(--ink-soft);
+    transform: rotate(0.8deg);
+    display: inline-block;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .title-rule {
+    margin: 8px auto 0;
+    width: 62%;
+    height: 2px;
+    background: var(--ink);
+    opacity: .82;
+    transform: rotate(-0.3deg);
+    border-radius: 2px;
+    /* irregularity */
+    clip-path: polygon(0 30%, 3% 60%, 8% 30%, 15% 70%, 22% 35%, 30% 65%, 38% 30%, 48% 70%, 56% 35%, 64% 65%, 72% 30%, 80% 70%, 88% 35%, 96% 65%, 100% 40%, 100% 100%, 0 100%);
+  }
+
+  /* Each artifact has a hand-lettered label inside its zone */
+  .artifact-label {
+    font-family: "Caveat", cursive;
+    font-weight: 700;
+    font-size: 22px;
+    fill: var(--ink);
+  }
+  .artifact-tag {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    fill: var(--ink-faint);
+  }
+  .body-text-kalam {
+    font-family: "Kalam", "Caveat", cursive;
+  }
+
+  /* ---------- ANIMATION ----------
+     Total cycle: 14s.  5 artifacts × 2s reveal + gaps = ~12s, then ~2s hold,
+     then JS restarts the cycle.
+     IMPORTANT: artifacts already use SVG transform="translate(...)" so we
+     ONLY animate opacity here — animating CSS transform would override the
+     SVG positioning and stack everything at the origin. */
+  @keyframes artFade {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes titleFade {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .stage svg .art {
+    opacity: 0;
+    animation: artFade 1.2s ease-out forwards;
+  }
+
+  /* per-artifact delays — staggered every 2.4s.
+     Specificity must match `.stage svg .art` (0,0,3) so use `.stage svg .art-N`. */
+  .stage svg .art-1 { animation-delay: 0.40s; }
+  .stage svg .art-2 { animation-delay: 2.80s; }
+  .stage svg .art-3 { animation-delay: 5.20s; }
+  .stage svg .art-4 { animation-delay: 7.60s; }
+  .stage svg .art-5 { animation-delay: 10.00s; }
+
+  /* Title comes in first */
+  .title-block { animation: titleFade 0.8s ease-out 0.1s forwards; }
+  /* keep title hidden until the animation runs */
+  .title-block { opacity: 0; }
+
+  /* Replay: clear animations momentarily so they restart on next frame */
+  .stage.replay svg .art,
+  .title-block.replay {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  /* Replay control */
+  .replay-btn {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    z-index: 5;
+    background: rgba(248,244,236,.85);
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    font-family: "Caveat", cursive;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 4px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,.15);
+    transition: background .15s, transform .15s;
+  }
+  .replay-btn:hover { background: rgba(248,244,236,1); transform: rotate(-1deg); }
+  .replay-btn:active { transform: scale(.97); }
+
+  /* Tweaks button is provided by the panel; nothing else needed */
+
+  @media (max-width: 720px) {
+    body { padding: 12px; }
+    .tape { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="board-shell" id="boardShell">
+  <div class="tape tl"></div>
+  <div class="tape tr"></div>
+  <div class="tape bl"></div>
+  <div class="tape br"></div>
+
+  <!-- Title (DOM so the marker font renders crisply) -->
+  <div class="title-block" id="titleBlock">
+    <div class="title">Strategy Consultant</div>
+    <div class="title-rule"></div>
+    <div class="subtitle">five consulting frameworks &nbsp;·&nbsp; one whiteboard &nbsp;·&nbsp; every business problem</div>
+  </div>
+
+  <!-- The five artifacts -->
+  <div class="stage" id="stage">
+    <!-- SVG drawn at a 1600x900 frame; scales with the parent -->
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Marker stroke filter: tiny displacement for irregular ink edges -->
+        <filter id="marker" x="-2%" y="-2%" width="104%" height="104%">
+          <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="3" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="1.4"/>
+        </filter>
+        <filter id="marker-soft" x="-2%" y="-2%" width="104%" height="104%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="1.0"/>
+        </filter>
+        <!-- Ink bleed: very faint -->
+        <filter id="bleed" x="-5%" y="-5%" width="110%" height="110%">
+          <feGaussianBlur stdDeviation="0.35"/>
+        </filter>
+      </defs>
+
+      <!-- ============================================================
+           Layout grid (5 zones across the lower 80% of the board)
+           Title sits in top ~18%. Artifacts live in 18%–95%.
+           Zones (x): 1) MECE  60–340  2) Tree 360–660  3) Hyp 680–960
+                      4) Pareto 980–1230  5) So What? 1250–1540
+           ============================================================ -->
+
+      <g style="font-family: 'Inter Tight', sans-serif;">
+
+      <!-- ============= 1. MECE — 2x2 grid ============= -->
+      <g class="art art-1" transform="translate(80, 270)" filter="url(#marker)">
+        <!-- frame label -->
+        <text class="artifact-tag" x="0" y="-30">01 · MECE</text>
+        <text class="artifact-label" x="0" y="-6" style="font-size:34px">MECE</text>
+
+        <!-- 2x2 grid, hand-drawn rectangles -->
+        <g fill="none" stroke="#161412" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <!-- top-left -->
+          <path d="M 4 30 L 132 28 L 134 154 L 6 156 Z"/>
+          <!-- top-right -->
+          <path d="M 142 28 L 274 32 L 272 156 L 140 154 Z"/>
+          <!-- bottom-left -->
+          <path d="M 6 162 L 134 160 L 136 286 L 8 288 Z"/>
+          <!-- bottom-right -->
+          <path d="M 142 162 L 272 164 L 270 290 L 138 288 Z"/>
+        </g>
+        <!-- dots in each cell -->
+        <g fill="#161412">
+          <circle cx="68" cy="92" r="6"/>
+          <circle cx="206" cy="94" r="6"/>
+          <circle cx="70" cy="226" r="6"/>
+          <circle cx="206" cy="228" r="6"/>
+        </g>
+        <!-- tiny labels in cells (humanist, smaller) -->
+        <g fill="#3a342c" style="font-family:'Kalam',cursive; font-size:14px">
+          <text x="22" y="58">Cost</text>
+          <text x="158" y="58">Revenue</text>
+          <text x="22" y="192">Process</text>
+          <text x="158" y="192">People</text>
+        </g>
+        <!-- annotation: caption sits BELOW the grid, arrow points up into it -->
+        <text x="0" y="318" style="font-family:'Caveat',cursive; font-size:20px; fill:#3a342c">no overlap.</text>
+        <text x="118" y="318" style="font-family:'Caveat',cursive; font-size:20px; fill:#3a342c">no gaps.</text>
+        <g stroke="#3a342c" stroke-width="1.8" fill="none" stroke-linecap="round">
+          <path d="M 138 300 Q 138 290 138 282"/>
+          <path d="M 132 290 L 138 280 L 144 290" stroke-linejoin="round"/>
+        </g>
+      </g>
+
+      <!-- ============= 2. Issue Tree ============= -->
+      <g class="art art-2" transform="translate(420, 250)" filter="url(#marker-soft)">
+        <text class="artifact-tag" x="0" y="-30">02 · ISSUE TREES</text>
+        <text class="artifact-label" x="0" y="-6" style="font-size:28px">Why are profits down?</text>
+
+        <!-- Root box (circled in accent), positioned BELOW the artifact label -->
+        <g>
+          <ellipse cx="150" cy="38" rx="138" ry="22" fill="none" stroke="#7A5A2E" stroke-width="3" transform="rotate(-1 150 38)"/>
+          <text x="32" y="46" style="font-family:'Caveat',cursive; font-weight:700; font-size:24px; fill:#161412">Profits ↓ 14% YoY</text>
+        </g>
+
+        <!-- Tree drawn as ASCII-ish lines.  Root → 2 children → 4 grandchildren -->
+        <g stroke="#161412" stroke-width="2.4" fill="none" stroke-linecap="round">
+          <!-- vertical from root -->
+          <path d="M 30 62 L 30 110"/>
+          <!-- branch 1 -->
+          <path d="M 30 110 L 30 152 L 70 152"/>
+          <!-- branch 2 -->
+          <path d="M 30 152 L 30 266 L 70 266"/>
+
+          <!-- sub from "Revenue down" -->
+          <path d="M 90 174 L 90 204 L 130 204"/>
+          <path d="M 90 204 L 90 234 L 130 234"/>
+
+          <!-- sub from "Costs up" -->
+          <path d="M 90 288 L 90 318 L 130 318"/>
+          <path d="M 90 318 L 90 348 L 130 348"/>
+        </g>
+
+        <!-- L1 nodes -->
+        <g style="font-family:'Kalam',cursive; font-size:16px; fill:#161412">
+          <text x="80" y="158">Revenue ↓</text>
+          <text x="80" y="272">Costs ↑</text>
+        </g>
+        <!-- L2 nodes -->
+        <g style="font-family:'Kalam',cursive; font-size:14px; fill:#3a342c">
+          <text x="142" y="210">price compression</text>
+          <text x="142" y="240">churn ↑ in SMB</text>
+          <text x="142" y="324">cloud spend +38%</text>
+          <text x="142" y="354">support headcount</text>
+        </g>
+
+        <!-- bracket annotation on right -->
+        <g stroke="#161412" stroke-width="1.5" fill="none">
+          <path d="M 320 198 Q 332 198 332 220 Q 332 242 320 242"/>
+        </g>
+        <text x="338" y="226" style="font-family:'Caveat',cursive; font-size:18px; fill:#3a342c">↑ 70% of</text>
+        <text x="338" y="246" style="font-family:'Caveat',cursive; font-size:18px; fill:#3a342c">the gap</text>
+      </g>
+
+      <!-- ============= 3. Hypothesis-Driven (Expected vs Actual) ============= -->
+      <g class="art art-3" transform="translate(820, 250)" filter="url(#marker)">
+        <text class="artifact-tag" x="0" y="-10">03 · HYPOTHESIS-DRIVEN</text>
+        <text class="artifact-label" x="0" y="14" style="font-size:28px">Expected vs Actual</text>
+
+        <!-- Two-column table -->
+        <g stroke="#161412" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <!-- outer frame, slightly wonky -->
+          <path d="M 0 36 L 320 34 L 322 220 L 2 222 Z"/>
+          <!-- vertical divider -->
+          <path d="M 160 36 L 160 220"/>
+          <!-- header underline -->
+          <path d="M 4 70 L 320 68"/>
+          <!-- row dividers -->
+          <path d="M 4 116 L 320 116"/>
+          <path d="M 4 168 L 320 168"/>
+        </g>
+
+        <!-- headers -->
+        <g style="font-family:'Caveat',cursive; font-weight:700; font-size:22px; fill:#161412">
+          <text x="38" y="60">Expected</text>
+          <text x="200" y="60">Actual</text>
+        </g>
+
+        <!-- Row 1 -->
+        <g style="font-family:'Kalam',cursive; font-size:14px; fill:#161412">
+          <text x="14" y="98">Q3 retention &gt; 92%</text>
+          <text x="172" y="98">88.4%</text>
+        </g>
+        <!-- check in accent -->
+        <g stroke="#7A5A2E" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 280 88 L 290 100 L 308 78"/>
+        </g>
+
+        <!-- Row 2 -->
+        <g style="font-family:'Kalam',cursive; font-size:14px; fill:#161412">
+          <text x="14" y="148">SMB churn &lt; 4%</text>
+          <text x="172" y="148">7.1%</text>
+        </g>
+        <g stroke="#161412" stroke-width="3" fill="none" stroke-linecap="round">
+          <path d="M 280 138 L 308 158"/>
+          <path d="M 308 138 L 280 158"/>
+        </g>
+
+        <!-- Row 3 -->
+        <g style="font-family:'Kalam',cursive; font-size:14px; fill:#161412">
+          <text x="14" y="200">Cloud cost flat</text>
+          <text x="172" y="200">+38% YoY</text>
+        </g>
+        <g stroke="#161412" stroke-width="3" fill="none" stroke-linecap="round">
+          <path d="M 280 188 L 308 210"/>
+          <path d="M 308 188 L 280 210"/>
+        </g>
+
+        <!-- caption below -->
+        <text x="0" y="252" style="font-family:'Caveat',cursive; font-size:20px; fill:#3a342c">2 of 3 hypotheses falsified → pivot.</text>
+      </g>
+
+      <!-- ============= 4. Pareto — vertical 80/20 ============= -->
+      <g class="art art-4" transform="translate(1180, 250)" filter="url(#marker-soft)">
+        <text class="artifact-tag" x="0" y="-10">04 · PARETO 80/20</text>
+        <text class="artifact-label" x="0" y="14" style="font-size:28px">the vital 20%</text>
+
+        <!-- 20% bar, in accent, tall, on left -->
+        <g>
+          <rect x="6" y="40" width="56" height="120" fill="none" stroke="#7A5A2E" stroke-width="3.5"/>
+          <!-- accent fill hatch -->
+          <g stroke="#7A5A2E" stroke-width="2" opacity="0.85">
+            <line x1="10" y1="155" x2="60" y2="50"/>
+            <line x1="10" y1="135" x2="60" y2="30" stroke-opacity="0"/>
+            <line x1="10" y1="135" x2="60" y2="40"/>
+            <line x1="10" y1="115" x2="60" y2="40" stroke-opacity="0"/>
+            <line x1="20" y1="155" x2="62" y2="80"/>
+            <line x1="40" y1="155" x2="62" y2="115"/>
+          </g>
+          <text x="14" y="184" style="font-family:'Caveat',cursive; font-weight:700; font-size:24px; fill:#7A5A2E">20%</text>
+          <text x="6" y="206" style="font-family:'Kalam',cursive; font-size:13px; fill:#3a342c">of customers</text>
+        </g>
+
+        <!-- circle around the 20% bar (accent) -->
+        <ellipse cx="34" cy="100" rx="44" ry="78" fill="none" stroke="#7A5A2E" stroke-width="2.5" stroke-dasharray="6 5" transform="rotate(-3 34 100)"/>
+
+        <!-- The 80% — three thin bars stacked on right -->
+        <g fill="none" stroke="#161412" stroke-width="2.2" stroke-linecap="round">
+          <rect x="100" y="50" width="160" height="22"/>
+          <rect x="100" y="84" width="160" height="22"/>
+          <rect x="100" y="118" width="160" height="22"/>
+        </g>
+        <g style="font-family:'Kalam',cursive; font-size:13px; fill:#3a342c">
+          <text x="108" y="65">long tail · low volume</text>
+          <text x="108" y="99">long tail · low volume</text>
+          <text x="108" y="133">long tail · low volume</text>
+        </g>
+        <text x="100" y="160" style="font-family:'Caveat',cursive; font-weight:700; font-size:22px; fill:#161412">80%</text>
+        <text x="100" y="180" style="font-family:'Kalam',cursive; font-size:13px; fill:#3a342c">of customers</text>
+
+        <!-- arrow + the vital 20% callout, circled in accent -->
+        <g>
+          <path d="M 80 230 Q 130 246 188 232" stroke="#7A5A2E" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M 184 226 L 192 232 L 184 240" stroke="#7A5A2E" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+          <ellipse cx="130" cy="262" rx="98" ry="20" fill="none" stroke="#7A5A2E" stroke-width="2.6" transform="rotate(-1.5 130 262)"/>
+          <text x="60" y="270" style="font-family:'Caveat',cursive; font-weight:700; font-size:22px; fill:#7A5A2E">drive 80% of revenue</text>
+        </g>
+      </g>
+
+      <!-- ============= 5. So What? — Process / Result / Insight ============= -->
+      <g class="art art-5" transform="translate(80, 640)" filter="url(#marker)">
+        <text class="artifact-tag" x="0" y="-10">05 · SO WHAT?</text>
+
+        <!-- three rows, each with a circle bullet and a line -->
+        <g>
+          <!-- Process -->
+          <circle cx="16" cy="22" r="9" fill="none" stroke="#161412" stroke-width="2.6"/>
+          <text x="40" y="28" style="font-family:'Caveat',cursive; font-weight:700; font-size:22px; fill:#161412">Process</text>
+          <text x="140" y="28" style="font-family:'Kalam',cursive; font-size:15px; fill:#3a342c">— ran 2x2 + tree on Q3 P&amp;L</text>
+
+          <!-- Result -->
+          <circle cx="16" cy="60" r="9" fill="none" stroke="#161412" stroke-width="2.6"/>
+          <text x="40" y="66" style="font-family:'Caveat',cursive; font-weight:700; font-size:22px; fill:#161412">Result</text>
+          <text x="140" y="66" style="font-family:'Kalam',cursive; font-size:15px; fill:#3a342c">— SMB churn + cloud spend = 70% of gap</text>
+
+          <!-- Insight (filled circle, double underline in accent) -->
+          <circle cx="16" cy="98" r="9" fill="#161412"/>
+          <text x="40" y="104" style="font-family:'Caveat',cursive; font-weight:700; font-size:24px; fill:#161412">Insight</text>
+          <text x="140" y="104" style="font-family:'Kalam',cursive; font-size:15px; fill:#161412">— stop optimizing the 80%. cut SMB tier or reprice it.</text>
+
+          <!-- double underline on Insight, in accent -->
+          <g stroke="#7A5A2E" stroke-width="2.6" fill="none" stroke-linecap="round">
+            <path d="M 40 116 L 122 117"/>
+            <path d="M 40 122 L 122 124"/>
+          </g>
+        </g>
+
+        <!-- big handwritten "so what?" annotation -->
+        <g transform="translate(620, -8) rotate(-4)">
+          <text x="0" y="0" style="font-family:'Caveat',cursive; font-weight:700; font-size:64px; fill:#161412">so what?</text>
+          <!-- underline squiggle -->
+          <path d="M 0 14 Q 60 26 120 12 T 240 18 T 360 10" stroke="#7A5A2E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+
+      <!-- corner stamp (no frame, lives in bottom-right margin) -->
+      <g transform="translate(1455, 868) rotate(-6)">
+        <text x="0" y="0" style="font-family:'Caveat',cursive; font-weight:700; font-size:16px; fill:#7A5A2E; letter-spacing:.06em">CONFIDENTIAL</text>
+        <text x="14" y="14" style="font-family:'Inter Tight',sans-serif; font-size:9px; letter-spacing:.2em; fill:#7A5A2E">DRAFT · v1</text>
+      </g>
+
+      <!-- bottom-left signature -->
+      <g transform="translate(80, 850)">
+        <text style="font-family:'Caveat',cursive; font-size:22px; fill:#3a342c">— a senior partner, working through it</text>
+      </g>
+
+      </g>
+    </svg>
+  </div>
+
+  <!-- grain overlay sits on top of artifacts but below tape -->
+  <div class="grain" id="grain"></div>
+
+  <!-- Replay button -->
+  <button class="replay-btn" id="replayBtn" type="button" aria-label="Replay animation">↻ replay</button>
+</div>
+
+<!-- React + Tweaks panel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<div id="tweaks-root"></div>
+<script type="text/babel">
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "showTitle": true,
+    "grainIntensity": "medium"
+  }/*EDITMODE-END*/;
+
+  const grainMap = {
+    none:    { opacity: 0,    coarse: false },
+    light:   { opacity: 0.18, coarse: false },
+    medium:  { opacity: 0.35, coarse: false },
+    heavy:   { opacity: 0.55, coarse: true  }
+  };
+
+  function applyTweaks(t) {
+    // title
+    const tb = document.getElementById('titleBlock');
+    if (tb) tb.classList.toggle('hidden', !t.showTitle);
+    // grain
+    const g = document.getElementById('grain');
+    const map = grainMap[t.grainIntensity] || grainMap.medium;
+    if (g) {
+      g.style.setProperty('--grain-opacity', map.opacity);
+      g.classList.toggle('coarse', !!map.coarse);
+    }
+  }
+
+  function App() {
+    const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+    React.useEffect(() => { applyTweaks(tweaks); }, [tweaks]);
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Composition">
+          <TweakToggle
+            label="Show title & subtitle"
+            checked={tweaks.showTitle}
+            onChange={(v) => setTweak('showTitle', v)}
+          />
+        </TweakSection>
+        <TweakSection title="Paper">
+          <TweakRadio
+            label="Grain intensity"
+            value={tweaks.grainIntensity}
+            options={[
+              { value: 'none',   label: 'None'   },
+              { value: 'light',  label: 'Light'  },
+              { value: 'medium', label: 'Med'    },
+              { value: 'heavy',  label: 'Heavy'  },
+            ]}
+            onChange={(v) => setTweak('grainIntensity', v)}
+          />
+        </TweakSection>
+      </TweaksPanel>
+    );
+  }
+
+  // Apply defaults immediately so the page looks right even before Tweaks is opened
+  applyTweaks(TWEAK_DEFAULTS);
+
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+</script>
+
+<script>
+  // Auto-loop the animation by toggling the .replay class to reset, then removing it.
+  // Total cycle = 14s (last artifact starts at 10s, fades over 1.4s, then ~2.6s hold).
+  (function () {
+    const stage = document.getElementById('stage');
+    const titleBlock = document.getElementById('titleBlock');
+    const replayBtn = document.getElementById('replayBtn');
+    const CYCLE_MS = 14000;
+    let timer = null;
+
+    function restart() {
+      // Force reflow to restart all CSS animations
+      stage.classList.add('replay');
+      titleBlock.classList.add('replay');
+      // Read a layout property to flush
+      void stage.offsetWidth;
+      stage.classList.remove('replay');
+      titleBlock.classList.remove('replay');
+    }
+
+    function loop() {
+      timer = setTimeout(function next() {
+        restart();
+        timer = setTimeout(next, CYCLE_MS);
+      }, CYCLE_MS);
+    }
+
+    if (replayBtn) {
+      replayBtn.addEventListener('click', () => {
+        clearTimeout(timer);
+        restart();
+        loop();
+      });
+    }
+
+    // Pause loop when tab is hidden, resume when visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearTimeout(timer);
+      } else {
+        clearTimeout(timer);
+        restart();
+        loop();
+      }
+    });
+
+    loop();
+  })();
+</script>
+</body>
+</html>
