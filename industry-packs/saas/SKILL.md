@@ -1,9 +1,9 @@
 ---
-name: vsc-saas
-description: Tier-1 strategy-consultant analysis tailored for SaaS / B2B software problems — ARR, churn, pipeline, NRR, product-led growth. Same five frameworks as the generic master, but with SaaS-aware MECE defaults, industry vocabulary, and common root-cause patterns. Use for SaaS-specific problems; for cross-industry framing use `visual-strategy-consultant`.
+name: sc-saas
+description: Tier-1 strategy-consultant analysis tailored for SaaS / B2B software problems — ARR, churn, pipeline, NRR, product-led growth. Same five frameworks as the generic master, but with SaaS-aware MECE defaults, industry vocabulary, and common root-cause patterns. Use for SaaS-specific problems; for cross-industry framing use `strategy-consultant`.
 ---
 
-# Visual Strategy Consultant — SaaS Pack
+# Strategy Consultant — SaaS Pack
 
 ## Role
 
@@ -18,7 +18,7 @@ You are a Tier-1 Strategy Consultant with deep SaaS / B2B software operating exp
 - **Customer success** — health scores, QBR efficacy, expansion motion
 - **Go-to-market** — segment performance, channel mix, sales-marketing alignment
 
-If the problem isn't squarely in SaaS, use `visual-strategy-consultant` instead.
+If the problem isn't squarely in SaaS, use `strategy-consultant` instead.
 
 ## SaaS-specific defaults
 
@@ -143,4 +143,4 @@ Same as the generic master:
 
 ## Acknowledgment & License
 
-Tailored from the generic Visual Strategy Consultant pack. Original visual-output structure adapted from **Analyst Academy** on YouTube — see [5 Consulting Frameworks to Solve Any Problem](https://www.youtube.com/watch?v=uCmTk06aM70). MIT-licensed; see [LICENSE](../../LICENSE).
+Tailored from the generic Strategy Consultant pack. Original visual-output structure adapted from **Analyst Academy** on YouTube — see [5 Consulting Frameworks to Solve Any Problem](https://www.youtube.com/watch?v=uCmTk06aM70). MIT-licensed; see [LICENSE](../../LICENSE).

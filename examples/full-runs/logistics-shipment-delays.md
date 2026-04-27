@@ -1,6 +1,6 @@
 # Full master run — Logistics
 
-A complete output of `visual-strategy-consultant` on a logistics / supply-chain problem.
+A complete output of `strategy-consultant` on a logistics / supply-chain problem.
 
 ---
 

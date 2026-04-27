@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Visual Strategy Consultant — output scorer.
+Strategy Consultant — output scorer.
 
 Reads model output from stdin (or a file argument), scores it against the
 5-section visual contract, prints a pass/fail breakdown, and exits with
@@ -300,7 +300,7 @@ def score(text: str) -> tuple[list[CheckResult], int, int]:
 
 def format_report(results: list[CheckResult], passed: int, total: int) -> str:
     lines = []
-    lines.append("Visual Strategy Consultant — output scorer")
+    lines.append("Strategy Consultant — output scorer")
     lines.append("=" * 50)
     for r in results:
         mark = "PASS" if r.passed else "FAIL"
@@ -314,7 +314,7 @@ def format_report(results: list[CheckResult], passed: int, total: int) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Score Visual Strategy Consultant output.")
+    parser = argparse.ArgumentParser(description="Score Strategy Consultant output.")
     parser.add_argument("input", nargs="?", default=None,
                         help="File to read (default: stdin)")
     parser.add_argument("--quiet", action="store_true",

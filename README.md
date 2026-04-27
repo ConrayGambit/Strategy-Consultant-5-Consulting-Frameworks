@@ -43,7 +43,7 @@ mkdir -p ~/.claude/skills
 cp -r skills/* ~/.claude/skills/
 ```
 
-Restart Claude Code. Try `/visual-strategy-consultant` and paste in a business problem.
+Restart Claude Code. Try `/strategy-consultant` and paste in a business problem.
 
 ### Claude Code / Cowork on Windows (PowerShell)
 
@@ -57,7 +57,7 @@ Copy-Item -Path .\skills\* -Destination $skillsPath -Recurse -Force
 
 ### Anywhere else (Claude.ai, ChatGPT, Gemini, local models)
 
-Open [`prompts/visual-strategy-consultant.md`](./prompts/visual-strategy-consultant.md), copy the whole file, paste into your LLM as a system prompt or first message, then ask your business question.
+Open [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md), copy the whole file, paste into your LLM as a system prompt or first message, then ask your business question.
 
 For Custom GPTs and Claude Projects, paste it into the "Instructions" field.
 
@@ -72,8 +72,8 @@ After installing, verify everything works using [TESTING.md](./TESTING.md) — i
 ```
 Strategy-Consultant-5-Consulting-Frameworks/
 ├── skills/                                # Anthropic Skills format (SKILL.md + frontmatter)
-│   ├── visual-strategy-consultant/        # Master — sequential orchestration (skill ID)
-│   ├── visual-strategy-consultant-agents/ # Master — parallel sub-agent orchestration (skill ID)
+│   ├── strategy-consultant/        # Master — sequential orchestration (skill ID)
+│   ├── strategy-consultant-agents/ # Master — parallel sub-agent orchestration (skill ID)
 │   ├── mece-framework/                    # Sub-skill 1
 │   ├── issue-trees/                       # Sub-skill 2
 │   ├── hypothesis-driven/                 # Sub-skill 3
@@ -101,7 +101,7 @@ The repo only really has three things that matter:
 - **`prompts/<skill-name>.md`** — Same instructions without the frontmatter. For pasting into ChatGPT, Claude.ai, Gemini, custom GPTs, etc.
 - **`examples/`** — Real input/output pairs you can read to calibrate what good output looks like.
 
-The two master skills (`visual-strategy-consultant` and `visual-strategy-consultant-agents`) are self-contained — they walk through all five frameworks in one response. The five sub-skills (`mece-framework`, `issue-trees`, etc.) are alternatives for when you only want one framework.
+The two master skills (`strategy-consultant` and `strategy-consultant-agents`) are self-contained — they walk through all five frameworks in one response. The five sub-skills (`mece-framework`, `issue-trees`, etc.) are alternatives for when you only want one framework.
 
 ---
 
@@ -111,12 +111,12 @@ The repo ships several master skills. Pick the one that fits your need:
 
 | Variant | Frameworks | When to use |
 |---|---|---|
-| **`visual-strategy-consultant`** (sequential) | 5 — MECE, Issue Tree, Hypothesis, Pareto, So What? | Default. Works in any LLM. One pass, single response. |
-| **`visual-strategy-consultant-agents`** (sub-agents) | 5 — same | Claude Code / Cowork only. Delegates each framework to a parallel sub-agent. Best for high-stakes complex problems. |
-| **`visual-strategy-consultant-7`** | 7 — adds 5 Whys + Pyramid Principle | High-stakes work that needs both deeper root-cause drilling AND executive-ready communication structure. |
-| **`vsc-saas`** ([details](./industry-packs/saas/SKILL.md)) | 5 — same | SaaS-specific problems. Industry-aware MECE defaults (NRR, churn, pipeline), native vocabulary, common root-cause priors. |
-| **`vsc-retail`** ([details](./industry-packs/retail/SKILL.md)) | 5 — same | Retail / hospitality / multi-unit problems. Comp store, foot traffic, basket, mix. |
-| **`vsc-healthcare`** ([details](./industry-packs/healthcare/SKILL.md)) | 5 — same | Hospital ops / clinical operations. Readmissions, ALOS, throughput, access. |
+| **`strategy-consultant`** (sequential) | 5 — MECE, Issue Tree, Hypothesis, Pareto, So What? | Default. Works in any LLM. One pass, single response. |
+| **`strategy-consultant-agents`** (sub-agents) | 5 — same | Claude Code / Cowork only. Delegates each framework to a parallel sub-agent. Best for high-stakes complex problems. |
+| **`strategy-consultant-7`** | 7 — adds 5 Whys + Pyramid Principle | High-stakes work that needs both deeper root-cause drilling AND executive-ready communication structure. |
+| **`sc-saas`** ([details](./industry-packs/saas/SKILL.md)) | 5 — same | SaaS-specific problems. Industry-aware MECE defaults (NRR, churn, pipeline), native vocabulary, common root-cause priors. |
+| **`sc-retail`** ([details](./industry-packs/retail/SKILL.md)) | 5 — same | Retail / hospitality / multi-unit problems. Comp store, foot traffic, basket, mix. |
+| **`sc-healthcare`** ([details](./industry-packs/healthcare/SKILL.md)) | 5 — same | Hospital ops / clinical operations. Readmissions, ALOS, throughput, access. |
 
 All variants produce the same output structure (visual contract). They differ in (a) depth of analysis, (b) industry vocabulary, and (c) common root-cause priors.
 
@@ -169,8 +169,8 @@ Shipped in v1.x:
 
 - [x] **5-framework master** (sequential + sub-agent) ✅
 - [x] **5 sub-skills**, each invokable standalone ✅
-- [x] **7-framework variant** — adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What?) for high-stakes work. See [`skills/visual-strategy-consultant-7/`](./skills/visual-strategy-consultant-7/SKILL.md). ✅
-- [x] **Industry packs** — [`vsc-saas`](./industry-packs/saas/SKILL.md), [`vsc-retail`](./industry-packs/retail/SKILL.md), [`vsc-healthcare`](./industry-packs/healthcare/SKILL.md) with industry-specific MECE defaults, vocabulary, and root-cause priors. ✅
+- [x] **7-framework variant** — adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What?) for high-stakes work. See [`skills/strategy-consultant-7/`](./skills/strategy-consultant-7/SKILL.md). ✅
+- [x] **Industry packs** — [`sc-saas`](./industry-packs/saas/SKILL.md), [`sc-retail`](./industry-packs/retail/SKILL.md), [`sc-healthcare`](./industry-packs/healthcare/SKILL.md) with industry-specific MECE defaults, vocabulary, and root-cause priors. ✅
 - [x] **Eval suite** — automated structural scorer + content rubric in [`evals/`](./evals/). Run `python evals/score.py < output.txt`. ✅
 - [x] **8 worked examples** across SaaS, retail, nonprofit, manufacturing, government, logistics, and 5 single-framework industry demos. ✅
 

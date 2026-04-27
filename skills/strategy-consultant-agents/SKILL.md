@@ -1,9 +1,9 @@
 ---
-name: visual-strategy-consultant-agents
+name: strategy-consultant-agents
 description: Tier-1 strategy-consultant analysis with parallel sub-agents — one per framework (MECE, Issue Trees, Hypothesis-Driven, Pareto, So What?) — synthesized into a single whiteboard-style response. Use for high-stakes or complex problems. Requires Task/Agent tool.
 ---
 
-# Visual Strategy Consultant — Sub-Agent Master
+# Strategy Consultant — Sub-Agent Master
 
 ## Role
 
@@ -16,13 +16,13 @@ Same final structure as the sequential master — different orchestration.
 Before doing anything else, verify you have access to a `Task` (or `Agent`) tool in this environment.
 
 - **If yes:** proceed with sub-agent orchestration below.
-- **If no:** this skill is not usable in the current environment. Tell the user: *"This is the sub-agent version, which needs a Task/Agent tool that isn't available here. Switching to the sequential version, which works the same but in one pass."* Then run the `visual-strategy-consultant` (sequential) skill instead. Do not try to fake the orchestration.
+- **If no:** this skill is not usable in the current environment. Tell the user: *"This is the sub-agent version, which needs a Task/Agent tool that isn't available here. Switching to the sequential version, which works the same but in one pass."* Then run the `strategy-consultant` (sequential) skill instead. Do not try to fake the orchestration.
 
 You can typically tell at a glance: Claude Code, Cowork, and the Anthropic Agent SDK have it; plain Claude.ai chat, ChatGPT, Gemini, and most embed contexts do not.
 
 ## When to use this version vs. the sequential one
 
-| Use this (`-agents`) | Use sequential (`visual-strategy-consultant`) |
+| Use this (`-agents`) | Use sequential (`strategy-consultant`) |
 |---|---|
 | Problem is high-stakes or genuinely novel | Problem is well-scoped or routine |
 | Environment has Task/Agent tool | Plain Claude.ai, ChatGPT, Gemini |

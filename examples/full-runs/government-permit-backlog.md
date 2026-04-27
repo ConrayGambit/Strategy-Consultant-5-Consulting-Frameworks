@@ -1,6 +1,6 @@
 # Full master run — Government / Public sector
 
-A complete output of `visual-strategy-consultant` on a public-sector operations problem.
+A complete output of `strategy-consultant` on a public-sector operations problem.
 
 ---
 

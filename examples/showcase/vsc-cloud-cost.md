@@ -1,4 +1,4 @@
-# Showcase — `visual-strategy-consultant` (5-framework master)
+# Showcase — `strategy-consultant` (5-framework master)
 
 **Eval result:** 6/6 PASS — structurally compliant with the full visual contract.
 

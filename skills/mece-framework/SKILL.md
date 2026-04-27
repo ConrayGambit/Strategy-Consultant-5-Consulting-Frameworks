@@ -74,7 +74,7 @@ Notice: every category is specific to a courier business. No "People/Process/Tec
 ## When to use this skill alone vs. as part of the full analysis
 
 - **Standalone:** when the user just wants to make sure they're thinking comprehensively before going off to investigate.
-- **As part of full analysis:** invoke `visual-strategy-consultant` — MECE is step 1 of 5.
+- **As part of full analysis:** invoke `strategy-consultant` — MECE is step 1 of 5.
 
 ---
 

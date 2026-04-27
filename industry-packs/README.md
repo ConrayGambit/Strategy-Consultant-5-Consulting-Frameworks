@@ -15,9 +15,9 @@ These are **alternative masters**, not additional steps. Use the industry pack i
 
 | Pack | Skill name | When to use |
 |---|---|---|
-| [SaaS / B2B software](./saas/SKILL.md) | `vsc-saas` | ARR / churn / pipeline / product-led-growth problems |
-| [Retail / hospitality](./retail/SKILL.md) | `vsc-retail` | Same-store-sales, foot traffic, basket size, store ops |
-| [Healthcare / hospital ops](./healthcare/SKILL.md) | `vsc-healthcare` | Readmissions, length-of-stay, access, outcomes |
+| [SaaS / B2B software](./saas/SKILL.md) | `sc-saas` | ARR / churn / pipeline / product-led-growth problems |
+| [Retail / hospitality](./retail/SKILL.md) | `sc-retail` | Same-store-sales, foot traffic, basket size, store ops |
+| [Healthcare / hospital ops](./healthcare/SKILL.md) | `sc-healthcare` | Readmissions, length-of-stay, access, outcomes |
 
 ---
 
@@ -27,17 +27,17 @@ Same as the main skills folder — copy the relevant industry pack into your ski
 
 **macOS / Linux:**
 ```bash
-cp -r industry-packs/saas ~/.claude/skills/vsc-saas
+cp -r industry-packs/saas ~/.claude/skills/sc-saas
 ```
 
 **Windows (PowerShell):**
 ```powershell
-Copy-Item -Path .\industry-packs\saas\ -Destination "$env:USERPROFILE\.claude\skills\vsc-saas\" -Recurse
+Copy-Item -Path .\industry-packs\saas\ -Destination "$env:USERPROFILE\.claude\skills\sc-saas\" -Recurse
 ```
 
-Then invoke `/vsc-saas` (or `/vsc-retail`, `/vsc-healthcare`) and paste your problem.
+Then invoke `/sc-saas` (or `/sc-retail`, `/sc-healthcare`) and paste your problem.
 
-You can install all three industry packs alongside the generic `visual-strategy-consultant` master — they don't conflict.
+You can install all three industry packs alongside the generic `strategy-consultant` master — they don't conflict.
 
 ---
 
@@ -47,7 +47,7 @@ You can install all three industry packs alongside the generic `visual-strategy-
 - The problem is framed at a level above industry-specific operations (corporate strategy, M&A, capital allocation).
 - The user's vocabulary doesn't match the industry conventions (suggests they want neutral framing).
 
-In those cases, use `visual-strategy-consultant` (5-framework) or `visual-strategy-consultant-7` (deeper).
+In those cases, use `strategy-consultant` (5-framework) or `strategy-consultant-7` (deeper).
 
 ---
 

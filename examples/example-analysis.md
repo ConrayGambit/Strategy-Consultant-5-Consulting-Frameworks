@@ -1,4 +1,4 @@
-# Example: End-to-End Visual Strategy Consultant Output
+# Example: End-to-End Strategy Consultant Output
 
 This is what the master skill produces in a single response when given a real business problem. Use this to (a) verify your installation works and (b) see the output contract in action.
 
@@ -10,7 +10,7 @@ This is what the master skill produces in a single response when given a real bu
 
 ---
 
-## The response (Visual Strategy Consultant master skill)
+## The response (Strategy Consultant master skill)
 
 You said the problem is the sales cycle stretching from 60 → 110 days, but leadership is considering a reorg of the sales team. Worth flagging: a reorg is expensive insurance against the wrong hypothesis. Before recommending it, this analysis tests whether the cycle stretch is actually a sales-execution problem or a buying-side / product-side problem. I'll proceed with that framing — let me know if you want to reframe.
 

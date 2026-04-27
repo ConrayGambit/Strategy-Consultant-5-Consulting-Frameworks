@@ -86,7 +86,7 @@ A continuation of the upstream analysis for a SaaS sales-cycle problem (sales cy
 ## When to use this skill alone vs. as part of the full analysis
 
 - **Standalone:** when the user already has the analysis done and needs to convert it into an executive-ready memo, presentation, or talk track.
-- **As part of full analysis:** in the 7-framework master (`visual-strategy-consultant-7`), Pyramid Principle runs after the "So What?" test — taking the action-oriented insight and structuring it for executive communication.
+- **As part of full analysis:** in the 7-framework master (`strategy-consultant-7`), Pyramid Principle runs after the "So What?" test — taking the action-oriented insight and structuring it for executive communication.
 
 ---
 

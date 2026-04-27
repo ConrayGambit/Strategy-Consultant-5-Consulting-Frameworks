@@ -1,6 +1,6 @@
 # Full master run — Nonprofit
 
-A complete output of the `visual-strategy-consultant` master skill on a nonprofit fundraising problem.
+A complete output of the `strategy-consultant` master skill on a nonprofit fundraising problem.
 
 ---
 

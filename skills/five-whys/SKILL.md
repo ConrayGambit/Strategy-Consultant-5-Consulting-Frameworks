@@ -61,7 +61,7 @@ A numbered list of five Why → Because pairs, followed by a one-sentence root-c
 ## When to use this skill alone vs. as part of the full analysis
 
 - **Standalone:** when the user has a specific issue branch they want to drill, and they know which one. Skip the issue tree if the relevant branch is already obvious.
-- **As part of full analysis:** in the 7-framework master (`visual-strategy-consultant-7`), 5 Whys runs after Issue Trees and before Hypothesis-Driven — drilling the most-likely branch surfaces the testable hypothesis.
+- **As part of full analysis:** in the 7-framework master (`strategy-consultant-7`), 5 Whys runs after Issue Trees and before Hypothesis-Driven — drilling the most-likely branch surfaces the testable hypothesis.
 
 ---
 

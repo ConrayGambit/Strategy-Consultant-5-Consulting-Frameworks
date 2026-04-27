@@ -17,8 +17,8 @@ cp -r skills/* ~/.claude/skills/
 
 Restart Claude Code. The skills will appear in autocomplete:
 
-- `/visual-strategy-consultant` — full sequential analysis
-- `/visual-strategy-consultant-agents` — sub-agent version (parallel deep dives)
+- `/strategy-consultant` — full sequential analysis
+- `/strategy-consultant-agents` — sub-agent version (parallel deep dives)
 - `/mece-framework` — MECE only
 - `/issue-trees` — issue tree only
 - `/hypothesis-driven` — hypothesis test only
@@ -47,7 +47,7 @@ Copy-Item -Path .\skills\* -Destination $skillsPath -Recurse -Force
 Get-ChildItem $skillsPath
 ```
 
-You should see seven folders listed: the two masters + five framework sub-skills. Restart Claude Code and try `/visual-strategy-consultant`.
+You should see seven folders listed: the two masters + five framework sub-skills. Restart Claude Code and try `/strategy-consultant`.
 
 **If you don't have git installed:** download the repo as a ZIP from GitHub (green "Code" button → "Download ZIP"), extract it, then:
 
@@ -81,7 +81,7 @@ mkdir -p "$HOME/Library/Application Support/Claude/skills"
 cp -r skills/* "$HOME/Library/Application Support/Claude/skills/"
 ```
 
-Drop each skill folder (`visual-strategy-consultant/`, `mece-framework/`, etc.) into that directory. Restart Cowork.
+Drop each skill folder (`strategy-consultant/`, `mece-framework/`, etc.) into that directory. Restart Cowork.
 
 **B. Bundle as a plugin.** If you want to share with your team, package the `skills/` folder as a Claude Code plugin and host it in a marketplace. See [Claude docs on plugins](https://docs.claude.com).
 
@@ -91,7 +91,7 @@ Drop each skill folder (`visual-strategy-consultant/`, `mece-framework/`, etc.) 
 
 1. Create a new Project in Claude.ai
 2. Open the Project's "Custom instructions" or "Project knowledge"
-3. Paste the contents of [`prompts/visual-strategy-consultant.md`](./prompts/visual-strategy-consultant.md) into Custom instructions
+3. Paste the contents of [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md) into Custom instructions
 4. Optionally upload the individual framework prompts as Project knowledge files for reference
 
 ---
@@ -99,7 +99,7 @@ Drop each skill folder (`visual-strategy-consultant/`, `mece-framework/`, etc.) 
 ## Option 4: ChatGPT (Custom GPT)
 
 1. Go to **Explore GPTs → Create**
-2. In the "Configure" tab, paste [`prompts/visual-strategy-consultant.md`](./prompts/visual-strategy-consultant.md) into the **Instructions** field
+2. In the "Configure" tab, paste [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md) into the **Instructions** field
 3. Set name, description, and conversation starters (e.g., "Analyze our churn problem", "Break down this operational issue")
 4. Save and use
 
@@ -109,7 +109,7 @@ Drop each skill folder (`visual-strategy-consultant/`, `mece-framework/`, etc.) 
 
 The plain prompts in [`prompts/`](./prompts/) work in any system that accepts a system prompt or a starting message. Two patterns:
 
-**Pattern A — system prompt:** Set the model's system prompt to the contents of `prompts/visual-strategy-consultant.md`. Send your business problem as the first user message.
+**Pattern A — system prompt:** Set the model's system prompt to the contents of `prompts/strategy-consultant.md`. Send your business problem as the first user message.
 
 **Pattern B — pasted preamble:** Paste the prompt as the first message. Add `"Apply this framework to the following problem: <your problem>"` at the end.
 
@@ -135,4 +135,4 @@ git pull
 cp -r skills/* ~/.claude/skills/
 ```
 
-For prompt-based installs (ChatGPT, Claude.ai), re-copy the latest [`prompts/visual-strategy-consultant.md`](./prompts/visual-strategy-consultant.md).
+For prompt-based installs (ChatGPT, Claude.ai), re-copy the latest [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md).

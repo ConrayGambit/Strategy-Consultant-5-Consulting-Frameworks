@@ -12,8 +12,8 @@ Every output below scored **6/6** on the [eval suite](../../evals/score.py) — 
 
 | File | Skill | Test problem | Score |
 |---|---|---|---|
-| [vsc-cloud-cost.md](./vsc-cloud-cost.md) | `visual-strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike at SaaS company | 6/6 ✅ |
-| [vsc7-bank-loan-cycle.md](./vsc7-bank-loan-cycle.md) | `visual-strategy-consultant-7` (7-fw) | Regional bank: loan cycle 14 → 31 days, fintech threat | All 7 sections ✅ |
+| [vsc-cloud-cost.md](./vsc-cloud-cost.md) | `strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike at SaaS company | 6/6 ✅ |
+| [vsc7-bank-loan-cycle.md](./vsc7-bank-loan-cycle.md) | `strategy-consultant-7` (7-fw) | Regional bank: loan cycle 14 → 31 days, fintech threat | All 7 sections ✅ |
 
 ## Sub-skills (standalone)
 
@@ -31,7 +31,7 @@ Every output below scored **6/6** on the [eval suite](../../evals/score.py) — 
 
 | File | Skill | Test problem | Score |
 |---|---|---|---|
-| [vsc-saas-nrr-decline.md](./vsc-saas-nrr-decline.md) | `vsc-saas` | $40M ARR PLG SaaS: NRR 124% → 108% | 6/6 ✅ |
+| [sc-saas-nrr-decline.md](./sc-saas-nrr-decline.md) | `sc-saas` | $40M ARR PLG SaaS: NRR 124% → 108% | 6/6 ✅ |
 
 ---
 

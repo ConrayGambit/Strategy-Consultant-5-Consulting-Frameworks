@@ -88,7 +88,7 @@ Every leaf is concrete. Each one could be assigned to someone with "validate thi
 ## When to use this skill alone vs. as part of the full analysis
 
 - **Standalone:** when the user has named the problem but needs help decomposing it before going to investigate.
-- **As part of full analysis:** `visual-strategy-consultant` — issue trees are step 2 of 5. If you also want to test which branch is the actual cause, follow up with `hypothesis-driven`.
+- **As part of full analysis:** `strategy-consultant` — issue trees are step 2 of 5. If you also want to test which branch is the actual cause, follow up with `hypothesis-driven`.
 
 ---
 

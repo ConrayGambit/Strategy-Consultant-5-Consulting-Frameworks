@@ -1,6 +1,6 @@
 # Full master run — Manufacturing
 
-A complete output of `visual-strategy-consultant` on a manufacturing quality problem.
+A complete output of `strategy-consultant` on a manufacturing quality problem.
 
 ---
 

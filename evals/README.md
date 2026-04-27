@@ -19,7 +19,7 @@ You can also pipe directly from a CLI:
 
 ```bash
 echo "Our churn jumped 4 points last quarter and nobody knows why." \
-  | claude --skill visual-strategy-consultant \
+  | claude --skill strategy-consultant \
   | python evals/score.py
 ```
 

@@ -1,9 +1,9 @@
 ---
-name: visual-strategy-consultant
+name: strategy-consultant
 description: Tier-1 strategy-consultant analysis. Apply five frameworks (MECE, Issue Trees, Hypothesis-Driven, Pareto, So What?) sequentially with strict whiteboard-style visual output. Use for root-cause breakdown, strategic problem framing, or "consultant-style" thinking on a business problem.
 ---
 
-# Visual Strategy Consultant — Sequential Master
+# Strategy Consultant — Sequential Master
 
 ## Role
 

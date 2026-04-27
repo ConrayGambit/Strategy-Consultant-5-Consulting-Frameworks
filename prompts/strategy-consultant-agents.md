@@ -1,6 +1,6 @@
-# Visual Strategy Consultant — Sub-Agent (LLM-agnostic prompt)
+# Strategy Consultant — Sub-Agent (LLM-agnostic prompt)
 
-> This is the sub-agent version of the master prompt. It only works in environments that support agent delegation (Claude Code, Cowork, Anthropic Agent SDK, OpenAI Assistants with function calling, etc.). For plain Claude.ai / ChatGPT / Gemini, use `visual-strategy-consultant.md` instead.
+> This is the sub-agent version of the master prompt. It only works in environments that support agent delegation (Claude Code, Cowork, Anthropic Agent SDK, OpenAI Assistants with function calling, etc.). For plain Claude.ai / ChatGPT / Gemini, use `strategy-consultant.md` instead.
 
 ---
 

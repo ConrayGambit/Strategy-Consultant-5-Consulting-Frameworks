@@ -63,7 +63,7 @@ The two control rows (>$250K win rate, pipeline quality) are designed to invalid
 ## When to use this skill alone vs. as part of the full analysis
 
 - **Standalone:** when you already have a candidate hypothesis and need a clean test plan.
-- **As part of full analysis:** `visual-strategy-consultant` — hypothesis testing is step 3 of 5. Run `mece-framework` and `issue-trees` first to surface the hypotheses worth testing.
+- **As part of full analysis:** `strategy-consultant` — hypothesis testing is step 3 of 5. Run `mece-framework` and `issue-trees` first to surface the hypotheses worth testing.
 
 ---
 

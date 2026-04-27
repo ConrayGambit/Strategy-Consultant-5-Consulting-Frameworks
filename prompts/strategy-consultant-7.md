@@ -1,6 +1,6 @@
-# Visual Strategy Consultant — 7 Frameworks (LLM-agnostic prompt)
+# Strategy Consultant — 7 Frameworks (LLM-agnostic prompt)
 
-> The "deeper" master prompt — adds 5 Whys (after Issue Trees) and Pyramid Principle (after So What?). Use for high-stakes work where you need both root-cause depth and exec-ready communication. For routine analysis, use `visual-strategy-consultant.md` instead.
+> The "deeper" master prompt — adds 5 Whys (after Issue Trees) and Pyramid Principle (after So What?). Use for high-stakes work where you need both root-cause depth and exec-ready communication. For routine analysis, use `strategy-consultant.md` instead.
 
 ---
 

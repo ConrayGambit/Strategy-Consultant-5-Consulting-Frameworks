@@ -13,7 +13,7 @@ A user-friendly walkthrough for getting this folder onto GitHub. Pick the path t
 
 **Publishing:**
 
-1. Open GitHub Desktop → **File → Add Local Repository** → choose `C:\Claude Workspace\Personal Assistant\visual-strategy-consultant`.
+1. Open GitHub Desktop → **File → Add Local Repository** → choose `C:\Claude Workspace\Personal Assistant\strategy-consultant`.
 2. It will say "this directory does not appear to be a Git repository — Create a Repository?" Click **Create a Repository**.
 3. Fill in:
    - **Name:** `Strategy-Consultant-5-Consulting-Frameworks`
@@ -54,7 +54,7 @@ git branch -M main
 
 # Stage and commit everything
 git add .
-git commit -m "Initial commit: Visual Strategy Consultant skills + prompts"
+git commit -m "Initial commit: Strategy Consultant skills + prompts"
 
 # Connect to GitHub (replace ConrayGambit)
 git remote add origin https://github.com/ConrayGambit/Strategy-Consultant-5-Consulting-Frameworks.git
@@ -74,7 +74,7 @@ cd ~/path/to/Strategy-Consultant-5-Consulting-Frameworks
 git init
 git branch -M main
 git add .
-git commit -m "Initial commit: Visual Strategy Consultant skills + prompts"
+git commit -m "Initial commit: Strategy Consultant skills + prompts"
 git remote add origin https://github.com/ConrayGambit/Strategy-Consultant-5-Consulting-Frameworks.git
 git push -u origin main
 ```

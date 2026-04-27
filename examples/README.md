@@ -20,9 +20,9 @@ This is the canonical example — it walks through a complete output of the mast
 
 | File | Skill | Problem |
 |---|---|---|
-| [showcase/vsc-cloud-cost.md](./showcase/vsc-cloud-cost.md) | `visual-strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike |
-| [showcase/vsc7-bank-loan-cycle.md](./showcase/vsc7-bank-loan-cycle.md) | `visual-strategy-consultant-7` (7-fw) | Bank loan cycle 14 → 31 days, fintech threat |
-| [showcase/vsc-saas-nrr-decline.md](./showcase/vsc-saas-nrr-decline.md) | `vsc-saas` (industry pack) | $40M ARR PLG SaaS, NRR 124% → 108% |
+| [showcase/vsc-cloud-cost.md](./showcase/vsc-cloud-cost.md) | `strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike |
+| [showcase/vsc7-bank-loan-cycle.md](./showcase/vsc7-bank-loan-cycle.md) | `strategy-consultant-7` (7-fw) | Bank loan cycle 14 → 31 days, fintech threat |
+| [showcase/sc-saas-nrr-decline.md](./showcase/sc-saas-nrr-decline.md) | `sc-saas` (industry pack) | $40M ARR PLG SaaS, NRR 124% → 108% |
 | [showcase/mece-ecommerce-conversion.md](./showcase/mece-ecommerce-conversion.md) | `mece-framework` | DTC e-commerce conversion drop |
 | [showcase/issue-tree-oee.md](./showcase/issue-tree-oee.md) | `issue-trees` | Manufacturing OEE 78% → 61% |
 | [showcase/hypothesis-marketplace-ranking.md](./showcase/hypothesis-marketplace-ranking.md) | `hypothesis-driven` | Marketplace ranking-algorithm conversion drop |
@@ -37,7 +37,7 @@ See [showcase/README.md](./showcase/README.md) for the full index.
 
 ## Full master runs (different industries)
 
-These are end-to-end runs of `visual-strategy-consultant` showing how the master skill flexes across very different contexts.
+These are end-to-end runs of `strategy-consultant` showing how the master skill flexes across very different contexts.
 
 | File | Industry | Problem |
 |---|---|---|

@@ -1,9 +1,9 @@
 ---
-name: visual-strategy-consultant-7
+name: strategy-consultant-7
 description: Tier-1 strategy-consultant analysis using seven frameworks in sequence — MECE, Issue Trees, 5 Whys, Hypothesis-Driven, Pareto, So What?, and Pyramid Principle. Use when the analysis needs both deeper root-cause drilling AND executive-ready communication structure. Heavier than the 5-framework master; reach for it on high-stakes work.
 ---
 
-# Visual Strategy Consultant — 7 Frameworks
+# Strategy Consultant — 7 Frameworks
 
 ## Role
 
@@ -17,7 +17,7 @@ Use this when:
 - The user explicitly asks for both diagnosis AND a deliverable they can present.
 - The 5-framework version felt too shallow on a previous run.
 
-For routine analysis, the 5-framework master (`visual-strategy-consultant`) is faster and cleaner.
+For routine analysis, the 5-framework master (`strategy-consultant`) is faster and cleaner.
 
 ## How this skill works
 

@@ -1,4 +1,4 @@
-# Showcase — `vsc-saas` (industry pack)
+# Showcase — `sc-saas` (industry pack)
 
 **Eval result:** 6/6 PASS — produced after the industry-pack SKILL.md was patched to inline the visual contract. Compare to `vsc-cloud-cost.md` (the generic master) — same visual format, but native SaaS vocabulary (NRR, GRR, CSM, ACV, PQL).
 

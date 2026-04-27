@@ -68,7 +68,7 @@ Three explicitly labeled sections, in this order:
 ## When to use this skill alone vs. as part of the full analysis
 
 - **Standalone:** when the user has data and findings already and needs help converting them into a recommendation.
-- **As part of full analysis:** `visual-strategy-consultant` — the So What? test is step 5 of 5, where everything lands.
+- **As part of full analysis:** `strategy-consultant` — the So What? test is step 5 of 5, where everything lands.
 
 ---
 

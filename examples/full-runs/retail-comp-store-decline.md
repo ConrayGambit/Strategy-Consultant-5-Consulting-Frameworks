@@ -1,6 +1,6 @@
 # Full master run — Retail / Hospitality
 
-A complete output of the `visual-strategy-consultant` master skill on a multi-store retail problem.
+A complete output of the `strategy-consultant` master skill on a multi-store retail problem.
 
 ---
 

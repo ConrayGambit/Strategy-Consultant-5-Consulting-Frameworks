@@ -1,9 +1,9 @@
 ---
-name: vsc-retail
+name: sc-retail
 description: Tier-1 strategy-consultant analysis tailored for retail / hospitality problems — same-store-sales, foot traffic, basket size, mix, store ops. Same five frameworks as the generic master, with retail-aware MECE defaults, industry vocabulary, and common root-cause patterns. Use for retail-specific problems.
 ---
 
-# Visual Strategy Consultant — Retail Pack
+# Strategy Consultant — Retail Pack
 
 ## Role
 
@@ -134,4 +134,4 @@ Same as the generic master.
 
 ## Acknowledgment & License
 
-Tailored from the generic Visual Strategy Consultant pack. Original visual-output structure adapted from **Analyst Academy** on YouTube — see [5 Consulting Frameworks to Solve Any Problem](https://www.youtube.com/watch?v=uCmTk06aM70). MIT-licensed; see [LICENSE](../../LICENSE).
+Tailored from the generic Strategy Consultant pack. Original visual-output structure adapted from **Analyst Academy** on YouTube — see [5 Consulting Frameworks to Solve Any Problem](https://www.youtube.com/watch?v=uCmTk06aM70). MIT-licensed; see [LICENSE](../../LICENSE).

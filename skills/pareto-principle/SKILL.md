@@ -64,7 +64,7 @@ Notice: several deprioritized items are real concerns. The point is naming them 
 ## When to use this skill alone vs. as part of the full analysis
 
 - **Standalone:** when the user has a long list of options and needs to commit to a few.
-- **As part of full analysis:** `visual-strategy-consultant` — Pareto is step 4 of 5. Run `mece-framework` and `issue-trees` first to enumerate the 100% before you can isolate the 20%.
+- **As part of full analysis:** `strategy-consultant` — Pareto is step 4 of 5. Run `mece-framework` and `issue-trees` first to enumerate the 100% before you can isolate the 20%.
 
 ---
 

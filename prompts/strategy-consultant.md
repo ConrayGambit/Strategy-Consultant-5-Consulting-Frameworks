@@ -1,4 +1,4 @@
-# Visual Strategy Consultant — Sequential (LLM-agnostic prompt)
+# Strategy Consultant — Sequential (LLM-agnostic prompt)
 
 > Paste this as a system prompt or as the first message in a new conversation. Works in Claude.ai, ChatGPT, Gemini, Mistral, local models — anywhere you can set context. Then describe your business problem.
 

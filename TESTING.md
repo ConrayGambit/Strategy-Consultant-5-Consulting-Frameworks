@@ -37,12 +37,12 @@ A correct output has all five of these:
 ```bash
 # Verify install
 ls ~/.claude/skills/
-# Expected: 7 directories — visual-strategy-consultant, visual-strategy-consultant-agents, mece-framework, issue-trees, hypothesis-driven, pareto-principle, so-what-test
+# Expected: 7 directories — strategy-consultant, strategy-consultant-agents, mece-framework, issue-trees, hypothesis-driven, pareto-principle, so-what-test
 ```
 
 In Claude Code:
 
-1. Type `/visual-strategy-consultant` (autocomplete should suggest it).
+1. Type `/strategy-consultant` (autocomplete should suggest it).
 2. Paste the canonical test prompt.
 3. Verify the output matches the pass criteria above.
 
@@ -70,7 +70,7 @@ Get-ChildItem "$env:APPDATA\Claude\skills"
 # Expected: 7 directories
 ```
 
-Restart Cowork. In a new chat, type `/visual-strategy-consultant` and paste the test prompt.
+Restart Cowork. In a new chat, type `/strategy-consultant` and paste the test prompt.
 
 ### Path 4: Cowork on macOS
 
@@ -84,7 +84,7 @@ Restart Cowork. Same in-app test.
 ### Path 5: Claude.ai (paste-as-system-prompt)
 
 1. Open a new conversation at [claude.ai](https://claude.ai).
-2. Copy the entire contents of [`prompts/visual-strategy-consultant.md`](./prompts/visual-strategy-consultant.md).
+2. Copy the entire contents of [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md).
 3. Paste as the first message.
 4. Send. Claude will acknowledge.
 5. Send the canonical test prompt as the second message.
@@ -94,7 +94,7 @@ Restart Cowork. Same in-app test.
 
 1. Create a new Project at [claude.ai](https://claude.ai).
 2. Open Custom Instructions.
-3. Paste the entire contents of [`prompts/visual-strategy-consultant.md`](./prompts/visual-strategy-consultant.md).
+3. Paste the entire contents of [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md).
 4. Save.
 5. Start a chat in the Project.
 6. Send the canonical test prompt.
@@ -103,7 +103,7 @@ Restart Cowork. Same in-app test.
 ### Path 7: ChatGPT Custom GPT
 
 1. Go to **Explore GPTs → Create**.
-2. In the **Configure** tab, paste [`prompts/visual-strategy-consultant.md`](./prompts/visual-strategy-consultant.md) into the Instructions field.
+2. In the **Configure** tab, paste [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md) into the Instructions field.
 3. Set the name and description.
 4. Save and open the GPT.
 5. Send the canonical test prompt.
@@ -113,7 +113,7 @@ ChatGPT may render the ASCII tree slightly differently from Claude — that's fi
 
 ### Path 8: Gemini, Mistral, local models, etc.
 
-1. Set the model's system prompt to the contents of [`prompts/visual-strategy-consultant.md`](./prompts/visual-strategy-consultant.md), or paste it as the first user message.
+1. Set the model's system prompt to the contents of [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md), or paste it as the first user message.
 2. Send the canonical test prompt.
 3. Verify the output matches the pass criteria.
 

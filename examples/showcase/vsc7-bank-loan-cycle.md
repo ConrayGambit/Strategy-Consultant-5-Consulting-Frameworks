@@ -1,4 +1,4 @@
-# Showcase — `visual-strategy-consultant-7` (7-framework master)
+# Showcase — `strategy-consultant-7` (7-framework master)
 
 **Result:** All 7 sections produced. The 7-framework variant adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What?) for deeper root-cause + executive-ready communication.
 
