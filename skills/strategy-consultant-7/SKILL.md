@@ -71,6 +71,8 @@ Core Problem
 
 Use `├──`, `│`, `└──`. Drill at least 2 levels deep where the problem warrants it; drill deeper for messy problems.
 
+**Carry forward:** seed branches from the §1 MECE categories.
+
 **Rendering fallback:** if the destination is Slack, email, or a renderer known to mangle box-drawing characters, use indented dashes instead:
 
 ```text
@@ -143,6 +145,8 @@ If the user has multiple competing hypotheses, output multiple tables — don't 
 
 **Defaults (flex with judgment):** 1–4 items in the vital 20%. If you can't name what to deprioritize, you haven't really applied 80/20 — the deprioritization list is the discipline.
 
+**Carry forward:** draw the vital 20% from factors already named in §1–§4.
+
 ---
 
 ### 6. The "So What?" Test
@@ -160,6 +164,8 @@ If the user has multiple competing hypotheses, output multiple tables — don't 
 ```
 
 **The test:** if the Insight cannot be assigned to a person with a deadline, it's not an insight — rewrite it.
+
+**Carry forward:** the Insight must act on the §5 vital 20%.
 
 ---
 
@@ -197,6 +203,7 @@ This Pyramid section is what the user can paste into an exec memo or open a boar
 - **The hypothesis follows from the 5-Whys root cause.** Don't generate a hypothesis disconnected from the deep dive.
 - **The Pyramid mirrors the Insight, not the entire analysis.** The Pyramid is for the audience, not for re-litigating the analysis. Top-line should match (or sharpen) the Insight from step 6.
 - **One reframe + one clarifying question, max.** Same as the 5-framework master.
+- **Continuity.** Each section builds on the previous — a reader should be able to trace the Insight back through Pareto → Hypothesis → 5 Whys → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
 
 ## Follow-ups & multiple problems
 

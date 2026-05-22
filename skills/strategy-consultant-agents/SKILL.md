@@ -46,7 +46,7 @@ If the problem is too vague to analyze, ask one clarifying question first.
 1. **Restate the problem in one sentence** for the sub-agents.
 2. **Delegate to five sub-agents in parallel** — issue all five `Task` calls in a single message so they run concurrently.
 3. **Wait for all five results.**
-4. **Synthesize** into the final whiteboard-style response (structure below). Light edits for cross-framework consistency are fine; rewriting is not.
+4. **Synthesize** into the final whiteboard-style response (structure below). Connect the sections during synthesis: rename issue-tree branches to match the MECE category names, ensure the Pareto vital-20% and the So-What Insight reference factors already surfaced by the other agents, and reconcile cross-framework terminology. Re-dispatch a sub-agent only if its output is disconnected from the others — do not serialize the agents. Light edits for cross-framework consistency are fine; rewriting is not.
 5. **Add a 2–3 sentence orientation paragraph** at the top: restate the problem and what each framework is examining.
 6. **Re-run any sub-agent that returned generic or weak output** with sharper instructions.
 
@@ -166,6 +166,7 @@ Output only those three sections.
 - **Don't paraphrase the sub-agents.** Their output structure IS the deliverable.
 - **Re-run, don't tolerate.** Weak sub-agent output? Re-dispatch with sharper instructions.
 - **One reframe + one clarifying question, max.**
+- **Continuity at synthesis.** The five sub-agents run in parallel (no shared context); you create continuity when you synthesize — align names and ensure each section references factors surfaced elsewhere. Weave it naturally; no boilerplate cross-references.
 
 ## Follow-ups & multiple problems
 

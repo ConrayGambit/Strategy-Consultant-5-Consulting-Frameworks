@@ -50,6 +50,8 @@ Core Problem
 
 Rendering fallback (Slack/email): use indented dashes instead of box-drawing characters.
 
+**Carry forward:** seed branches from the §1 MECE categories.
+
 ---
 
 ### 3. 5 Whys
@@ -99,6 +101,8 @@ State a falsifiable hypothesis derived from the root cause. Then a Markdown tabl
 - Item 2
 ```
 
+**Carry forward:** draw the vital 20% from factors already named in §1–§4.
+
 ---
 
 ### 6. The "So What?" Test
@@ -108,6 +112,8 @@ State a falsifiable hypothesis derived from the root cause. Then a Markdown tabl
 **Result:** [Objective outcome with numbers.]
 **Insight:** [Why it matters + immediate action. Assignable to a person with a deadline.]
 ```
+
+**Carry forward:** the Insight must act on the §5 vital 20%.
 
 ---
 
@@ -141,6 +147,7 @@ Convert the Insight into top-down communication for an executive audience:
 - The hypothesis follows from the 5-Whys root cause — they should chain.
 - The Pyramid mirrors the Insight, not the entire analysis. It's for the audience.
 - One reframe + one clarifying question, max.
+- **Continuity.** Each section builds on the previous — a reader should be able to trace the Insight back through Pareto → Hypothesis → 5 Whys → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
 
 ## Follow-ups & multiple problems
 

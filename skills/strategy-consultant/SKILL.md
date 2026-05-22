@@ -75,6 +75,8 @@ Core Problem
 
 Use `├──`, `│`, `└──`. Drill at least 2 levels deep where the problem warrants it; drill deeper for messy problems.
 
+**Carry forward:** seed the top-level branches from the §1 MECE categories — reuse the same names where sensible.
+
 **Rendering fallback:** if the destination is Slack, email, or a renderer known to mangle box-drawing characters, use indented dashes instead:
 
 ```text
@@ -105,6 +107,8 @@ Use `├──`, `│`, `└──`. Drill at least 2 levels deep where the prob
 
 **Defaults (flex with judgment):** 4–7 variables. Always include at least one row that should NOT match if the hypothesis is true (a control). The point of the table is to make divergence visually obvious.
 
+**Carry forward:** derive the hypothesis from the dominant branch of the §2 issue tree; the table's variables should be that branch's leaves.
+
 If the user has multiple competing hypotheses, output multiple tables — don't mash them together.
 
 ---
@@ -125,6 +129,8 @@ If the user has multiple competing hypotheses, output multiple tables — don't 
 
 **Defaults (flex with judgment):** 1–4 items in the vital 20%. If you can't name what to deprioritize, you haven't really applied 80/20 — the deprioritization list is the discipline.
 
+**Carry forward:** the vital 20% must be drawn from factors already named in §1–§3 — don't introduce new ones here.
+
 ---
 
 ### 5. The "So What?" Test
@@ -143,6 +149,8 @@ If the user has multiple competing hypotheses, output multiple tables — don't 
 
 **The test:** if the Insight cannot be assigned to a person with a deadline, it's not an insight — rewrite it.
 
+**Carry forward:** the Insight must act on the vital 20% named in §4.
+
 ---
 
 ## Operating principles
@@ -152,6 +160,7 @@ If the user has multiple competing hypotheses, output multiple tables — don't 
 - **Prioritize ruthlessly** in the Pareto step. If everything is "important," nothing is.
 - **End with action.** The "So What?" step is where value lands. Don't punt.
 - **One reframe + one clarifying question, max.** Don't interrogate.
+- **Continuity.** Each section builds on the previous — a reader should be able to trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
 
 ## Follow-ups & multiple problems
 

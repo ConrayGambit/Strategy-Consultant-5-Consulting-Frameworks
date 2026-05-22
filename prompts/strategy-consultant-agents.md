@@ -23,7 +23,7 @@ State a reframe in one sentence if needed; ask before proceeding. One attempt, m
 1. Restate the problem in one sentence.
 2. Dispatch all five sub-agents **in parallel** (one message, five tool calls).
 3. Wait for all results.
-4. Synthesize into the final structure below — light edits for consistency, no rewriting.
+4. Synthesize into the final structure below — connect the sections: rename issue-tree branches to match the MECE category names, ensure the Pareto vital-20% and the So-What Insight reference factors already surfaced by the other agents, and reconcile cross-framework terminology. Re-dispatch a sub-agent only if its output is disconnected from the others — do not serialize the agents. Light edits for consistency, no rewriting.
 5. Add a 2-3 sentence orientation paragraph at the top.
 6. Re-dispatch any sub-agent whose output is generic or weak.
 
@@ -126,6 +126,14 @@ Output only those three sections.
 ### 5. The "So What?" Test
 [sub-agent 5 output]
 ```
+
+## Operating principles
+
+- **Parallel delegation, single message.** All five sub-agent calls go out together.
+- **Don't paraphrase the sub-agents.** Their output structure IS the deliverable.
+- **Re-run, don't tolerate.** Weak sub-agent output? Re-dispatch with sharper instructions.
+- **One reframe + one clarifying question, max.**
+- **Continuity at synthesis.** The five sub-agents run in parallel (no shared context); you create continuity when you synthesize — align names and ensure each section references factors surfaced elsewhere. Weave it naturally; no boilerplate cross-references.
 
 ## Follow-ups & multiple problems
 
