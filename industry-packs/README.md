@@ -39,6 +39,8 @@ Then invoke `/sc-saas` (or `/sc-retail`, `/sc-healthcare`) and paste your proble
 
 You can install all three industry packs alongside the generic `strategy-consultant` master — they don't conflict.
 
+Paste-ready prompts for non-Claude-Code users live in [`prompts/sc-saas.md`](../prompts/sc-saas.md), [`prompts/sc-retail.md`](../prompts/sc-retail.md), and [`prompts/sc-healthcare.md`](../prompts/sc-healthcare.md).
+
 ---
 
 ## When NOT to use an industry pack

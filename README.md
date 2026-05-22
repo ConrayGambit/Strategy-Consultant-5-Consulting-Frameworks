@@ -114,7 +114,7 @@ The repo only really has three things that matter:
 - **`prompts/<skill-name>.md`** — A condensed, paste-ready version of each skill: it keeps the full output contract (exact section headers, formats, defaults, the control-row rule) but drops the frontmatter, worked examples, and meta sections. For pasting into ChatGPT, Claude.ai, Gemini, custom GPTs, etc.
 - **`examples/`** — Real input/output pairs you can read to calibrate what good output looks like.
 
-The three master skills (`strategy-consultant`, `strategy-consultant-agents`, and `strategy-consultant-7`) are self-contained — they walk through all five (or all seven) frameworks in one response. The seven sub-skills (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `five-whys`, `pyramid-principle`) are alternatives for when you only want one framework. The industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) are alternative masters with industry-aware MECE defaults and vocabulary.
+The three master skills (`strategy-consultant`, `strategy-consultant-agents`, and `strategy-consultant-7`) are self-contained — they walk through all five (or all seven) frameworks in one response. The seven sub-skills (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `five-whys`, `pyramid-principle`) are alternatives for when you only want one framework. The industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) are alternative masters with industry-aware MECE defaults and vocabulary. Each also ships a paste-ready prompt in `prompts/`.
 
 ---
 
