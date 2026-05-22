@@ -167,6 +167,12 @@ Output only those three sections.
 - **Re-run, don't tolerate.** Weak sub-agent output? Re-dispatch with sharper instructions.
 - **One reframe + one clarifying question, max.**
 
+## Follow-ups & multiple problems
+
+- **Follow-up on a prior analysis:** if the user asks about one part of an analysis you already produced (e.g., "go deeper on the Pareto"), answer ONLY that framework's section in its visual format — do not re-run all sections.
+- **Multiple distinct problems in one message:** do not blend them. Either produce a separate, fully-structured analysis per problem, or — if they're clearly competing for priority — ask one question: which to analyze first. One question, max.
+- **Refinement requests** ("make the Insight more specific", "use indented dashes for the tree") apply to the existing output; reproduce just the changed section.
+
 ---
 
 ## Acknowledgment & License

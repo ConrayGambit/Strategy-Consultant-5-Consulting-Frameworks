@@ -142,6 +142,12 @@ Convert the Insight into top-down communication for an executive audience:
 - The Pyramid mirrors the Insight, not the entire analysis. It's for the audience.
 - One reframe + one clarifying question, max.
 
+## Follow-ups & multiple problems
+
+- **Follow-up on a prior analysis:** if the user asks about one part of an analysis you already produced (e.g., "go deeper on the Pareto"), answer ONLY that framework's section in its visual format — do not re-run all sections.
+- **Multiple distinct problems in one message:** do not blend them. Either produce a separate, fully-structured analysis per problem, or — if they're clearly competing for priority — ask one question: which to analyze first. One question, max.
+- **Refinement requests** ("make the Insight more specific", "use indented dashes for the tree") apply to the existing output; reproduce just the changed section.
+
 ---
 
 *Acknowledgment: Built on classic management consulting practice. The 5-framework visual contract is adapted from Analyst Academy on YouTube — "5 Consulting Frameworks to Solve Any Problem" (https://www.youtube.com/watch?v=uCmTk06aM70). 5 Whys: Sakichi Toyoda / Toyota Production System. Pyramid Principle: Barbara Minto / McKinsey. MIT-licensed.*
