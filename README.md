@@ -12,7 +12,7 @@
 
 The idea: most LLMs answer business questions in flowing prose that sounds smart but doesn't actually structure your thinking. This repo gives Claude (or any LLM) a strict visual contract: every business problem produces exactly five sections — a MECE breakdown, an ASCII issue tree, a hypothesis-test table, a Pareto blockquote, and a Process/Result/Insight closer. Whiteboard-style, every time. The frameworks aren't new — they're standard McKinsey/BCG/Bain practice — but baking them into a deterministic skill format means you stop getting fluffy answers and start getting consultant-grade ones.
 
-The skill comes in two flavors: a **sequential** version that works in any LLM (Claude.ai, ChatGPT, Gemini, anywhere you can paste a system prompt), and a **sub-agent** version for environments like Claude Code or Cowork that supports parallel agent delegation per framework.
+The repo ships several flavors. A **sequential** master that works in any LLM (Claude.ai, ChatGPT, Gemini, anywhere you can paste a system prompt). A **sub-agent** master for Claude Code or Cowork environments that support parallel agent delegation. A **7-framework variant** that adds 5 Whys and Pyramid Principle on top of the canonical five for high-stakes work. And three **industry packs** (SaaS, retail, healthcare) with industry-aware vocabulary and root-cause priors. See the Master Variants table below for which to pick.
 
 ---
 
@@ -72,29 +72,35 @@ After installing, verify everything works using [TESTING.md](./TESTING.md) — i
 ```
 Strategy-Consultant-5-Consulting-Frameworks/
 ├── skills/                                # Anthropic Skills format (SKILL.md + frontmatter)
-│   ├── strategy-consultant/        # Master — sequential, 5 frameworks
-│   ├── strategy-consultant-agents/ # Master — parallel sub-agent orchestration
-│   ├── strategy-consultant-7/      # Master — deeper, 7 frameworks
-│   ├── mece-framework/             # Sub-skill — categorization
-│   ├── issue-trees/                # Sub-skill — root-cause decomposition
-│   ├── five-whys/                  # Sub-skill — root-cause drilling (7-fw)
-│   ├── hypothesis-driven/          # Sub-skill — hypothesis test
-│   ├── pareto-principle/           # Sub-skill — 80/20 focus
-│   ├── so-what-test/               # Sub-skill — actionable insight
-│   └── pyramid-principle/          # Sub-skill — exec communication (7-fw)
-├── prompts/                               # Plain markdown prompts (any LLM)
-│   └── ... (mirrors skills/)
-├── industry-packs/                 # Industry-tuned masters (sc-saas, sc-retail, sc-healthcare)
-├── evals/                          # Structural scorer (score.py) + rubric + fixtures
-├── examples/                              # Input/output pairs across industries
-│   ├── example-analysis.md                # Featured: SaaS sales-cycle stretch
-│   ├── full-runs/                         # Full master runs in different industries
-│   └── single-frameworks/                 # One demo per sub-skill, different domains
+│   ├── strategy-consultant/               # Master — 5 frameworks, sequential
+│   ├── strategy-consultant-agents/        # Master — 5 frameworks, parallel sub-agents
+│   ├── strategy-consultant-7/             # Master — 7 frameworks (adds 5 Whys + Pyramid Principle)
+│   ├── mece-framework/                    # Sub-skill: MECE
+│   ├── issue-trees/                       # Sub-skill: Issue Trees
+│   ├── hypothesis-driven/                 # Sub-skill: Hypothesis-Driven
+│   ├── pareto-principle/                  # Sub-skill: Pareto / 80-20
+│   ├── so-what-test/                      # Sub-skill: So What?
+│   ├── five-whys/                         # Sub-skill: 5 Whys
+│   └── pyramid-principle/                 # Sub-skill: Pyramid Principle
+├── industry-packs/                        # Industry-tailored master variants
+│   ├── saas/SKILL.md                      # sc-saas
+│   ├── retail/SKILL.md                    # sc-retail
+│   └── healthcare/SKILL.md                # sc-healthcare
+├── prompts/                               # LLM-agnostic plain prompts (one per skill)
+├── examples/
+│   ├── example-analysis.md                # Featured walk-through
+│   ├── full-runs/                         # 5 industries: retail, nonprofit, manufacturing, government, logistics
+│   ├── single-frameworks/                 # 5 standalone-skill demos in different industries
+│   └── showcase/                          # 10 real outputs from end-to-end skill testing
+├── evals/                                 # Automated structural scorer + manual rubric
+│   ├── score.py                           # Python scorer (no dependencies)
+│   ├── RUBRIC.md                          # Manual content-quality rubric
+│   └── fixtures/                          # Known-bad samples for regression testing
 ├── INSTALLATION.md                        # Per-platform install guide
-├── GITHUB-SETUP.md                        # For maintainers / forkers
+├── TESTING.md                             # Canonical test prompt + per-platform pass criteria
+├── CONTRIBUTING.md                        # How to add frameworks, examples, industry packs
+├── GITHUB-SETUP.md                        # Notes for forkers
 ├── LICENSE                                # MIT
-├── TESTING.md                      # Post-install verification
-├── CONTRIBUTING.md                 # Contribution guide
 └── README.md
 ```
 
@@ -108,7 +114,7 @@ The repo only really has three things that matter:
 - **`prompts/<skill-name>.md`** — Same instructions without the frontmatter. For pasting into ChatGPT, Claude.ai, Gemini, custom GPTs, etc.
 - **`examples/`** — Real input/output pairs you can read to calibrate what good output looks like.
 
-The master skills (`strategy-consultant`, `strategy-consultant-agents`, and the deeper `strategy-consultant-7`) are self-contained — each walks through all of its frameworks in one response. The sub-skills (`mece-framework`, `issue-trees`, etc.) are alternatives for when you only want one framework.
+The three master skills (`strategy-consultant`, `strategy-consultant-agents`, and `strategy-consultant-7`) are self-contained — they walk through all five (or all seven) frameworks in one response. The seven sub-skills (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `five-whys`, `pyramid-principle`) are alternatives for when you only want one framework. The industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) are alternative masters with industry-aware MECE defaults and vocabulary.
 
 ---
 
@@ -141,7 +147,7 @@ All variants produce the same output structure (visual contract). They differ in
 | 4 | **Pareto Principle** | Isolate the 20% of inputs driving 80% of results | Blockquote + deprioritized list |
 | 5 | **"So What?" Test** | Translate findings into an actionable insight | Process / Result / Insight |
 
-Each framework is also a standalone skill — invoke `/mece-framework` on its own when that's all you need.
+Each framework is also a standalone skill — invoke `/mece-framework` on its own when that's all you need. The 7-framework variant adds **5 Whys** (drilled root cause) and **Pyramid Principle** (executive-ready communication) as additional standalone sub-skills.
 
 ---
 
@@ -164,9 +170,9 @@ Unifying thread: **anyone who needs structured business thinking on demand and d
 A few decisions worth surfacing — in case you're forking and wondering why things are the way they are:
 
 - **Visual structure is non-negotiable.** Every framework has a strict output format (nested bullets, ASCII tree, table, blockquote, three labeled sections). Prose-only answers are a failure mode. This is the entire value of the skill.
-- **Five frameworks, applied in order.** Not three, not seven. MECE → Issue Tree → Hypothesis → Pareto → So What is the canonical sequence. Skipping or reordering breaks the logic chain.
+- **Five frameworks, applied in order.** MECE → Issue Tree → Hypothesis → Pareto → So What is the canonical sequence. Skipping or reordering breaks the logic chain. The 7-framework variant adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What) — also applied in strict order.
 - **Defaults are flexible, MECE is not.** Sub-skills say "3–6 categories" or "4–7 variables" — but tell the model to flex with judgment. The one rule that doesn't flex: categories must be Mutually Exclusive and Collectively Exhaustive. That's the foundation; everything else is style.
-- **Two masters, not one.** Sequential works everywhere. Sub-agent works only in agent-capable environments. Shipping both lets users pick without losing reach.
+- **Three masters, not one.** Sequential works everywhere. Sub-agent works only in agent-capable environments. The 7-framework variant is for high-stakes work. Shipping all three lets users pick without losing reach.
 - **Dual format (skills + plain prompts).** Anthropic Skills format works in Claude Code/Cowork. Plain prompts work in everything else. Same content, two distributions.
 - **Reframe-the-question is built in.** Sometimes the user's stated problem isn't the real problem. The masters ask one reframe question max before applying the frameworks — pushing back is part of the consultant role.
 
@@ -177,15 +183,15 @@ A few decisions worth surfacing — in case you're forking and wondering why thi
 Shipped in v1.x:
 
 - [x] **5-framework master** (sequential + sub-agent) ✅
-- [x] **5 sub-skills**, each invokable standalone ✅
+- [x] **7 sub-skills**, each invokable standalone (5 canonical + 5 Whys + Pyramid Principle) ✅
 - [x] **7-framework variant** — adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What?) for high-stakes work. See [`skills/strategy-consultant-7/`](./skills/strategy-consultant-7/SKILL.md). ✅
 - [x] **Industry packs** — [`sc-saas`](./industry-packs/saas/SKILL.md), [`sc-retail`](./industry-packs/retail/SKILL.md), [`sc-healthcare`](./industry-packs/healthcare/SKILL.md) with industry-specific MECE defaults, vocabulary, and root-cause priors. ✅
 - [x] **Eval suite** — automated structural scorer + content rubric in [`evals/`](./evals/). Run `python evals/score.py < output.txt`. ✅
-- [x] **6 full worked examples** across SaaS, retail, nonprofit, manufacturing, government, and logistics — plus 5 single-framework demos and 10 scored showcase outputs. ✅
+- [x] **21 example files** — 1 featured walk-through, 5 full-run examples (retail, nonprofit, manufacturing, government, logistics), 5 single-framework demos in different industries, and 10 real outputs from end-to-end skill testing in [`examples/showcase/`](./examples/showcase/). ✅
+- [x] **Hero illustration** at the top of the README. ✅
 
 Still in flight:
 
-- [ ] **Hero image / GIF generated** from the Claude Design prompt and dropped into the README header.
 - [ ] **Slack-formatted output mode** — same structure but using indented dashes instead of box-drawing chars (already documented in `issue-trees`; a flag would be cleaner).
 - [ ] **LLM-as-judge eval mode** — content-quality scoring against the rubric, not just structural checks.
 - [ ] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech.
@@ -214,6 +220,8 @@ To add an example:
 2. Drop a file into `examples/full-runs/` or `examples/single-frameworks/` with the input/output structure used by the existing examples.
 3. Update `examples/README.md` to link to it.
 
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for full guidelines.
+
 ---
 
 ## License
@@ -229,6 +237,8 @@ MIT — see [LICENSE](./LICENSE). Use freely, modify freely, ship freely.
 > *Source reference:* [5 Consulting Frameworks to Solve Any Problem](https://www.youtube.com/watch?v=uCmTk06aM70)
 
 The five frameworks themselves (MECE, Issue Trees, Hypothesis-Driven Problem Solving, Pareto Principle, "So What?" test) are classic management consulting practice (McKinsey, BCG, Bain). Analyst Academy's video crystallized the *visual output contract* — the idea that each framework should produce a specific, repeatable visual artifact (nested bullets, ASCII tree, comparison table, blockquote, three labeled sections). This repo packages that contract as Claude Skills + LLM-agnostic prompts.
+
+The two additional frameworks in the 7-framework variant — **5 Whys** (Sakichi Toyoda / Toyota Production System) and **Pyramid Principle** (Barbara Minto / McKinsey) — are also well-established practice, packaged with the same visual-contract treatment.
 
 ---
 
