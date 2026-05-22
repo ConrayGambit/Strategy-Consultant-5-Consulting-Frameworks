@@ -78,6 +78,8 @@ Use healthcare-aware defaults (Patient population / Care quality / Throughput / 
 
 **Format:** A single fenced code block (\`\`\`text) containing an ASCII tree using `├──`, `│`, `└──` characters. NOT bullets, NOT a table. Drill 2+ levels deep. Leaves should be testable from EHR data, scheduling systems, staffing rosters, or quality metrics.
 
+**Carry forward:** seed the top-level branches from the §1 MECE categories.
+
 ### 3. Hypothesis-Driven Problem Solving
 
 **Format:** Start with a single-sentence falsifiable hypothesis prefixed `**Hypothesis:**`. Then a Markdown table with EXACTLY three columns: `Variable | Expected (if hypothesis true) | Actual / Required Data`. NOT 4 columns, NOT 5 columns. Include 4–7 rows, **at least one a control row** (e.g., a different service line or patient cohort that should be unaffected if the hypothesis is true).
@@ -89,6 +91,8 @@ Use healthcare-aware defaults (Patient population / Care quality / Throughput / 
 |---|---|---|
 | ... | ... | ... |
 ```
+
+**Carry forward:** derive the hypothesis from the dominant §2 issue-tree branch; the table's variables should be that branch's leaves.
 
 ### 4. Pareto Focus (80/20)
 
@@ -104,6 +108,8 @@ Use healthcare-aware defaults (Patient population / Care quality / Throughput / 
 
 Deprioritize healthcare-classic distractions: blanket EHR replacements, system-wide retraining campaigns, generic "improve patient experience" initiatives.
 
+**Carry forward:** draw the vital 20% from factors already named in §1–§3 — don't introduce new ones here.
+
 ### 5. The "So What?" Test
 
 **Format:** Three explicitly labeled sections. Each label in bold.
@@ -117,6 +123,8 @@ Deprioritize healthcare-classic distractions: blanket EHR replacements, system-w
 ```
 
 Insight must be assignable. Healthcare deadlines often map to clinical-governance review cycles, CMS reporting periods, or accreditation windows.
+
+**Carry forward:** the Insight must act on the §4 vital 20%.
 
 ## Reframe-the-question check (healthcare-specific)
 
@@ -137,6 +145,7 @@ Common reframes worth surfacing:
 ## Operating principles
 
 Same as the generic master, plus: healthcare changes have higher implementation friction than most industries. Insights should anticipate the 30-60-90-day clinical-governance cycle.
+- **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
 
 ---
 

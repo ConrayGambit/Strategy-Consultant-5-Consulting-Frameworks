@@ -76,6 +76,8 @@ Use SaaS-aware defaults (Acquisition / Activation / Retention / Expansion / Mone
 
 **Format:** A single fenced code block (\`\`\`text) containing an ASCII tree using `├──`, `│`, `└──` characters. NOT bullets, NOT a table. Drill 2+ levels deep. Leaves should be testable from CRM, billing, product analytics, or customer-success tools.
 
+**Carry forward:** seed the top-level branches from the §1 MECE categories.
+
 ### 3. Hypothesis-Driven Problem Solving
 
 **Format:** Start with a single-sentence falsifiable hypothesis prefixed `**Hypothesis:**`. Then a Markdown table with EXACTLY three columns: `Variable | Expected (if hypothesis true) | Actual / Required Data`. NOT 4 columns, NOT 5 columns. Include 4–7 rows, **at least one of which is a control row** (something that should NOT match if the hypothesis is true).
@@ -89,6 +91,8 @@ Use SaaS-aware defaults (Acquisition / Activation / Retention / Expansion / Mone
 ```
 
 Hypothesis should reference SaaS-specific causal mechanisms when relevant.
+
+**Carry forward:** derive the hypothesis from the dominant §2 issue-tree branch; the table's variables should be that branch's leaves.
 
 ### 4. Pareto Focus (80/20)
 
@@ -104,6 +108,8 @@ Hypothesis should reference SaaS-specific causal mechanisms when relevant.
 
 Be ruthless about which segment / cohort / motion to focus on. Deprioritize SaaS-classic distractions: rebrands, NPS surveys, generic "improve customer experience" initiatives.
 
+**Carry forward:** draw the vital 20% from factors already named in §1–§3 — don't introduce new ones here.
+
 ### 5. The "So What?" Test
 
 **Format:** Three explicitly labeled sections. Each label must be in bold. NOT one prose paragraph, NOT three bullet points.
@@ -117,6 +123,8 @@ Be ruthless about which segment / cohort / motion to focus on. Deprioritize SaaS
 ```
 
 Insight must be assignable. SaaS deadlines often map to monthly/quarterly business cadence — board meeting, end of fiscal quarter, renewal date.
+
+**Carry forward:** the Insight must act on the §4 vital 20%.
 
 ## Reframe-the-question check (SaaS-specific)
 
@@ -138,6 +146,7 @@ Same as the generic master:
 - Prioritize ruthlessly in Pareto
 - End with action
 - One reframe + one clarifying question, max
+- **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
 
 ---
 

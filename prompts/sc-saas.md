@@ -17,20 +17,24 @@ Nested Markdown bullets — top-level categories in **bold**, nested sub-factors
 
 ### 2. Issue Tree
 Fenced ```text code block, ASCII tree using `├──`, `│`, `└──`. Drill 2+ levels. Leaves testable from CRM / billing / product analytics.
+**Carry forward:** seed the top-level branches from the §1 MECE categories.
 
 ### 3. Hypothesis-Driven Problem Solving
 One-sentence falsifiable `**Hypothesis:**` then a 3-column table `Variable | Expected (if hypothesis true) | Actual / Required Data`, 4–7 rows, ≥1 control row that should NOT match if the hypothesis is true.
+**Carry forward:** derive the hypothesis from the dominant §2 issue-tree branch; the table's variables should be that branch's leaves.
 
 ### 4. Pareto Focus (80/20)
 A `>` blockquote naming the vital 20% (1–4 items), then `**Actively deprioritized (the 80%):**` bullet list. Deprioritize SaaS distractions (rebrands, NPS surveys, generic "improve CX").
+**Carry forward:** draw the vital 20% from factors already named in §1–§3 — don't introduce new ones here.
 
 ### 5. The "So What?" Test
 **Process:** / **Result:** / **Insight:** — the Insight must be assignable to a named person with a deadline (board meeting, fiscal quarter, renewal date).
+**Carry forward:** the Insight must act on the §4 vital 20%.
 
 ## Reframes worth surfacing
 "Churn is the problem" → often "we acquired the wrong cohort"; "invest in CS" → "re-segment the book"; "sales cycle too long" → "internal handoff bottlenecks"; "NRR dropping" → "expansion motion stopped".
 
-Be specific to the user's situation. Prioritize ruthlessly. End with action. One reframe + one clarifying question, max.
+Be specific to the user's situation. Prioritize ruthlessly. End with action. One reframe + one clarifying question, max. Build each section on the previous — the Insight should trace back through Pareto → Hypothesis → Tree → MECE; weave it naturally, no boilerplate.
 
 ---
 

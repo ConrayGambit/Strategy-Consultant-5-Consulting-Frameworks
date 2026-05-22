@@ -76,6 +76,8 @@ Use retail-aware defaults (Local market / Customer behavior / Product / Operatio
 
 **Format:** A single fenced code block (\`\`\`text) containing an ASCII tree using `├──`, `│`, `└──` characters. NOT bullets, NOT a table. Drill 2+ levels deep. Leaves should be testable from POS, foot-traffic data, mystery-shop reports, or loyalty analytics.
 
+**Carry forward:** seed the top-level branches from the §1 MECE categories.
+
 ### 3. Hypothesis-Driven Problem Solving
 
 **Format:** Start with a single-sentence falsifiable hypothesis prefixed `**Hypothesis:**`. Then a Markdown table with EXACTLY three columns: `Variable | Expected (if hypothesis true) | Actual / Required Data`. NOT 4 columns, NOT 5 columns. Include 4–7 rows, **at least one a control row** (something that should NOT match if the hypothesis is true — e.g., a daypart or store cohort that should be unaffected).
@@ -87,6 +89,8 @@ Use retail-aware defaults (Local market / Customer behavior / Product / Operatio
 |---|---|---|
 | ... | ... | ... |
 ```
+
+**Carry forward:** derive the hypothesis from the dominant §2 issue-tree branch; the table's variables should be that branch's leaves.
 
 ### 4. Pareto Focus (80/20)
 
@@ -102,6 +106,8 @@ Use retail-aware defaults (Local market / Customer behavior / Product / Operatio
 
 Be ruthless. Deprioritize retail-classic distractions: aggressive discounting, store remodels, brand refreshes, full loyalty program overhauls.
 
+**Carry forward:** draw the vital 20% from factors already named in §1–§3 — don't introduce new ones here.
+
 ### 5. The "So What?" Test
 
 **Format:** Three explicitly labeled sections. Each label in bold.
@@ -116,6 +122,8 @@ Be ruthless. Deprioritize retail-classic distractions: aggressive discounting, s
 
 Insight must be assignable. Retail deadlines often map to peak season, comp-week reviews, board cycle.
 
+**Carry forward:** the Insight must act on the §4 vital 20%.
+
 ## Reframe-the-question check (retail-specific)
 
 Common reframes worth surfacing:
@@ -129,6 +137,7 @@ Common reframes worth surfacing:
 ## Operating principles
 
 Same as the generic master.
+- **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
 
 ---
 
