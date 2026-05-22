@@ -20,13 +20,35 @@ If yes to any: state the reframe in one sentence, ask whether to proceed with th
 
 ### 1. MECE Categorization
 
-Nested Markdown bullets. 3–6 categories. Mutually exclusive, collectively exhaustive. Specific to the problem.
+Nested Markdown bullets. 3–6 top-level categories, 2–5 sub-factors each. Mutually exclusive, collectively exhaustive. Specific to the problem.
+
+```markdown
+- **Category 1**
+  - Sub-factor A
+  - Sub-factor B
+- **Category 2**
+  - Sub-factor C
+  - Sub-factor D
+```
 
 ---
 
 ### 2. Issue Tree
 
-Fenced code block with ASCII tree (├── │ └──). At least 2 levels deep. Leaves should be testable.
+Fenced code block with ASCII tree. At least 2 levels deep. Leaves should be testable.
+
+````markdown
+```text
+Core Problem
+├── Category 1
+│   ├── Sub-factor A
+│   └── Sub-factor B
+└── Category 2
+    └── Sub-factor C
+```
+````
+
+Rendering fallback (Slack/email): use indented dashes instead of box-drawing characters.
 
 ---
 
@@ -34,7 +56,7 @@ Fenced code block with ASCII tree (├── │ └──). At least 2 levels d
 
 Pick the most-likely-dominant branch from the issue tree and drill it five levels deep:
 
-```
+```markdown
 **Starting problem:** [the issue-tree leaf you're drilling]
 
 1. **Why?** ...
@@ -43,7 +65,7 @@ Pick the most-likely-dominant branch from the issue tree and drill it five level
 4. **Why?** ...
 5. **Why?** ...
 
-**Root cause:** [one-sentence structural cause]
+**Root cause:** [one-sentence structural cause, addressable as a system change]
 ```
 
 The root cause becomes the basis for the hypothesis in step 4.
@@ -54,12 +76,13 @@ The root cause becomes the basis for the hypothesis in step 4.
 
 State a falsifiable hypothesis derived from the root cause. Then a Markdown table:
 
-```
-**Hypothesis:** [one-sentence claim]
+```markdown
+**Hypothesis:** [one-sentence falsifiable claim]
 
 | Variable | Expected (if hypothesis true) | Actual / Required Data |
 |---|---|---|
-| ... | ... | ... |
+| Variable 1 | Expected pattern | What we observe / need |
+| Variable 2 | Expected pattern | What we observe / need |
 ```
 
 4–7 rows. At least one must be a control row (something that should NOT match if the hypothesis is true).
@@ -68,18 +91,19 @@ State a falsifiable hypothesis derived from the root cause. Then a Markdown tabl
 
 ### 5. Pareto Focus (80/20)
 
-```
+```markdown
 > **The vital 20%:** [Specific items — 1–4]
 
 **Actively deprioritized (the 80%):**
-- ...
+- Item 1
+- Item 2
 ```
 
 ---
 
 ### 6. The "So What?" Test
 
-```
+```markdown
 **Process:** [What was analyzed.]
 **Result:** [Objective outcome with numbers.]
 **Insight:** [Why it matters + immediate action. Assignable to a person with a deadline.]
@@ -91,8 +115,8 @@ State a falsifiable hypothesis derived from the root cause. Then a Markdown tabl
 
 Convert the Insight into top-down communication for an executive audience:
 
-```
-**Answer:** [One-sentence direct answer.]
+```markdown
+**Answer:** [One-sentence direct answer. Specific. Actionable. No hedging.]
 
 1. **[Supporting argument 1]**
    - [Evidence]

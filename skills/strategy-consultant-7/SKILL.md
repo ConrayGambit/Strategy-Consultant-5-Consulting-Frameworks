@@ -21,7 +21,7 @@ For routine analysis, the 5-framework master (`strategy-consultant`) is faster a
 
 ## How this skill works
 
-This skill is **self-contained**. When invoked, walk through all seven frameworks in a single response. The seven sub-skills (`mece-framework`, `issue-trees`, `five-whys`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `pyramid-principle`) are alternatives for cases where the user only wants one framework.
+This skill is **fully self-contained — every spec is inline below; the seven sub-skills are optional standalone alternatives**. When invoked, walk through all seven frameworks in a single response.
 
 If the user's problem is too vague, ask one clarifying question. Apply the same reframe-the-question check as the 5-framework master before starting.
 
@@ -32,23 +32,63 @@ Use these exact section headers, in this order:
 ---
 
 ### 1. MECE Categorization
-*(see `mece-framework` for spec)*
 
-Nested Markdown bullets. 3–6 categories, MECE.
+**Concept:** Categorize all factors so there is no overlap, and nothing is left out.
+
+**Format:** Organized nested bullet points grouping items under distinct categories.
+
+```markdown
+- **Category 1**
+  - Sub-factor A
+  - Sub-factor B
+- **Category 2**
+  - Sub-factor C
+  - Sub-factor D
+```
+
+**Defaults (flex with judgment):** 3–6 top-level categories, 2–5 sub-factors each. If the problem genuinely has only 2 categories, don't pad to 3. If a category genuinely has 8 sub-factors, list 8.
+
+**The rule that doesn't flex:** mutually exclusive (no overlap) and collectively exhaustive (no gaps).
 
 ---
 
 ### 2. Issue Tree
-*(see `issue-trees` for spec)*
 
-Fenced code block, ASCII tree using `├──`, `│`, `└──`. At least 2 levels deep.
+**Concept:** Break the core problem down into its component parts to find root causes.
+
+**Format:** ASCII tree inside a fenced code block.
+
+````markdown
+```text
+Core Problem
+├── Category 1
+│   ├── Sub-factor A
+│   └── Sub-factor B
+└── Category 2
+    └── Sub-factor C
+```
+````
+
+Use `├──`, `│`, `└──`. Drill at least 2 levels deep where the problem warrants it; drill deeper for messy problems.
+
+**Rendering fallback:** if the destination is Slack, email, or a renderer known to mangle box-drawing characters, use indented dashes instead:
+
+```text
+- Core Problem
+  - Category 1
+    - Sub-factor A
+    - Sub-factor B
+  - Category 2
+    - Sub-factor C
+```
 
 ---
 
 ### 3. 5 Whys
-*(see `five-whys` for spec)*
 
-Pick the most-likely-dominant branch from the issue tree. Drill it five levels:
+**Concept:** Pick the most-likely-dominant branch from the issue tree and drill it five levels deep. Each answer becomes the new statement; push until you hit a root cause that isn't itself a symptom of something deeper.
+
+**Format:** A numbered list of five Why → Because pairs, followed by a one-sentence root-cause statement.
 
 ```markdown
 **Starting problem:** [The specific issue-tree leaf you're drilling]
@@ -67,30 +107,67 @@ The root cause from this step becomes the basis for the hypothesis in step 4.
 ---
 
 ### 4. Hypothesis-Driven Problem Solving
-*(see `hypothesis-driven` for spec)*
 
-State a falsifiable hypothesis derived from the root cause. Build a Markdown table with at least one control row.
+**Concept:** Start with a hypothesis — a specific, falsifiable claim about why the problem exists — then identify exactly what data would confirm or refute it.
+
+**Format:** A one-sentence falsifiable hypothesis prefixed `**Hypothesis:**`, then a Markdown table.
+
+```markdown
+**Hypothesis:** [One-sentence falsifiable claim.]
+
+| Variable | Expected (if hypothesis true) | Actual / Required Data |
+|---|---|---|
+| Variable 1 | Expected pattern | What we observe / need |
+| Variable 2 | Expected pattern | What we observe / need |
+```
+
+**Defaults (flex with judgment):** 4–7 variables. Always include at least one row that should NOT match if the hypothesis is true (a control). The point of the table is to make divergence visually obvious.
+
+If the user has multiple competing hypotheses, output multiple tables — don't mash them together.
 
 ---
 
 ### 5. Pareto Focus (80/20)
-*(see `pareto-principle` for spec)*
 
-Blockquote naming the vital 20% (1–4 specific items) + bulleted deprioritized list.
+**Concept:** Identify the 20% of inputs driving 80% of the results.
+
+**Format:** A blockquote isolating the vital 20%, plus a list of what's being deprioritized.
+
+```markdown
+> **The vital 20%:** [Specific factors/segments/causes that drive the majority of impact.]
+
+**Actively deprioritized (the 80%):**
+- Item 1
+- Item 2
+```
+
+**Defaults (flex with judgment):** 1–4 items in the vital 20%. If you can't name what to deprioritize, you haven't really applied 80/20 — the deprioritization list is the discipline.
 
 ---
 
 ### 6. The "So What?" Test
-*(see `so-what-test` for spec)*
 
-**Process:** / **Result:** / **Insight:** — Insight assignable to a person with a deadline.
+**Concept:** Translate findings into an actionable insight.
+
+**Format:** Three explicit labeled sections.
+
+```markdown
+**Process:** [What was analyzed.]
+
+**Result:** [The objective outcome — what the analysis showed.]
+
+**Insight:** [Why it matters + the immediate action. Specific enough to assign to a person with a deadline.]
+```
+
+**The test:** if the Insight cannot be assigned to a person with a deadline, it's not an insight — rewrite it.
 
 ---
 
 ### 7. Executive Communication (Pyramid Principle)
-*(see `pyramid-principle` for spec)*
 
-Top-line answer + 3–5 supporting arguments + evidence under each.
+**Concept:** Answer first, supporting arguments second, evidence third. The Pyramid translates the analytical work into a deliverable a CEO can read in 90 seconds.
+
+**Format:** Top-line answer in bold, supporting arguments as numbered list items each with their own evidence sub-bullets.
 
 ```markdown
 **Answer:** [One-sentence direct answer to the question.]
@@ -107,6 +184,8 @@ Top-line answer + 3–5 supporting arguments + evidence under each.
    - [Evidence]
    - [Evidence]
 ```
+
+**Defaults (flex with judgment):** 3–5 supporting arguments, 2–4 evidence points each. Top-line must be one sentence, specific and actionable — no hedging.
 
 This Pyramid section is what the user can paste into an exec memo or open a board presentation with.
 
