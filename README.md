@@ -191,13 +191,13 @@ Shipped in v1.x:
 - [x] **Hero illustration** at the top of the README. ✅
 
 **Planned (next), roughly in order:**
-- [ ] Industry-pack paste prompts (`prompts/sc-saas.md`, `sc-retail.md`, `sc-healthcare.md`)
-- [ ] Make `strategy-consultant-7` fully self-contained (inline all 7 specs)
-- [ ] Eval suite: 7-framework scoring, fixtures, and a pytest harness
+- [x] Industry-pack paste prompts (`prompts/sc-saas.md`, `sc-retail.md`, `sc-healthcare.md`)
+- [x] Make `strategy-consultant-7` fully self-contained (inline all 7 specs)
+- [x] Eval suite: 7-framework scoring, fixtures, and a pytest harness
 - [ ] Inter-framework data flow (each framework feeds the next)
-- [ ] Sub-skill formatting standardization
-- [ ] Follow-up & multi-problem handling in the masters
-- [ ] CI: GitHub Action running the scorer + link-checker on every PR
+- [x] Sub-skill formatting standardization
+- [x] Follow-up & multi-problem handling in the masters
+- [x] CI: GitHub Action running the scorer + link-checker on every PR
 
 Still in flight:
 
