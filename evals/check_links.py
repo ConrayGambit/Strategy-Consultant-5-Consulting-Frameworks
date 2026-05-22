@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check that every local Markdown link in the repo resolves. Exit 1 if any broken."""
 from __future__ import annotations
-import os, re, sys
+import os, re
 
 LINK = re.compile(r'\[[^\]]*\]\(([^)]+)\)')
 

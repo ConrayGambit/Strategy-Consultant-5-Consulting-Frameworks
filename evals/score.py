@@ -3,12 +3,17 @@
 Strategy Consultant — output scorer.
 
 Reads model output from stdin (or a file argument), scores it against the
-5-section visual contract, prints a pass/fail breakdown, and exits with
-code 0 if all sections pass, 1 otherwise.
+visual contract, prints a pass/fail breakdown, and exits with code 0 if all
+sections pass, 1 otherwise.
+
+Supports 5-framework mode (default) and 7-framework mode (adds "3. 5 Whys"
+and "7. Pyramid Principle", shifting Hypothesis→4, Pareto→5, So What→6).
 
 Usage:
     python evals/score.py < output.txt
     python evals/score.py output.txt
+    python evals/score.py output.txt --mode 7
+    python evals/score.py output.txt --mode auto   # auto-detect (default)
     cat output.txt | python evals/score.py --quiet  # exit code only
 
 Pure stdlib, no dependencies.
@@ -19,6 +24,9 @@ import argparse
 import re
 import sys
 from dataclasses import dataclass
+
+# Generic "next numbered heading" boundary — works regardless of section number
+_NEXT_NUMBERED = r"^#{1,4}\s*\d+\.\s"
 
 
 # ---------------------------------------------------------------------------
@@ -38,12 +46,12 @@ class CheckResult:
 
 def check_mece(text: str) -> CheckResult:
     """Section 1: MECE — heading + at least 3 top-level nested bullet groups."""
-    heading = re.search(r"^#{1,4}\s*1\.\s*MECE", text, re.MULTILINE | re.IGNORECASE)
+    heading = re.search(r"^#{1,4}\s*\d+\.\s*MECE", text, re.MULTILINE | re.IGNORECASE)
     if not heading:
         return CheckResult("1. MECE Categorization", False, "Missing heading '### 1. MECE...'")
 
     # Look for top-level bullets in bold (the category markers)
-    section = _section_after(text, heading.start(), next_heading_pattern=r"^#{1,4}\s*2\.")
+    section = _section_after(text, heading.start(), next_heading_pattern=_NEXT_NUMBERED)
     bold_bullets = re.findall(r"^[-*]\s+\*\*[^*]+\*\*", section, re.MULTILINE)
 
     if len(bold_bullets) < 3:
@@ -68,11 +76,11 @@ def check_mece(text: str) -> CheckResult:
 
 def check_issue_tree(text: str) -> CheckResult:
     """Section 2: Issue Tree — fenced code block with box-drawing tree characters."""
-    heading = re.search(r"^#{1,4}\s*2\.\s*Issue\s*Tree", text, re.MULTILINE | re.IGNORECASE)
+    heading = re.search(r"^#{1,4}\s*\d+\.\s*Issue\s*Tree", text, re.MULTILINE | re.IGNORECASE)
     if not heading:
         return CheckResult("2. Issue Tree", False, "Missing heading '### 2. Issue Tree'")
 
-    section = _section_after(text, heading.start(), next_heading_pattern=r"^#{1,4}\s*3\.")
+    section = _section_after(text, heading.start(), next_heading_pattern=_NEXT_NUMBERED)
 
     # Look for box-drawing characters within a fenced code block
     code_blocks = re.findall(r"```[a-zA-Z]*\n(.*?)```", section, re.DOTALL)
@@ -114,15 +122,42 @@ def check_issue_tree(text: str) -> CheckResult:
     return CheckResult("2. Issue Tree", True, f"Box-drawing tree, ~{depth} level(s) deep")
 
 
-def check_hypothesis(text: str) -> CheckResult:
-    """Section 3: Hypothesis-Driven — Hypothesis statement + Markdown table."""
+def check_five_whys(text: str) -> CheckResult:
+    """Section 3 (7-fw): 5 Whys — at least 5 numbered Why lines + Root cause label."""
     heading = re.search(
-        r"^#{1,4}\s*3\.\s*Hypothesis", text, re.MULTILINE | re.IGNORECASE
+        r"^#{1,4}\s*\d+\.\s*(?:5\s*Whys|Five\s+Whys)", text, re.MULTILINE | re.IGNORECASE
     )
     if not heading:
-        return CheckResult("3. Hypothesis-Driven", False, "Missing heading '### 3. Hypothesis...'")
+        return CheckResult("3. 5 Whys", False, "Missing heading '### 3. 5 Whys'")
 
-    section = _section_after(text, heading.start(), next_heading_pattern=r"^#{1,4}\s*4\.")
+    section = _section_after(text, heading.start(), next_heading_pattern=_NEXT_NUMBERED)
+
+    why_lines = re.findall(r"^\s*\d+\.\s+\*\*Why", section, re.MULTILINE)
+    if len(why_lines) < 5:
+        return CheckResult(
+            "3. 5 Whys", False,
+            f"Found {len(why_lines)} '**Why' line(s); need at least 5"
+        )
+
+    root_cause = re.search(r"\*\*Root cause:?\*\*", section, re.IGNORECASE)
+    if not root_cause:
+        return CheckResult("3. 5 Whys", False, "No '**Root cause:**' label found")
+
+    return CheckResult(
+        "3. 5 Whys", True,
+        f"{len(why_lines)} Why lines, Root cause label present"
+    )
+
+
+def check_hypothesis(text: str) -> CheckResult:
+    """Hypothesis — Hypothesis statement + Markdown table (any section number)."""
+    heading = re.search(
+        r"^#{1,4}\s*\d+\.\s*Hypothesis", text, re.MULTILINE | re.IGNORECASE
+    )
+    if not heading:
+        return CheckResult("3. Hypothesis-Driven", False, "Missing heading '### N. Hypothesis...'")
+
+    section = _section_after(text, heading.start(), next_heading_pattern=_NEXT_NUMBERED)
 
     if not re.search(r"\*\*Hypothesis:?\*\*", section, re.IGNORECASE):
         return CheckResult(
@@ -153,14 +188,14 @@ def check_hypothesis(text: str) -> CheckResult:
 
 
 def check_pareto(text: str) -> CheckResult:
-    """Section 4: Pareto — blockquote naming the vital 20% + deprioritized list."""
+    """Pareto — blockquote naming the vital 20% + deprioritized list (any section number)."""
     heading = re.search(
-        r"^#{1,4}\s*4\.\s*Pareto", text, re.MULTILINE | re.IGNORECASE
+        r"^#{1,4}\s*\d+\.\s*Pareto", text, re.MULTILINE | re.IGNORECASE
     )
     if not heading:
-        return CheckResult("4. Pareto Focus", False, "Missing heading '### 4. Pareto...'")
+        return CheckResult("4. Pareto Focus", False, "Missing heading '### N. Pareto...'")
 
-    section = _section_after(text, heading.start(), next_heading_pattern=r"^#{1,4}\s*5\.")
+    section = _section_after(text, heading.start(), next_heading_pattern=_NEXT_NUMBERED)
 
     blockquote = re.search(
         r"^>\s+.*(?:vital\s+20|the\s+20\s*%|20%).*",
@@ -200,14 +235,14 @@ def check_pareto(text: str) -> CheckResult:
 
 
 def check_so_what(text: str) -> CheckResult:
-    """Section 5: So What? — Process / Result / Insight, with assignability cue."""
+    """So What? — Process / Result / Insight, with assignability cue (any section number)."""
     heading = re.search(
-        r"^#{1,4}\s*5\.\s*(?:The\s+)?[\"']?So\s*What", text, re.MULTILINE | re.IGNORECASE
+        r"^#{1,4}\s*\d+\.\s*(?:The\s+)?[\"']?So\s*What", text, re.MULTILINE | re.IGNORECASE
     )
     if not heading:
-        return CheckResult('5. "So What?" Test', False, "Missing heading '### 5. So What...'")
+        return CheckResult('5. "So What?" Test', False, "Missing heading '### N. So What...'")
 
-    section = text[heading.start():]
+    section = _section_after(text, heading.start(), next_heading_pattern=_NEXT_NUMBERED)
 
     process = re.search(r"\*\*Process:?\*\*", section, re.IGNORECASE)
     result = re.search(r"\*\*Result:?\*\*", section, re.IGNORECASE)
@@ -240,25 +275,98 @@ def check_so_what(text: str) -> CheckResult:
     )
 
 
-def check_order(text: str) -> CheckResult:
-    """All five sections appear in canonical order 1 -> 2 -> 3 -> 4 -> 5."""
-    positions = []
-    for n, label in enumerate(
-        ["MECE", "Issue\\s*Tree", "Hypothesis", "Pareto", "(?:The\\s+)?[\"']?So\\s*What"], start=1
-    ):
-        m = re.search(rf"^#{{1,4}}\s*{n}\.\s*{label}", text, re.MULTILINE | re.IGNORECASE)
-        if m:
-            positions.append((n, m.start()))
+def check_pyramid(text: str) -> CheckResult:
+    """Section 7 (7-fw): Pyramid Principle — Answer label + at least 2 numbered bold arguments."""
+    heading = re.search(
+        r"^#{1,4}\s*\d+\.\s*(?:Executive\s*Communication|Pyramid)",
+        text, re.MULTILINE | re.IGNORECASE
+    )
+    if not heading:
+        return CheckResult(
+            "7. Pyramid Principle", False,
+            "Missing heading '### N. Executive Communication' or '### N. Pyramid'"
+        )
 
-    if len(positions) < 5:
-        return CheckResult("Order", False, f"Only {len(positions)}/5 section headings found")
+    # To end of doc (last section)
+    section = text[heading.start():]
+
+    if not re.search(r"\*\*Answer:?\*\*", section, re.IGNORECASE):
+        return CheckResult("7. Pyramid Principle", False, "No '**Answer:**' label found")
+
+    # At least 2 numbered bold arguments
+    args = re.findall(r"^\s*\d+\.\s+\*\*", section, re.MULTILINE)
+    if len(args) < 2:
+        return CheckResult(
+            "7. Pyramid Principle", False,
+            f"Found {len(args)} numbered bold argument(s); need at least 2"
+        )
+
+    return CheckResult(
+        "7. Pyramid Principle", True,
+        f"Answer present, {len(args)} numbered arguments"
+    )
+
+
+def check_order(text: str, mode: int = 5) -> CheckResult:
+    """Sections appear in canonical order for the given mode."""
+    if mode == 7:
+        names = [
+            ("MECE", r"MECE"),
+            ("Issue Tree", r"Issue\s*Tree"),
+            ("5 Whys", r"(?:5\s*Whys|Five\s+Whys)"),
+            ("Hypothesis", r"Hypothesis"),
+            ("Pareto", r"Pareto"),
+            ("So What", r"(?:The\s+)?[\"']?So\s*What"),
+            ("Pyramid", r"(?:Executive\s*Communication|Pyramid)"),
+        ]
+    else:
+        names = [
+            ("MECE", r"MECE"),
+            ("Issue Tree", r"Issue\s*Tree"),
+            ("Hypothesis", r"Hypothesis"),
+            ("Pareto", r"Pareto"),
+            ("So What", r"(?:The\s+)?[\"']?So\s*What"),
+        ]
+
+    positions = []
+    for label, pattern in names:
+        m = re.search(
+            rf"^#{{1,4}}\s*\d+\.\s*{pattern}",
+            text, re.MULTILINE | re.IGNORECASE
+        )
+        if m:
+            positions.append((label, m.start()))
+
+    expected = len(names)
+    if len(positions) < expected:
+        found_names = [p[0] for p in positions]
+        missing = [n for n, _ in names if n not in found_names]
+        return CheckResult(
+            "Order", False,
+            f"Only {len(positions)}/{expected} section headings found; missing: {', '.join(missing)}"
+        )
 
     # Confirm strictly increasing positions
     increasing = all(positions[i][1] < positions[i + 1][1] for i in range(len(positions) - 1))
     if not increasing:
         return CheckResult("Order", False, "Sections present but not in canonical order")
 
-    return CheckResult("Order", True, "Sections 1-5 appear in canonical order")
+    return CheckResult("Order", True, f"Sections 1-{expected} appear in canonical order")
+
+
+# ---------------------------------------------------------------------------
+# Mode detection
+# ---------------------------------------------------------------------------
+
+def detect_mode(text: str) -> int:
+    """Return 7 if both '5 Whys' and 'Pyramid/Executive Communication' headings present, else 5."""
+    has_five_whys = bool(re.search(
+        r"^#{1,4}\s*\d+\.\s*(?:5\s*Whys|Five\s+Whys)", text, re.MULTILINE | re.IGNORECASE
+    ))
+    has_pyramid = bool(re.search(
+        r"^#{1,4}\s*\d+\.\s*(?:Executive\s*Communication|Pyramid)", text, re.MULTILINE | re.IGNORECASE
+    ))
+    return 7 if (has_five_whys and has_pyramid) else 5
 
 
 # ---------------------------------------------------------------------------
@@ -266,10 +374,19 @@ def check_order(text: str) -> CheckResult:
 # ---------------------------------------------------------------------------
 
 def _section_after(text: str, start: int, next_heading_pattern: str) -> str:
-    """Return text from start until the next heading matching the pattern."""
+    """Return text from start until the next heading matching the pattern.
+
+    Skips past the end of the current heading line before searching for the
+    boundary so the heading's own ``#`` characters don't match the pattern.
+    """
     rest = text[start:]
-    end_match = re.search(next_heading_pattern, rest, re.MULTILINE | re.IGNORECASE)
-    return rest[:end_match.start()] if end_match else rest
+    # Advance past the current heading line
+    nl = rest.find("\n")
+    search_from = nl if nl != -1 else len(rest)
+    end_match = re.search(next_heading_pattern, rest[search_from:], re.MULTILINE | re.IGNORECASE)
+    if end_match:
+        return rest[:search_from + end_match.start()]
+    return rest
 
 
 def _indent_depth(line: str) -> int:
@@ -279,21 +396,45 @@ def _indent_depth(line: str) -> int:
 
 
 # ---------------------------------------------------------------------------
-# Main
+# Check lists
 # ---------------------------------------------------------------------------
 
-CHECKS = [
+CHECKS_5 = [
     check_mece,
     check_issue_tree,
     check_hypothesis,
     check_pareto,
     check_so_what,
-    check_order,
+    lambda text: check_order(text, mode=5),
 ]
 
+CHECKS_7 = [
+    check_mece,
+    check_issue_tree,
+    check_five_whys,
+    check_hypothesis,
+    check_pareto,
+    check_so_what,
+    check_pyramid,
+    lambda text: check_order(text, mode=7),
+]
 
-def score(text: str) -> tuple[list[CheckResult], int, int]:
-    results = [check(text) for check in CHECKS]
+# Legacy alias kept for any external callers
+CHECKS = CHECKS_5
+
+
+# ---------------------------------------------------------------------------
+# Score entry point
+# ---------------------------------------------------------------------------
+
+def score(text: str, mode: str = "auto") -> tuple[list[CheckResult], int, int]:
+    if mode == "auto":
+        resolved = detect_mode(text)
+    else:
+        resolved = int(mode)
+
+    checks = CHECKS_7 if resolved == 7 else CHECKS_5
+    results = [check(text) for check in checks]
     passed = sum(1 for r in results if r.passed)
     return results, passed, len(results)
 
@@ -319,12 +460,14 @@ def main(argv: list[str] | None = None) -> int:
                         help="File to read (default: stdin)")
     parser.add_argument("--quiet", action="store_true",
                         help="Suppress report; exit code only")
+    parser.add_argument("--mode", choices=["5", "7", "auto"], default="auto",
+                        help="Scoring mode: 5-framework, 7-framework, or auto-detect (default: auto)")
     args = parser.parse_args(argv)
 
     text = (open(args.input, encoding="utf-8").read()
             if args.input else sys.stdin.read())
 
-    results, passed, total = score(text)
+    results, passed, total = score(text, mode=args.mode)
 
     if not args.quiet:
         print(format_report(results, passed, total))

@@ -11,8 +11,14 @@ Automated grading for skill output against the visual contract. Use this to:
 ## Quick start
 
 ```bash
-# From the repo root
+# From the repo root — 5-framework output (default)
 python evals/score.py < your-output.txt
+
+# 7-framework output (adds 5 Whys + Pyramid sections)
+python evals/score.py your-output.txt --mode 7
+
+# Auto-detect mode (inspects headings, picks 5 or 7 automatically)
+python evals/score.py your-output.txt --mode auto
 ```
 
 You can also pipe directly from a CLI:
@@ -23,7 +29,17 @@ echo "Our churn jumped 4 points last quarter and nobody knows why." \
   | python evals/score.py
 ```
 
-The script reads model output from stdin, scores it against the 5-section rubric, and prints a passing/failing breakdown. Exit code is `0` if pass, `1` if any section fails.
+The script reads model output from stdin, scores it against the rubric, and prints a passing/failing breakdown. Exit code is `0` if all checks pass, `1` if any section fails.
+
+---
+
+## Modes
+
+| Flag | Sections scored | Use for |
+|---|---|---|
+| `--mode 5` (or omit) | 6 checks (MECE, Issue Tree, Hypothesis, Pareto, So What, Order) | `strategy-consultant` 5-framework master |
+| `--mode 7` | 8 checks (adds 5 Whys, Pyramid) | `strategy-consultant-7` 7-framework master |
+| `--mode auto` | auto-detects by inspecting headings | default; works for both |
 
 ---
 
@@ -31,22 +47,45 @@ The script reads model output from stdin, scores it against the 5-section rubric
 
 The scorer is a deterministic, regex-based check — not an LLM-as-judge. It catches structural failures (missing sections, wrong format) but cannot judge content quality. Use the [rubric](./RUBRIC.md) for that.
 
+### 5-framework checks
+
 | # | Check | Pass criteria |
 |---|---|---|
-| 1 | MECE section present | Heading matches `1. MECE`, contains nested bullets with at least 3 categories |
+| 1 | MECE section present | Heading matches `N. MECE`, contains nested bullets with at least 3 categories |
 | 2 | Issue Tree present | Fenced code block contains `├──`, `│`, and `└──` characters; at least 2 levels deep |
 | 3 | Hypothesis present | "Hypothesis:" prefix found; Markdown table follows with at least 4 rows |
 | 4 | Pareto present | Markdown blockquote (`>`) with "vital 20%" or similar; deprioritized list follows |
-| 5 | So What present | Three labeled sections: Process, Result, Insight. Insight contains a deadline-like cue (date, "by", "next [day]", etc.) |
+| 5 | So What present | Three labeled sections: Process, Result, Insight. Insight contains a deadline-like cue |
 | 6 | Order correctness | Sections appear in canonical order: 1 → 2 → 3 → 4 → 5 |
+
+### 7-framework checks (adds 2 more)
+
+| # | Check | Pass criteria |
+|---|---|---|
+| 3 | 5 Whys present | Heading matches `N. 5 Whys`; ≥5 numbered `**Why` lines; `**Root cause:**` label |
+| 7 | Pyramid Principle present | Heading matches `N. Pyramid` or `N. Executive Communication`; `**Answer:**` label; ≥2 numbered bold arguments |
+
+---
+
+## Running the test suite
+
+```bash
+python -m pytest evals/test_scorer.py -v
+```
+
+Expected output: 4 tests, all passing.
 
 ---
 
 ## Files
 
-- [`score.py`](./score.py) — the scorer. ~340 lines of pure stdlib Python (no dependencies).
+- [`score.py`](./score.py) — the scorer. ~479 lines of pure stdlib Python (no dependencies).
+- [`test_scorer.py`](./test_scorer.py) — pytest harness; 4 tests covering bad fixture, good-5fw, good-7fw (explicit mode), and good-7fw (auto-detect).
 - [`RUBRIC.md`](./RUBRIC.md) — manual rubric for content-quality assessment (what the regex can't see).
 - [`fixtures/`](./fixtures/) — known-good and known-bad output samples for testing the scorer itself.
+  - `bad-prose-only.md` — should score 1 (always fails)
+  - `good-5fw.md` — canonical 5-framework output; should score 6/6
+  - `good-7fw.md` — canonical 7-framework output; should score 8/8
 
 ---
 
