@@ -1,5 +1,5 @@
 # Strategy Consultant — 5 Consulting Frameworks
-<img width="1082" height="607" alt="image" src="https://github.com/user-attachments/assets/9b56e3bf-f049-4411-a005-00fa963c038f" />
+<img width="1082" height="607" alt="Strategy Consultant — whiteboard-style consulting frameworks for any LLM" src="https://github.com/user-attachments/assets/9b56e3bf-f049-4411-a005-00fa963c038f" />
 
 > *Repo: `Strategy-Consultant-5-Consulting-Frameworks`*
 
@@ -111,7 +111,7 @@ Strategy-Consultant-5-Consulting-Frameworks/
 The repo only really has three things that matter:
 
 - **`skills/<skill-name>/SKILL.md`** — Anthropic Skills format with YAML frontmatter (name, description) and the actual instructions in markdown. Claude Code and Cowork load these automatically.
-- **`prompts/<skill-name>.md`** — Same instructions without the frontmatter. For pasting into ChatGPT, Claude.ai, Gemini, custom GPTs, etc.
+- **`prompts/<skill-name>.md`** — A condensed, paste-ready version of each skill: it keeps the full output contract (exact section headers, formats, defaults, the control-row rule) but drops the frontmatter, worked examples, and meta sections. For pasting into ChatGPT, Claude.ai, Gemini, custom GPTs, etc.
 - **`examples/`** — Real input/output pairs you can read to calibrate what good output looks like.
 
 The three master skills (`strategy-consultant`, `strategy-consultant-agents`, and `strategy-consultant-7`) are self-contained — they walk through all five (or all seven) frameworks in one response. The seven sub-skills (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `five-whys`, `pyramid-principle`) are alternatives for when you only want one framework. The industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) are alternative masters with industry-aware MECE defaults and vocabulary.
@@ -190,6 +190,15 @@ Shipped in v1.x:
 - [x] **21 example files** — 1 featured walk-through, 5 full-run examples (retail, nonprofit, manufacturing, government, logistics), 5 single-framework demos in different industries, and 10 real outputs from end-to-end skill testing in [`examples/showcase/`](./examples/showcase/). ✅
 - [x] **Hero illustration** at the top of the README. ✅
 
+**Planned (next), roughly in order:**
+- [ ] Industry-pack paste prompts (`prompts/sc-saas.md`, `sc-retail.md`, `sc-healthcare.md`)
+- [ ] Make `strategy-consultant-7` fully self-contained (inline all 7 specs)
+- [ ] Eval suite: 7-framework scoring, fixtures, and a pytest harness
+- [ ] Inter-framework data flow (each framework feeds the next)
+- [ ] Sub-skill formatting standardization
+- [ ] Follow-up & multi-problem handling in the masters
+- [ ] CI: GitHub Action running the scorer + link-checker on every PR
+
 Still in flight:
 
 - [ ] **Slack-formatted output mode** — same structure but using indented dashes instead of box-drawing chars (already documented in `issue-trees`; a flag would be cleaner).
@@ -210,7 +219,7 @@ PRs welcome. The frameworks themselves are well-established consulting practice 
 To add a new framework:
 
 1. Create `skills/<your-framework>/SKILL.md` with frontmatter
-2. Create `prompts/<your-framework>.md` with the same content minus frontmatter
+2. Create `prompts/<your-framework>.md` as a condensed paste-ready version — output contract only (drop the worked example and meta sections)
 3. Update the master skills to include the new step
 4. Add an entry to the framework table above
 
