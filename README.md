@@ -202,7 +202,7 @@ Shipped in v1.x:
 Still in flight:
 
 - [x] **Slack-formatted output mode** — request "Slack mode" / plain-text (or name Slack/Teams/email as the destination) and the skill renders indented-dash trees instead of box-drawing chars. ✅
-- [ ] **LLM-as-judge eval mode** — content-quality scoring against the rubric, not just structural checks.
+- [x] **LLM-as-judge eval mode** — `evals/judge.py` emits a rubric-based judging prompt for any LLM and grades the JSON reply (content quality 1–5). Dependency-free, no API key. ✅
 - [ ] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech.
 - [ ] **More example industries** — biotech, gaming, sports, agriculture.
 - [ ] **CI integration** — GitHub Action that scores output samples on every PR.

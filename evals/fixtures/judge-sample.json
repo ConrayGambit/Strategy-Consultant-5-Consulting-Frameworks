@@ -1,0 +1,29 @@
+{
+  "scores": {
+    "MECE Categorization": {
+      "score": 4,
+      "why": "Categories are tailored to cloud cost drivers with no detectable overlap; sub-factors are concrete (named systems/metrics) rather than generic placeholders."
+    },
+    "Issue Tree": {
+      "score": 4,
+      "why": "Tree drills three levels with box-drawing characters; leaves are specific and investigable within days (e.g., 'audit cloud dashboards for idle/low-use services')."
+    },
+    "Hypothesis-Driven": {
+      "score": 4,
+      "why": "Hypothesis is sharp and falsifiable ('cost per customer declining would falsify it'); table includes a control row and names specific data sources."
+    },
+    "Pareto Focus": {
+      "score": 3,
+      "why": "Vital 20% names three specific levers; deprioritized list includes genuinely painful cuts (greenfield redesign, multi-cloud) with explicit commitment language."
+    },
+    "So What Test": {
+      "score": 4,
+      "why": "Insight assigns two named owners (VP Finance, senior engineer) with a four-week deadline and a quantitative target (15–20% cost reduction)."
+    },
+    "Reframe / Overall Judgment": {
+      "score": 4,
+      "why": "Output explicitly reframes the false binary ('renegotiate OR refactor') into a phased parallel approach; sections are internally consistent from MECE through to Insight."
+    }
+  },
+  "overall": "A strong, consultant-grade analysis that refuses the false binary, names specific owners and targets, and builds internal consistency across all five frameworks. Minor deduction: deprioritized list could name one more genuinely painful trade-off."
+}

@@ -96,12 +96,73 @@ Expected output: 4 tests, all passing.
 - **Can't tell if the Pareto 20% is the actual 20%.** Anything in a blockquote passes.
 - **Insight assignability** is checked weakly — it looks for date-like or owner-like cues, but a sentence like "we should focus by next week" would pass.
 
-For content-quality grading, use [`RUBRIC.md`](./RUBRIC.md) with a human reviewer, or run an LLM-as-judge pass (see roadmap).
+For content-quality grading, use [`RUBRIC.md`](./RUBRIC.md) with a human reviewer, or use [`judge.py`](./judge.py) for an LLM-as-judge pass.
+
+---
+
+## LLM-as-judge (content quality)
+
+`judge.py` turns the rubric into an LLM-judgeable prompt and grades the reply. It complements (not replaces) `score.py` — the scorer catches structural failures; the judge catches content failures that a regex can't see (e.g., a non-MECE MECE section, an unfalsifiable hypothesis, a Pareto that lists 10 items).
+
+Fully dependency-free. No API key. The LLM call happens in whatever model you paste the emitted prompt into — same philosophy as the plain prompts in this repo.
+
+### Emit mode — produce the judging prompt
+
+```bash
+python evals/judge.py evals/fixtures/good-5fw.md
+```
+
+This prints a complete prompt to stdout: the full rubric text verbatim, the output to evaluate, and a task instruction telling the judge to score each dimension 1–5 and return a specific JSON structure. Pipe it or copy-paste into any LLM.
+
+```bash
+# Pipe to a file for later use
+python evals/judge.py your-output.md > judging-prompt.txt
+```
+
+### Grade mode — score a judge reply
+
+After your LLM returns its JSON, save it to a file and run:
+
+```bash
+python evals/judge.py --grade judge-reply.json
+```
+
+This prints a readable table (dimension | score | why), computes the mean of all numeric scores, and prints `Average: X.X/5 (min 3.5)`. Exit code is `0` if mean ≥ `--min` (default 3.5), `1` if below, `2` on malformed JSON.
+
+```bash
+# Raise the bar
+python evals/judge.py --grade judge-reply.json --min 4.0
+
+# Read from stdin
+cat judge-reply.json | python evals/judge.py --grade -
+```
+
+### Expected JSON schema from the judge
+
+```json
+{
+  "scores": {
+    "<dimension>": {"score": <1-5>, "why": "<short reason>"},
+    ...
+  },
+  "overall": "<1-2 sentence verdict>"
+}
+```
+
+A sample valid reply is at [`fixtures/judge-sample.json`](./fixtures/judge-sample.json).
+
+### Running the judge test suite
+
+```bash
+python -m pytest evals/test_judge.py -v
+```
+
+Expected output: 3 tests, all passing.
 
 ---
 
 ## Roadmap
 
-- [ ] LLM-as-judge mode that reads output and rates content quality 1–5 against the rubric
+- [x] LLM-as-judge mode — `judge.py` emits a rubric-based judging prompt and grades the JSON reply (content quality 1–5). Dependency-free, no API key. ✅
 - [ ] Multi-provider comparison harness (run the same prompt against Claude, GPT, Gemini, score each)
 - [ ] CI integration — GitHub Action that scores PR-changed output samples automatically
