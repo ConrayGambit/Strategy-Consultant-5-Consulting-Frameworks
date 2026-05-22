@@ -17,13 +17,16 @@ cp -r skills/* ~/.claude/skills/
 
 Restart Claude Code. The skills will appear in autocomplete:
 
-- `/strategy-consultant` — full sequential analysis
+- `/strategy-consultant` — full sequential analysis (5 frameworks)
 - `/strategy-consultant-agents` — sub-agent version (parallel deep dives)
+- `/strategy-consultant-7` — deeper 7-framework master (adds 5 Whys + Pyramid Principle)
 - `/mece-framework` — MECE only
 - `/issue-trees` — issue tree only
+- `/five-whys` — 5 Whys only
 - `/hypothesis-driven` — hypothesis test only
 - `/pareto-principle` — Pareto only
 - `/so-what-test` — So What? only
+- `/pyramid-principle` — Pyramid Principle only
 
 ---
 
@@ -47,7 +50,7 @@ Copy-Item -Path .\skills\* -Destination $skillsPath -Recurse -Force
 Get-ChildItem $skillsPath
 ```
 
-You should see seven folders listed: the two masters + five framework sub-skills. Restart Claude Code and try `/strategy-consultant`.
+You should see ten folders listed: the three masters + seven framework sub-skills. Restart Claude Code and try `/strategy-consultant`.
 
 **If you don't have git installed:** download the repo as a ZIP from GitHub (green "Code" button → "Download ZIP"), extract it, then:
 

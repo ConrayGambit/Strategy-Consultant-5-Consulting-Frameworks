@@ -13,7 +13,7 @@ A user-friendly walkthrough for getting this folder onto GitHub. Pick the path t
 
 **Publishing:**
 
-1. Open GitHub Desktop → **File → Add Local Repository** → choose `C:\Claude Workspace\Personal Assistant\strategy-consultant`.
+1. Open GitHub Desktop → **File → Add Local Repository** → choose `C:\Claude Workspace\Personal Assistant\Strategy-Consultant-5-Consulting-Frameworks`.
 2. It will say "this directory does not appear to be a Git repository — Create a Repository?" Click **Create a Repository**.
 3. Fill in:
    - **Name:** `Strategy-Consultant-5-Consulting-Frameworks`

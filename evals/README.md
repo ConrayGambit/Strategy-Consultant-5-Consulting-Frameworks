@@ -44,7 +44,7 @@ The scorer is a deterministic, regex-based check — not an LLM-as-judge. It cat
 
 ## Files
 
-- [`score.py`](./score.py) — the scorer. ~200 lines of pure stdlib Python (no dependencies).
+- [`score.py`](./score.py) — the scorer. ~340 lines of pure stdlib Python (no dependencies).
 - [`RUBRIC.md`](./RUBRIC.md) — manual rubric for content-quality assessment (what the regex can't see).
 - [`fixtures/`](./fixtures/) — known-good and known-bad output samples for testing the scorer itself.
 

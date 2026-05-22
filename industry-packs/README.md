@@ -55,10 +55,10 @@ In those cases, use `strategy-consultant` (5-framework) or `strategy-consultant-
 
 PRs welcome. High-priority next packs:
 
-- `vsc-fintech` — payments, lending, fraud, regulatory
-- `vsc-manufacturing` — defect rates, OEE, supply chain
-- `vsc-nonprofit` — fundraising, donor retention, program effectiveness
-- `vsc-government` — backlog reduction, citizen satisfaction, procurement
-- `vsc-edtech` — completion, learning outcomes, monetization
+- `sc-fintech` — payments, lending, fraud, regulatory
+- `sc-manufacturing` — defect rates, OEE, supply chain
+- `sc-nonprofit` — fundraising, donor retention, program effectiveness
+- `sc-government` — backlog reduction, citizen satisfaction, procurement
+- `sc-edtech` — completion, learning outcomes, monetization
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md) for the recipe.

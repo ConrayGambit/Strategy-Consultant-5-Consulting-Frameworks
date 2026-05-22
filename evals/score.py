@@ -258,7 +258,7 @@ def check_order(text: str) -> CheckResult:
     if not increasing:
         return CheckResult("Order", False, "Sections present but not in canonical order")
 
-    return CheckResult("Order", True, "Sections 1–5 appear in canonical order")
+    return CheckResult("Order", True, "Sections 1-5 appear in canonical order")
 
 
 # ---------------------------------------------------------------------------
@@ -300,7 +300,7 @@ def score(text: str) -> tuple[list[CheckResult], int, int]:
 
 def format_report(results: list[CheckResult], passed: int, total: int) -> str:
     lines = []
-    lines.append("Strategy Consultant — output scorer")
+    lines.append("Strategy Consultant - output scorer")
     lines.append("=" * 50)
     for r in results:
         mark = "PASS" if r.passed else "FAIL"

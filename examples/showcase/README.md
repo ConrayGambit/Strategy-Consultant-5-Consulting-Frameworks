@@ -4,7 +4,7 @@ These are ACTUAL outputs produced by the skills during end-to-end testing. Not c
 
 Use this folder to (a) calibrate expectations of what the skills produce, (b) verify the visual contract is enforced consistently, and (c) showcase the skills to a stakeholder before they install.
 
-Every output below scored **6/6** on the [eval suite](../../evals/score.py) — structurally compliant with the visual contract.
+Every 5-framework master and industry-pack output below scored **6/6** on the [eval suite](../../evals/score.py). Sub-skill outputs are single-framework by design, and the 7-framework output produces all seven sections (the scorer grades the 5-section contract).
 
 ---
 

@@ -72,15 +72,20 @@ After installing, verify everything works using [TESTING.md](./TESTING.md) — i
 ```
 Strategy-Consultant-5-Consulting-Frameworks/
 ├── skills/                                # Anthropic Skills format (SKILL.md + frontmatter)
-│   ├── strategy-consultant/        # Master — sequential orchestration (skill ID)
-│   ├── strategy-consultant-agents/ # Master — parallel sub-agent orchestration (skill ID)
-│   ├── mece-framework/                    # Sub-skill 1
-│   ├── issue-trees/                       # Sub-skill 2
-│   ├── hypothesis-driven/                 # Sub-skill 3
-│   ├── pareto-principle/                  # Sub-skill 4
-│   └── so-what-test/                      # Sub-skill 5
+│   ├── strategy-consultant/        # Master — sequential, 5 frameworks
+│   ├── strategy-consultant-agents/ # Master — parallel sub-agent orchestration
+│   ├── strategy-consultant-7/      # Master — deeper, 7 frameworks
+│   ├── mece-framework/             # Sub-skill — categorization
+│   ├── issue-trees/                # Sub-skill — root-cause decomposition
+│   ├── five-whys/                  # Sub-skill — root-cause drilling (7-fw)
+│   ├── hypothesis-driven/          # Sub-skill — hypothesis test
+│   ├── pareto-principle/           # Sub-skill — 80/20 focus
+│   ├── so-what-test/               # Sub-skill — actionable insight
+│   └── pyramid-principle/          # Sub-skill — exec communication (7-fw)
 ├── prompts/                               # Plain markdown prompts (any LLM)
 │   └── ... (mirrors skills/)
+├── industry-packs/                 # Industry-tuned masters (sc-saas, sc-retail, sc-healthcare)
+├── evals/                          # Structural scorer (score.py) + rubric + fixtures
 ├── examples/                              # Input/output pairs across industries
 │   ├── example-analysis.md                # Featured: SaaS sales-cycle stretch
 │   ├── full-runs/                         # Full master runs in different industries
@@ -88,6 +93,8 @@ Strategy-Consultant-5-Consulting-Frameworks/
 ├── INSTALLATION.md                        # Per-platform install guide
 ├── GITHUB-SETUP.md                        # For maintainers / forkers
 ├── LICENSE                                # MIT
+├── TESTING.md                      # Post-install verification
+├── CONTRIBUTING.md                 # Contribution guide
 └── README.md
 ```
 
@@ -101,7 +108,7 @@ The repo only really has three things that matter:
 - **`prompts/<skill-name>.md`** — Same instructions without the frontmatter. For pasting into ChatGPT, Claude.ai, Gemini, custom GPTs, etc.
 - **`examples/`** — Real input/output pairs you can read to calibrate what good output looks like.
 
-The two master skills (`strategy-consultant` and `strategy-consultant-agents`) are self-contained — they walk through all five frameworks in one response. The five sub-skills (`mece-framework`, `issue-trees`, etc.) are alternatives for when you only want one framework.
+The master skills (`strategy-consultant`, `strategy-consultant-agents`, and the deeper `strategy-consultant-7`) are self-contained — each walks through all of its frameworks in one response. The sub-skills (`mece-framework`, `issue-trees`, etc.) are alternatives for when you only want one framework.
 
 ---
 
@@ -119,6 +126,8 @@ The repo ships several master skills. Pick the one that fits your need:
 | **`sc-healthcare`** ([details](./industry-packs/healthcare/SKILL.md)) | 5 — same | Hospital ops / clinical operations. Readmissions, ALOS, throughput, access. |
 
 All variants produce the same output structure (visual contract). They differ in (a) depth of analysis, (b) industry vocabulary, and (c) common root-cause priors.
+
+> **Note:** the industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) live in [`industry-packs/`](./industry-packs/), not `skills/`. The Quick-start `cp -r skills/*` does **not** install them — see [`industry-packs/README.md`](./industry-packs/README.md) for one-line install commands.
 
 ---
 
@@ -172,7 +181,7 @@ Shipped in v1.x:
 - [x] **7-framework variant** — adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What?) for high-stakes work. See [`skills/strategy-consultant-7/`](./skills/strategy-consultant-7/SKILL.md). ✅
 - [x] **Industry packs** — [`sc-saas`](./industry-packs/saas/SKILL.md), [`sc-retail`](./industry-packs/retail/SKILL.md), [`sc-healthcare`](./industry-packs/healthcare/SKILL.md) with industry-specific MECE defaults, vocabulary, and root-cause priors. ✅
 - [x] **Eval suite** — automated structural scorer + content rubric in [`evals/`](./evals/). Run `python evals/score.py < output.txt`. ✅
-- [x] **8 worked examples** across SaaS, retail, nonprofit, manufacturing, government, logistics, and 5 single-framework industry demos. ✅
+- [x] **6 full worked examples** across SaaS, retail, nonprofit, manufacturing, government, and logistics — plus 5 single-framework demos and 10 scored showcase outputs. ✅
 
 Still in flight:
 

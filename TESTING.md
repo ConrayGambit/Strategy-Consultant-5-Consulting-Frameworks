@@ -37,7 +37,7 @@ A correct output has all five of these:
 ```bash
 # Verify install
 ls ~/.claude/skills/
-# Expected: 7 directories — strategy-consultant, strategy-consultant-agents, mece-framework, issue-trees, hypothesis-driven, pareto-principle, so-what-test
+# Expected: 10 directories — strategy-consultant, strategy-consultant-agents, strategy-consultant-7, mece-framework, issue-trees, five-whys, hypothesis-driven, pareto-principle, so-what-test, pyramid-principle
 ```
 
 In Claude Code:
@@ -57,7 +57,7 @@ To test a single sub-skill:
 ```powershell
 # Verify install
 Get-ChildItem "$env:USERPROFILE\.claude\skills"
-# Expected: 7 directories
+# Expected: 10 directories
 ```
 
 Then same in-app test as Path 1.
@@ -67,7 +67,7 @@ Then same in-app test as Path 1.
 ```powershell
 # Verify install
 Get-ChildItem "$env:APPDATA\Claude\skills"
-# Expected: 7 directories
+# Expected: 10 directories
 ```
 
 Restart Cowork. In a new chat, type `/strategy-consultant` and paste the test prompt.
@@ -76,7 +76,7 @@ Restart Cowork. In a new chat, type `/strategy-consultant` and paste the test pr
 
 ```bash
 ls "$HOME/Library/Application Support/Claude/skills"
-# Expected: 7 directories
+# Expected: 10 directories
 ```
 
 Restart Cowork. Same in-app test.
@@ -145,6 +145,8 @@ If you want to test each sub-skill individually, use these one-line prompts:
 | `hypothesis-driven` | "Build a hypothesis test for: card decline rate jumped from 4.1% to 7.8% after a fraud-model deploy." |
 | `pareto-principle` | "Apply 80/20 to: I'm a YouTuber with three pillars (AI tutorials, business strategy, productivity) — which should I focus on?" |
 | `so-what-test` | "I have data showing 64% of bootcamp dropouts happen weeks 3–5 when curriculum compresses backend modules. Translate to action." |
+| `five-whys` | "Drill to the root cause: our CS team missed 40% of its renewal-call commitments last quarter." |
+| `pyramid-principle` | "Structure an exec recommendation arguing we should NOT acquire competitor X." |
 
 Each should produce ONLY the visual format of that single framework — no other sections.
 

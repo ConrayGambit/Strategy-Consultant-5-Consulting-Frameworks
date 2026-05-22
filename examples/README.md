@@ -16,12 +16,12 @@ This is the canonical example — it walks through a complete output of the mast
 
 ## Showcase — actual outputs from skill testing
 
-[`showcase/`](./showcase/) contains real outputs produced during end-to-end skill testing — not curated demos, but the raw responses agents gave when handed a SKILL.md and a real business problem. Every full-master output passed the eval suite at 6/6. **Use this folder to see what the skills actually produce before you install.**
+[`showcase/`](./showcase/) contains real outputs produced during end-to-end skill testing — not curated demos, but the raw responses agents gave when handed a SKILL.md and a real business problem. Every 5-framework output here passed the eval suite at 6/6; the 7-framework run produces all seven sections (the scorer only grades the 5-section contract). **Use this folder to see what the skills actually produce before you install.**
 
 | File | Skill | Problem |
 |---|---|---|
-| [showcase/vsc-cloud-cost.md](./showcase/vsc-cloud-cost.md) | `strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike |
-| [showcase/vsc7-bank-loan-cycle.md](./showcase/vsc7-bank-loan-cycle.md) | `strategy-consultant-7` (7-fw) | Bank loan cycle 14 → 31 days, fintech threat |
+| [showcase/cloud-cost.md](./showcase/cloud-cost.md) | `strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike |
+| [showcase/sc-7-bank-loan-cycle.md](./showcase/sc-7-bank-loan-cycle.md) | `strategy-consultant-7` (7-fw) | Bank loan cycle 14 → 31 days, fintech threat |
 | [showcase/sc-saas-nrr-decline.md](./showcase/sc-saas-nrr-decline.md) | `sc-saas` (industry pack) | $40M ARR PLG SaaS, NRR 124% → 108% |
 | [showcase/mece-ecommerce-conversion.md](./showcase/mece-ecommerce-conversion.md) | `mece-framework` | DTC e-commerce conversion drop |
 | [showcase/issue-tree-oee.md](./showcase/issue-tree-oee.md) | `issue-trees` | Manufacturing OEE 78% → 61% |
@@ -92,4 +92,4 @@ PRs welcome. Pick an industry not yet represented (logistics, biotech, gaming, g
 2. The output produced by running the master skill (or one sub-skill) on that input
 3. A short "What to notice" section calling out judgment calls or framework flexes worth highlighting
 
-See `CONTRIBUTING.md` (coming soon) or just open a PR.
+See [CONTRIBUTING.md](../CONTRIBUTING.md), or just open a PR.
