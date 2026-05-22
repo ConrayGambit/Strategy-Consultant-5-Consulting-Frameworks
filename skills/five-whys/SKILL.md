@@ -51,7 +51,7 @@ A numbered list of five Why → Because pairs, followed by a one-sentence root-c
 
 **Root cause:** The company has no process owner for commercial document lifecycle management. The MSA degradation is a symptom; the structural cause is institutional ownership of contract templates.
 
-## Anti-patterns
+## Common mistakes
 
 - **Stopping at "people did X."** "Why? Because Bob made a mistake" isn't root cause — it's a symptom. Why did Bob make the mistake? What in the system permitted it?
 - **Branching the chain.** "Why? Because of A and B and C" — pick one and drill. Run separate 5 Whys for the others if needed.
