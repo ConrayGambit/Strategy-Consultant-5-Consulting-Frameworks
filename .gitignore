@@ -15,3 +15,11 @@ NOTES.md
 DRAFT*.md
 .scratch/
 .refresh
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Working plans / scratch
+*.local.md
