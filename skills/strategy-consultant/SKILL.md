@@ -161,6 +161,7 @@ If the user has multiple competing hypotheses, output multiple tables — don't 
 - **End with action.** The "So What?" step is where value lands. Don't punt.
 - **One reframe + one clarifying question, max.** Don't interrogate.
 - **Continuity.** Each section builds on the previous — a reader should be able to trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
+- **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
 
 ## Follow-ups & multiple problems
 

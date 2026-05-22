@@ -148,6 +148,7 @@ Convert the Insight into top-down communication for an executive audience:
 - The Pyramid mirrors the Insight, not the entire analysis. It's for the audience.
 - One reframe + one clarifying question, max.
 - **Continuity.** Each section builds on the previous — a reader should be able to trace the Insight back through Pareto → Hypothesis → 5 Whys → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
+- Slack/plain-text mode: if the user asks for Slack/Teams/email/plain-text output, use indented-dash trees instead of box-drawing.
 
 ## Follow-ups & multiple problems
 

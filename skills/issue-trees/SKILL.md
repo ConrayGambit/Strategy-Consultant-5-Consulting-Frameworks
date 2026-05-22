@@ -43,6 +43,8 @@ Some destinations mangle box-drawing characters — Slack, certain email clients
 
 It loses some elegance but stays readable everywhere. Default to box-drawing; switch only when needed.
 
+**This is "Slack mode."** When the user asks for Slack / Teams / email / plain-text output (or names that as the destination), use this indented-dash form for the whole tree by default.
+
 ## Defaults & flex points
 
 | Default | When to flex |

@@ -167,6 +167,7 @@ Output only those three sections.
 - **Re-run, don't tolerate.** Weak sub-agent output? Re-dispatch with sharper instructions.
 - **One reframe + one clarifying question, max.**
 - **Continuity at synthesis.** The five sub-agents run in parallel (no shared context); you create continuity when you synthesize — align names and ensure each section references factors surfaced elsewhere. Weave it naturally; no boilerplate cross-references.
+- **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
 
 ## Follow-ups & multiple problems
 

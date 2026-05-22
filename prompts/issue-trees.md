@@ -29,6 +29,8 @@ Rendering fallback: if the user mentions Slack, email, or another renderer that 
     - Sub-factor A
 ```
 
+This indented-dash form is "Slack mode" — use it when the user asks for Slack/Teams/email/plain-text output.
+
 Defaults (flex with judgment):
 - At least 2 levels deep — drill deeper for messy problems (3–4 levels)
 - 3–8 words per node — long node text destroys readability

@@ -134,6 +134,7 @@ Output only those three sections.
 - **Re-run, don't tolerate.** Weak sub-agent output? Re-dispatch with sharper instructions.
 - **One reframe + one clarifying question, max.**
 - **Continuity at synthesis.** The five sub-agents run in parallel (no shared context); you create continuity when you synthesize — align names and ensure each section references factors surfaced elsewhere. Weave it naturally; no boilerplate cross-references.
+- Slack/plain-text mode: if the user asks for Slack/Teams/email/plain-text output, use indented-dash trees instead of box-drawing.
 
 ## Follow-ups & multiple problems
 

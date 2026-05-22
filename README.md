@@ -201,7 +201,7 @@ Shipped in v1.x:
 
 Still in flight:
 
-- [ ] **Slack-formatted output mode** — same structure but using indented dashes instead of box-drawing chars (already documented in `issue-trees`; a flag would be cleaner).
+- [x] **Slack-formatted output mode** — request "Slack mode" / plain-text (or name Slack/Teams/email as the destination) and the skill renders indented-dash trees instead of box-drawing chars. ✅
 - [ ] **LLM-as-judge eval mode** — content-quality scoring against the rubric, not just structural checks.
 - [ ] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech.
 - [ ] **More example industries** — biotech, gaming, sports, agriculture.

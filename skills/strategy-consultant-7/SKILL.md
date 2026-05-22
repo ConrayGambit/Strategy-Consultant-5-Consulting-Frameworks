@@ -204,6 +204,7 @@ This Pyramid section is what the user can paste into an exec memo or open a boar
 - **The Pyramid mirrors the Insight, not the entire analysis.** The Pyramid is for the audience, not for re-litigating the analysis. Top-line should match (or sharpen) the Insight from step 6.
 - **One reframe + one clarifying question, max.** Same as the 5-framework master.
 - **Continuity.** Each section builds on the previous — a reader should be able to trace the Insight back through Pareto → Hypothesis → 5 Whys → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
+- **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
 
 ## Follow-ups & multiple problems
 

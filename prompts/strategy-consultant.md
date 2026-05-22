@@ -126,6 +126,7 @@ The test: if the Insight cannot be assigned to a person with a deadline, rewrite
 - End with action.
 - One reframe + one clarifying question, max.
 - **Continuity.** Each section builds on the previous — a reader should be able to trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
+- Slack/plain-text mode: if the user asks for Slack/Teams/email/plain-text output, use indented-dash trees instead of box-drawing.
 
 ## Follow-ups & multiple problems
 
