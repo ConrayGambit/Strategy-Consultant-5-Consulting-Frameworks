@@ -23,7 +23,17 @@ For routine analysis, the 5-framework master (`strategy-consultant`) is faster a
 
 This skill is **fully self-contained — every spec is inline below; the seven sub-skills are optional standalone alternatives**. When invoked, walk through all seven frameworks in a single response.
 
-If the user's problem is too vague, ask one clarifying question. Apply the same reframe-the-question check as the 5-framework master before starting.
+## Before you start: reframe-the-question check
+
+Sometimes the right consultant move is to push back on the framing. Run this check before applying the frameworks:
+
+- **Is the stated problem actually the problem?** ("Churn is too high" might really be "we acquired the wrong customers in Q2.")
+- **Is there a hidden constraint that would change the analysis?** (Budget freeze, regulatory deadline, M&A in motion.)
+- **Is the user asking the right question for their actual goal?** (They asked for cost-cutting, but the goal is fundability.)
+
+If yes to any of these, **state the reframe in one sentence**, then ask whether to proceed with the original framing or the reframed one. Don't interrogate. One reframe attempt, max — if they confirm, proceed.
+
+If the problem is too vague to analyze (no specifics, no numbers, no context), ask **one** clarifying question, then proceed.
 
 ## Required output structure
 

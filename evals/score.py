@@ -116,8 +116,8 @@ def check_issue_tree(text: str) -> CheckResult:
             indent = len(line) - len(line.lstrip())
             levels.add(indent)
     depth = len(levels)
-    if depth < 1:
-        return CheckResult("2. Issue Tree", False, "Tree has no detectable branches")
+    if depth < 2:
+        return CheckResult("2. Issue Tree", False, "Tree must be at least 2 levels deep")
 
     return CheckResult("2. Issue Tree", True, f"Box-drawing tree, ~{depth} level(s) deep")
 
@@ -464,8 +464,11 @@ def main(argv: list[str] | None = None) -> int:
                         help="Scoring mode: 5-framework, 7-framework, or auto-detect (default: auto)")
     args = parser.parse_args(argv)
 
-    text = (open(args.input, encoding="utf-8").read()
-            if args.input else sys.stdin.read())
+    if args.input:
+        with open(args.input, encoding="utf-8") as f:
+            text = f.read()
+    else:
+        text = sys.stdin.read()
 
     results, passed, total = score(text, mode=args.mode)
 

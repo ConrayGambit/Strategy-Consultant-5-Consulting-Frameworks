@@ -15,7 +15,8 @@ def main() -> int:
             if not f.endswith('.md'):
                 continue
             p = os.path.join(dp, f)
-            txt = open(p, encoding='utf-8', errors='replace').read()
+            with open(p, encoding='utf-8', errors='replace') as fh:
+                txt = fh.read()
             for m in LINK.findall(txt):
                 t = m.strip().split()[0]                      # drop optional "title"
                 if t.startswith(('http://', 'https://', 'mailto:', '#', 'tel:')):
