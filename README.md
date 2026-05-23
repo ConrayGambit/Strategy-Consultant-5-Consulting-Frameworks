@@ -185,32 +185,35 @@ A few decisions worth surfacing — in case you're forking and wondering why thi
 
 ## Roadmap
 
-Shipped in v1.x:
+**Shipped in v1.x (initial release):**
 
 - [x] **5-framework master** (sequential + sub-agent) ✅
 - [x] **7 sub-skills**, each invokable standalone (5 canonical + 5 Whys + Pyramid Principle) ✅
 - [x] **7-framework variant** — adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What?) for high-stakes work. See [`skills/strategy-consultant-7/`](./skills/strategy-consultant-7/SKILL.md). ✅
 - [x] **Industry packs** — [`sc-saas`](./industry-packs/saas/SKILL.md), [`sc-retail`](./industry-packs/retail/SKILL.md), [`sc-healthcare`](./industry-packs/healthcare/SKILL.md) with industry-specific MECE defaults, vocabulary, and root-cause priors. ✅
 - [x] **Eval suite** — automated structural scorer + content rubric in [`evals/`](./evals/). Run `python evals/score.py < output.txt`. ✅
-- [x] **25 example files** — 1 featured walk-through, 9 full-run examples (retail, nonprofit, manufacturing, government, logistics, biotech, gaming, sports, agriculture), 5 single-framework demos in different industries, and 10 real outputs from end-to-end skill testing in [`examples/showcase/`](./examples/showcase/). ✅
 - [x] **Hero illustration** at the top of the README. ✅
 
-**Planned (next), roughly in order:**
-- [x] Industry-pack paste prompts (`prompts/sc-saas.md`, `sc-retail.md`, `sc-healthcare.md`)
-- [x] Make `strategy-consultant-7` fully self-contained (inline all 7 specs)
-- [x] Eval suite: 7-framework scoring, fixtures, and a pytest harness
-- [x] Inter-framework data flow (each framework feeds the next)
-- [x] Sub-skill formatting standardization
-- [x] Follow-up & multi-problem handling in the masters
-- [x] CI: GitHub Action running the scorer + link-checker on every PR
+**Shipped in v1.1 (skill + eval expansion):**
 
-Still in flight:
+- [x] **Industry-pack paste prompts** — `prompts/sc-saas.md`, `prompts/sc-retail.md`, `prompts/sc-healthcare.md` (LLM-agnostic versions of each pack). ✅
+- [x] **`strategy-consultant-7` fully self-contained** — inlines all seven framework specs; works with no sub-skills installed. ✅
+- [x] **Eval suite: 7-framework scoring + fixtures + pytest harness** — `evals/score.py --mode 7` and `evals/test_scorer.py`. ✅
+- [x] **Inter-framework data flow** — each section feeds the next (MECE → Tree → Hypothesis → Pareto → So What); propagated to industry packs too. ✅
+- [x] **Sub-skill formatting standardization** — consistent skeleton across the seven sub-skills. ✅
+- [x] **Follow-up & multi-problem handling** in the masters (focused-section follow-ups; multiple-problem disambiguation). ✅
+- [x] **CI workflow** — GitHub Action running the scorer + link-checker on every push/PR. ✅
+
+**Shipped in v1.2 (latest additions):**
 
 - [x] **Slack-formatted output mode** — request "Slack mode" / plain-text (or name Slack/Teams/email as the destination) and the skill renders indented-dash trees instead of box-drawing chars. ✅
 - [x] **LLM-as-judge eval mode** — `evals/judge.py` emits a rubric-based judging prompt for any LLM and grades the JSON reply (content quality 1–5). Dependency-free, no API key. ✅
-- [x] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech — now shipped as `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`. ✅
-- [x] **More example industries** — biotech, gaming, sports, agriculture (added to `examples/full-runs/`). ✅
-- [ ] **CI integration** — GitHub Action that scores output samples on every PR.
+- [x] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech — shipped as `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`. ✅
+- [x] **More example industries** — biotech, gaming, sports, agriculture (added to `examples/full-runs/`); the repo now ships 25 example files in total. ✅
+- [x] **CI scores real output samples** — the pytest harness scores showcase masters/packs (5-mode), the 7-fw showcase (7-mode), and every file in `examples/full-runs/` on every PR. ✅
+
+**Still in flight:**
+
 - [ ] **Video walkthrough** on the [ConrayGambit YouTube channel](https://youtube.com/@conraygambit).
 
 If you have ideas, open an issue or DM `@ConrayGambit`.

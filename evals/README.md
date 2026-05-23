@@ -73,7 +73,11 @@ The scorer is a deterministic, regex-based check — not an LLM-as-judge. It cat
 python -m pytest evals/test_scorer.py -v
 ```
 
-Expected output: 4 tests, all passing.
+Expected output: 4 fixture tests, all passing. CI also runs the full suite — see below.
+
+### CI scoring of real output samples
+
+The pytest harness now scores real output files on every push/PR (not just synthetic fixtures): `examples/showcase/cloud-cost.md` and `examples/showcase/sc-saas-nrr-decline.md` are scored in 5-framework mode; `examples/showcase/sc-7-bank-loan-cycle.md` is scored in 7-framework mode (explicit `--mode 7`); and every `.md` file in `examples/full-runs/` is auto-discovered and scored at 5-framework pass threshold. New full-run examples are picked up automatically with no test changes required.
 
 ---
 
