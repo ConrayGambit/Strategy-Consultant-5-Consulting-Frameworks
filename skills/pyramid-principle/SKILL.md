@@ -54,7 +54,7 @@ A pyramid structure rendered in Markdown: top-line answer in bold, supporting ar
 
 If two arguments overlap, merge them. If an argument doesn't actually support the top-line, cut it.
 
-## Example
+## Example — sales reorg recommendation
 
 A continuation of the upstream analysis for a SaaS sales-cycle problem (sales cycle stretched 60 → 110 days, leadership considering reorg).
 

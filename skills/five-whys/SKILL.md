@@ -39,7 +39,7 @@ A numbered list of five Why → Because pairs, followed by a one-sentence root-c
 
 **The root-cause test:** the final answer should be something you can *change as a system* — a process, a policy, an incentive, a data-flow design. If the final answer is "people are bad" or "the world is hard," you haven't reached root cause. Push deeper.
 
-## Example
+## Example — sales / win rate
 
 **Starting problem:** Mid-market sales win rate dropped from 28% to 17% in two quarters.
 
