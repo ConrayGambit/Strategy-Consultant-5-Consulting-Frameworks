@@ -192,7 +192,7 @@ Shipped in v1.x:
 - [x] **7-framework variant** — adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What?) for high-stakes work. See [`skills/strategy-consultant-7/`](./skills/strategy-consultant-7/SKILL.md). ✅
 - [x] **Industry packs** — [`sc-saas`](./industry-packs/saas/SKILL.md), [`sc-retail`](./industry-packs/retail/SKILL.md), [`sc-healthcare`](./industry-packs/healthcare/SKILL.md) with industry-specific MECE defaults, vocabulary, and root-cause priors. ✅
 - [x] **Eval suite** — automated structural scorer + content rubric in [`evals/`](./evals/). Run `python evals/score.py < output.txt`. ✅
-- [x] **21 example files** — 1 featured walk-through, 5 full-run examples (retail, nonprofit, manufacturing, government, logistics), 5 single-framework demos in different industries, and 10 real outputs from end-to-end skill testing in [`examples/showcase/`](./examples/showcase/). ✅
+- [x] **25 example files** — 1 featured walk-through, 9 full-run examples (retail, nonprofit, manufacturing, government, logistics, biotech, gaming, sports, agriculture), 5 single-framework demos in different industries, and 10 real outputs from end-to-end skill testing in [`examples/showcase/`](./examples/showcase/). ✅
 - [x] **Hero illustration** at the top of the README. ✅
 
 **Planned (next), roughly in order:**
@@ -209,7 +209,7 @@ Still in flight:
 - [x] **Slack-formatted output mode** — request "Slack mode" / plain-text (or name Slack/Teams/email as the destination) and the skill renders indented-dash trees instead of box-drawing chars. ✅
 - [x] **LLM-as-judge eval mode** — `evals/judge.py` emits a rubric-based judging prompt for any LLM and grades the JSON reply (content quality 1–5). Dependency-free, no API key. ✅
 - [x] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech — now shipped as `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`. ✅
-- [ ] **More example industries** — biotech, gaming, sports, agriculture.
+- [x] **More example industries** — biotech, gaming, sports, agriculture (added to `examples/full-runs/`). ✅
 - [ ] **CI integration** — GitHub Action that scores output samples on every PR.
 - [ ] **Video walkthrough** on the [ConrayGambit YouTube channel](https://youtube.com/@conraygambit).
 

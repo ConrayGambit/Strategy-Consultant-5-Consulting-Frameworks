@@ -46,6 +46,10 @@ These are end-to-end runs of `strategy-consultant` showing how the master skill 
 | [full-runs/manufacturing-defect-rate.md](./full-runs/manufacturing-defect-rate.md) | Manufacturing | Industrial-pump defect rate spiked 1.2% → 3.6% in 90 days |
 | [full-runs/government-permit-backlog.md](./full-runs/government-permit-backlog.md) | Government / public sector | City building-permits department, 4,300 backlog, 21d → 74d cycle |
 | [full-runs/logistics-shipment-delays.md](./full-runs/logistics-shipment-delays.md) | Logistics / 3PL | OTD dropped 96% → 81%, 38%-revenue customer threatening RFP |
+| [full-runs/biotech-trial-enrollment.md](./full-runs/biotech-trial-enrollment.md) | Biotech / clinical trials | Phase 2 NASH trial enrolment 38/65 in 9 mo, threatening Series C |
+| [full-runs/gaming-retention-drop.md](./full-runs/gaming-retention-drop.md) | Mobile gaming | Live-service mobile RPG D7 retention 24%→17% post v3.1, ARPDAU −12% |
+| [full-runs/sports-attendance-decline.md](./full-runs/sports-attendance-decline.md) | Sports / pro club | PL-style football club attendance −18% YoY, season-ticket renewals 84%→71% |
+| [full-runs/agriculture-yield-drop.md](./full-runs/agriculture-yield-drop.md) | Agriculture / row crop | 12K-acre row-crop corn yield 195→168 bu/acre despite good weather |
 
 ---
 
