@@ -18,6 +18,11 @@ These are **alternative masters**, not additional steps. Use the industry pack i
 | [SaaS / B2B software](./saas/SKILL.md) | `sc-saas` | ARR / churn / pipeline / product-led-growth problems |
 | [Retail / hospitality](./retail/SKILL.md) | `sc-retail` | Same-store-sales, foot traffic, basket size, store ops |
 | [Healthcare / hospital ops](./healthcare/SKILL.md) | `sc-healthcare` | Readmissions, length-of-stay, access, outcomes |
+| [Fintech / payments / lending](./fintech/SKILL.md) | `sc-fintech` | Approval/decline, fraud, delinquency, KYC, unit economics |
+| [Manufacturing / industrial ops](./manufacturing/SKILL.md) | `sc-manufacturing` | OEE, defect rate, yield, changeover, throughput |
+| [Nonprofit / fundraising](./nonprofit/SKILL.md) | `sc-nonprofit` | Donor retention, gift mix, program effectiveness |
+| [Public sector / civic ops](./government/SKILL.md) | `sc-government` | Backlogs, cycle time, CSAT, procurement |
+| [Edtech / online learning](./edtech/SKILL.md) | `sc-edtech` | Activation, completion, outcomes, monetization |
 
 ---
 
@@ -53,14 +58,6 @@ In those cases, use `strategy-consultant` (5-framework) or `strategy-consultant-
 
 ---
 
-## Roadmap — additional packs
+## Additional packs
 
-PRs welcome. High-priority next packs:
-
-- `sc-fintech` — payments, lending, fraud, regulatory
-- `sc-manufacturing` — defect rates, OEE, supply chain
-- `sc-nonprofit` — fundraising, donor retention, program effectiveness
-- `sc-government` — backlog reduction, citizen satisfaction, procurement
-- `sc-edtech` — completion, learning outcomes, monetization
-
-See [CONTRIBUTING.md](../CONTRIBUTING.md) for the recipe.
+All five originally-planned packs (fintech, manufacturing, nonprofit, government, edtech) shipped in v1.x. PRs welcome for further packs — e.g., insurance, real-estate, energy, telecom, hospitality, marketplaces. See [CONTRIBUTING.md](../CONTRIBUTING.md) for the recipe.

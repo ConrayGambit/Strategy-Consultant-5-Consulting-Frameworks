@@ -130,6 +130,11 @@ The repo ships several master skills. Pick the one that fits your need:
 | **`sc-saas`** ([details](./industry-packs/saas/SKILL.md)) | 5 — same | SaaS-specific problems. Industry-aware MECE defaults (NRR, churn, pipeline), native vocabulary, common root-cause priors. |
 | **`sc-retail`** ([details](./industry-packs/retail/SKILL.md)) | 5 — same | Retail / hospitality / multi-unit problems. Comp store, foot traffic, basket, mix. |
 | **`sc-healthcare`** ([details](./industry-packs/healthcare/SKILL.md)) | 5 — same | Hospital ops / clinical operations. Readmissions, ALOS, throughput, access. |
+| **`sc-fintech`** ([details](./industry-packs/fintech/SKILL.md)) | 5 — same | Fintech: payments / lending / fraud / regulatory. Approval/decline, chargeback, delinquency, KYC. |
+| **`sc-manufacturing`** ([details](./industry-packs/manufacturing/SKILL.md)) | 5 — same | Manufacturing / industrial ops. OEE, defect rate, yield, changeover, throughput. |
+| **`sc-nonprofit`** ([details](./industry-packs/nonprofit/SKILL.md)) | 5 — same | Nonprofit: fundraising, donor retention, gift mix, program effectiveness. |
+| **`sc-government`** ([details](./industry-packs/government/SKILL.md)) | 5 — same | Public sector / civic ops. Backlogs, cycle time, citizen satisfaction, procurement. |
+| **`sc-edtech`** ([details](./industry-packs/edtech/SKILL.md)) | 5 — same | Edtech / online learning. Activation, completion, learning outcomes, monetization. |
 
 All variants produce the same output structure (visual contract). They differ in (a) depth of analysis, (b) industry vocabulary, and (c) common root-cause priors.
 
@@ -203,7 +208,7 @@ Still in flight:
 
 - [x] **Slack-formatted output mode** — request "Slack mode" / plain-text (or name Slack/Teams/email as the destination) and the skill renders indented-dash trees instead of box-drawing chars. ✅
 - [x] **LLM-as-judge eval mode** — `evals/judge.py` emits a rubric-based judging prompt for any LLM and grades the JSON reply (content quality 1–5). Dependency-free, no API key. ✅
-- [ ] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech.
+- [x] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech — now shipped as `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`. ✅
 - [ ] **More example industries** — biotech, gaming, sports, agriculture.
 - [ ] **CI integration** — GitHub Action that scores output samples on every PR.
 - [ ] **Video walkthrough** on the [ConrayGambit YouTube channel](https://youtube.com/@conraygambit).
