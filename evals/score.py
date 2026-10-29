@@ -109,12 +109,15 @@ def check_issue_tree(text: str) -> CheckResult:
             "Code block found but no box-drawing chars (├── │ └──) and no indented-dash fallback"
         )
 
-    # Count tree depth via leading whitespace + box-drawing nesting
+    # Count tree depth by the column where each branch marker sits. Nested
+    # lines under a non-final branch start with "│   " (no leading spaces), so
+    # measuring leading whitespace alone under-counts depth whenever the last
+    # top-level branch has no children.
     levels = set()
     for line in tree_block.splitlines():
-        if "├──" in line or "└──" in line:
-            indent = len(line) - len(line.lstrip())
-            levels.add(indent)
+        positions = [line.find(m) for m in ("├──", "└──") if m in line]
+        if positions:
+            levels.add(min(positions))
     depth = len(levels)
     if depth < 2:
         return CheckResult("2. Issue Tree", False, "Tree must be at least 2 levels deep")

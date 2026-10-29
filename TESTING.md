@@ -150,6 +150,23 @@ If you want to test each sub-skill individually, use these one-line prompts:
 
 Each should produce ONLY the visual format of that single framework — no other sections.
 
+## Industry-pack tests
+
+Industry packs produce the same five sections as `strategy-consultant` (same pass criteria as above), but with industry vocabulary and MECE defaults. One prompt per pack:
+
+| Skill | Test prompt |
+|---|---|
+| `sc-saas` | "$40M ARR PLG SaaS: NRR fell from 124% to 108% over three quarters while logo retention held flat." |
+| `sc-retail` | "47-location coffee chain, same-store sales down 6% YoY; traffic down 9%, ticket up 3%." |
+| `sc-healthcare` | "30-day cardiology readmissions jumped from 11.2% to 16.8% in two quarters." |
+| `sc-fintech` | "Card decline rate jumped from 4.1% to 7.8% two weeks after a fraud-model deploy." |
+| `sc-manufacturing` | "Industrial-pump line defect rate spiked 1.2% → 3.6% in 90 days with no supplier change." |
+| `sc-nonprofit` | "We lost 23% of recurring monthly donors this year; one-off gifts are flat." |
+| `sc-government` | "City building-permit backlog is 4,300 applications; cycle time went 21 → 74 days." |
+| `sc-edtech` | "Course completion fell from 61% to 44% after we compressed the backend modules into weeks 3–5." |
+
+The output should read like an industry insider wrote it (correct metric vocabulary) and still pass `python evals/score.py` at 6/6.
+
 ---
 
 ## Reporting bugs

@@ -90,10 +90,12 @@ The "What to notice" section is the most useful part — it teaches you how to e
 
 ## Want to contribute an example?
 
-PRs welcome. Pick an industry not yet represented (logistics, biotech, gaming, government, sports, agriculture, etc.) and submit:
+PRs welcome. Pick an industry not yet represented above (e.g., insurance, real estate, energy, telecom, hospitality, marketplaces) and submit:
 
 1. A realistic 2–3 sentence problem statement as input
 2. The output produced by running the master skill (or one sub-skill) on that input
 3. A short "What to notice" section calling out judgment calls or framework flexes worth highlighting
+
+Full-run examples are scored by CI (`python evals/score.py your-file.md` must pass 6/6), so check that before opening the PR.
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md), or just open a PR.

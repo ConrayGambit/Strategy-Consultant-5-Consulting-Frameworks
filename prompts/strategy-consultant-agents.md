@@ -18,6 +18,8 @@ Verify you have access to a Task / Agent / sub-agent tool. If not: tell the user
 
 State a reframe in one sentence if needed; ask before proceeding. One attempt, max.
 
+If the problem is too vague to analyze, ask one clarifying question first.
+
 ## Orchestration
 
 1. Restate the problem in one sentence.
@@ -90,7 +92,9 @@ Problem: <problem>
 Output three labeled sections:
 
 **Process:** [What was analyzed.]
+
 **Result:** [Objective outcome.]
+
 **Insight:** [Why it matters + immediate action. Must be assignable to a named person with a deadline.]
 
 Output only those three sections.

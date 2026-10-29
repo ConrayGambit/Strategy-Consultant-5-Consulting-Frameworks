@@ -161,9 +161,11 @@ Then open a Pull Request on GitHub to merge it into main when ready.
 
 ---
 
-## A nice-to-have: GitHub Actions for link checking
+## GitHub Actions
 
-Optional but classy. Create `.github/workflows/links.yml`:
+This repo already ships [`.github/workflows/checks.yml`](./.github/workflows/checks.yml), which runs the relative-link checker (`evals/check_links.py`) and the eval harness (`pytest evals`) on every push and pull request — nothing to set up once the repo is on GitHub.
+
+If you also want *external* URLs checked on a schedule, add `.github/workflows/links.yml`:
 
 ```yaml
 name: Check links

@@ -40,11 +40,23 @@ cp -r industry-packs/saas ~/.claude/skills/sc-saas
 Copy-Item -Path .\industry-packs\saas\ -Destination "$env:USERPROFILE\.claude\skills\sc-saas\" -Recurse
 ```
 
-Then invoke `/sc-saas` (or `/sc-retail`, `/sc-healthcare`) and paste your problem.
+Then invoke `/sc-saas` (or `/sc-retail`, `/sc-healthcare`, `/sc-fintech`, `/sc-manufacturing`, `/sc-nonprofit`, `/sc-government`, `/sc-edtech`) and paste your problem.
 
-You can install all three industry packs alongside the generic `strategy-consultant` master — they don't conflict.
+To install every pack at once:
 
-Paste-ready prompts for non-Claude-Code users live in [`prompts/sc-saas.md`](../prompts/sc-saas.md), [`prompts/sc-retail.md`](../prompts/sc-retail.md), and [`prompts/sc-healthcare.md`](../prompts/sc-healthcare.md).
+**macOS / Linux:**
+```bash
+for p in industry-packs/*/; do cp -r "$p" ~/.claude/skills/sc-$(basename "$p"); done
+```
+
+**Windows (PowerShell):**
+```powershell
+Get-ChildItem .\industry-packs -Directory | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$env:USERPROFILE\.claude\skills\sc-$($_.Name)" -Recurse -Force }
+```
+
+You can install all eight industry packs alongside the generic `strategy-consultant` master — they don't conflict.
+
+Paste-ready prompts for non-Claude-Code users live in `prompts/sc-<industry>.md` — one per pack: [`sc-saas`](../prompts/sc-saas.md), [`sc-retail`](../prompts/sc-retail.md), [`sc-healthcare`](../prompts/sc-healthcare.md), [`sc-fintech`](../prompts/sc-fintech.md), [`sc-manufacturing`](../prompts/sc-manufacturing.md), [`sc-nonprofit`](../prompts/sc-nonprofit.md), [`sc-government`](../prompts/sc-government.md), [`sc-edtech`](../prompts/sc-edtech.md).
 
 ---
 

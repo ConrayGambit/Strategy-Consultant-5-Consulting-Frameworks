@@ -77,6 +77,17 @@ Use nonprofit-aware defaults (Donor acquisition / Donor retention / Gift & reven
 
 **Carry forward:** seed the top-level branches from the §1 MECE categories.
 
+**Rendering fallback (Slack mode):** if the user asks for Slack, Teams, email, or plain-text output — or names one of those as the destination — use an indented-dash tree instead of box-drawing characters:
+
+```text
+- Core Problem
+  - Category 1
+    - Sub-factor A
+    - Sub-factor B
+  - Category 2
+    - Sub-factor C
+```
+
 ### 3. Hypothesis-Driven Problem Solving
 
 **Format:** Start with a single-sentence falsifiable hypothesis prefixed `**Hypothesis:**`. Then a Markdown table with EXACTLY three columns: `Variable | Expected (if hypothesis true) | Actual / Required Data`. NOT 4 columns, NOT 5 columns. Include 4–7 rows, **at least one of which is a control row** (something that should NOT match if the hypothesis is true).
@@ -145,6 +156,13 @@ Same as the generic master:
 - End with action
 - One reframe + one clarifying question, max
 - **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
+- **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
+
+## Follow-ups & multiple problems
+
+- **Follow-up on a prior analysis:** if the user asks about one part of an analysis you already produced (e.g., "go deeper on the Pareto"), answer ONLY that framework's section in its visual format — do not re-run all sections.
+- **Multiple distinct problems in one message:** do not blend them. Either produce a separate, fully-structured analysis per problem, or — if they're clearly competing for priority — ask one question: which to analyze first. One question, max.
+- **Refinement requests** ("make the Insight more specific", "use indented dashes for the tree") apply to the existing output; reproduce just the changed section.
 
 ---
 

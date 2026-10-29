@@ -12,7 +12,7 @@
 
 The idea: most LLMs answer business questions in flowing prose that sounds smart but doesn't actually structure your thinking. This repo gives Claude (or any LLM) a strict visual contract: every business problem produces exactly five sections — a MECE breakdown, an ASCII issue tree, a hypothesis-test table, a Pareto blockquote, and a Process/Result/Insight closer. Whiteboard-style, every time. The frameworks aren't new — they're standard McKinsey/BCG/Bain practice — but baking them into a deterministic skill format means you stop getting fluffy answers and start getting consultant-grade ones.
 
-The repo ships several flavors. A **sequential** master that works in any LLM (Claude.ai, ChatGPT, Gemini, anywhere you can paste a system prompt). A **sub-agent** master for Claude Code or Cowork environments that support parallel agent delegation. A **7-framework variant** that adds 5 Whys and Pyramid Principle on top of the canonical five for high-stakes work. And three **industry packs** (SaaS, retail, healthcare) with industry-aware vocabulary and root-cause priors. See the Master Variants table below for which to pick.
+The repo ships several flavors. A **sequential** master that works in any LLM (Claude.ai, ChatGPT, Gemini, anywhere you can paste a system prompt). A **sub-agent** master for Claude Code or Cowork environments that support parallel agent delegation. A **7-framework variant** that adds 5 Whys and Pyramid Principle on top of the canonical five for high-stakes work. And eight **industry packs** (SaaS, retail, healthcare, fintech, manufacturing, nonprofit, government, edtech) with industry-aware vocabulary and root-cause priors. See the Master Variants table below for which to pick.
 
 ---
 
@@ -82,20 +82,29 @@ Strategy-Consultant-5-Consulting-Frameworks/
 │   ├── so-what-test/                      # Sub-skill: So What?
 │   ├── five-whys/                         # Sub-skill: 5 Whys
 │   └── pyramid-principle/                 # Sub-skill: Pyramid Principle
-├── industry-packs/                        # Industry-tailored master variants
+├── industry-packs/                        # Industry-tailored master variants (8 packs)
 │   ├── saas/SKILL.md                      # sc-saas
 │   ├── retail/SKILL.md                    # sc-retail
-│   └── healthcare/SKILL.md                # sc-healthcare
-├── prompts/                               # LLM-agnostic plain prompts (one per skill)
+│   ├── healthcare/SKILL.md                # sc-healthcare
+│   ├── fintech/SKILL.md                   # sc-fintech
+│   ├── manufacturing/SKILL.md             # sc-manufacturing
+│   ├── nonprofit/SKILL.md                 # sc-nonprofit
+│   ├── government/SKILL.md                # sc-government
+│   └── edtech/SKILL.md                    # sc-edtech
+├── prompts/                               # LLM-agnostic plain prompts (one per skill + one per pack)
 ├── examples/
 │   ├── example-analysis.md                # Featured walk-through
-│   ├── full-runs/                         # 5 industries: retail, nonprofit, manufacturing, government, logistics
+│   ├── full-runs/                         # 9 industries: retail, nonprofit, manufacturing, government, logistics, biotech, gaming, sports, agriculture
 │   ├── single-frameworks/                 # 5 standalone-skill demos in different industries
 │   └── showcase/                          # 10 real outputs from end-to-end skill testing
-├── evals/                                 # Automated structural scorer + manual rubric
-│   ├── score.py                           # Python scorer (no dependencies)
+├── evals/                                 # Automated structural scorer + LLM-as-judge + manual rubric
+│   ├── score.py                           # Structural scorer (no dependencies)
+│   ├── judge.py                           # LLM-as-judge prompt emitter + grader (no dependencies)
+│   ├── check_links.py                     # Relative-link checker used in CI
+│   ├── test_scorer.py / test_judge.py     # pytest harness (scores fixtures + real example outputs)
 │   ├── RUBRIC.md                          # Manual content-quality rubric
-│   └── fixtures/                          # Known-bad samples for regression testing
+│   └── fixtures/                          # Known-good / known-bad samples for regression testing
+├── .github/workflows/checks.yml           # CI: link check + pytest on every push / PR
 ├── INSTALLATION.md                        # Per-platform install guide
 ├── TESTING.md                             # Canonical test prompt + per-platform pass criteria
 ├── CONTRIBUTING.md                        # How to add frameworks, examples, industry packs
@@ -114,7 +123,7 @@ The repo only really has three things that matter:
 - **`prompts/<skill-name>.md`** — A condensed, paste-ready version of each skill: it keeps the full output contract (exact section headers, formats, defaults, the control-row rule) but drops the frontmatter, worked examples, and meta sections. For pasting into ChatGPT, Claude.ai, Gemini, custom GPTs, etc.
 - **`examples/`** — Real input/output pairs you can read to calibrate what good output looks like.
 
-The three master skills (`strategy-consultant`, `strategy-consultant-agents`, and `strategy-consultant-7`) are self-contained — they walk through all five (or all seven) frameworks in one response. The seven sub-skills (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `five-whys`, `pyramid-principle`) are alternatives for when you only want one framework. The industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) are alternative masters with industry-aware MECE defaults and vocabulary. Each also ships a paste-ready prompt in `prompts/`.
+The three master skills (`strategy-consultant`, `strategy-consultant-agents`, and `strategy-consultant-7`) are self-contained — they walk through all five (or all seven) frameworks in one response. The seven sub-skills (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `five-whys`, `pyramid-principle`) are alternatives for when you only want one framework. The eight industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`, `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`) are alternative masters with industry-aware MECE defaults and vocabulary. Each also ships a paste-ready prompt in `prompts/`.
 
 ---
 
@@ -138,7 +147,7 @@ The repo ships several master skills. Pick the one that fits your need:
 
 All variants produce the same output structure (visual contract). They differ in (a) depth of analysis, (b) industry vocabulary, and (c) common root-cause priors.
 
-> **Note:** the industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) live in [`industry-packs/`](./industry-packs/), not `skills/`. The Quick-start `cp -r skills/*` does **not** install them — see [`industry-packs/README.md`](./industry-packs/README.md) for one-line install commands.
+> **Note:** the industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`, `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`) live in [`industry-packs/`](./industry-packs/), not `skills/`. The Quick-start `cp -r skills/*` does **not** install them — see [`industry-packs/README.md`](./industry-packs/README.md) for one-line install commands.
 
 ---
 
@@ -211,6 +220,12 @@ A few decisions worth surfacing — in case you're forking and wondering why thi
 - [x] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech — shipped as `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`. ✅
 - [x] **More example industries** — biotech, gaming, sports, agriculture (added to `examples/full-runs/`); the repo now ships 25 example files in total. ✅
 - [x] **CI scores real output samples** — the pytest harness scores showcase masters/packs (5-mode), the 7-fw showcase (7-mode), and every file in `examples/full-runs/` on every PR. ✅
+
+**Shipped in v1.3 (consistency pass):**
+
+- [x] **Slack mode + follow-up handling in every industry pack** — the eight `sc-*` skills and their paste prompts now carry the same Slack/plain-text rendering rule and follow-up / multi-problem / refinement protocol as the masters. ✅
+- [x] **Scorer fix** — the issue-tree depth check no longer fails a valid tree whose last top-level branch has no children; regression fixture added. ✅
+- [x] **Docs reconciled** — install, testing, contributing, and eval docs now describe all eight packs, the judge, the link-checker, and CI. ✅
 
 **Still in flight:**
 

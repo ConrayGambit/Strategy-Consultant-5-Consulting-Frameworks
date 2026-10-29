@@ -53,3 +53,10 @@ def test_showcase_sc7_bank_loan_cycle_7fw_passes():
 def test_full_run_scores_6_of_6(path):
     code, out = run(path)
     assert code == 0, out
+
+
+def test_tree_depth_counts_nested_lines_under_nonfinal_branches():
+    """Regression: a tree whose last top-level branch has no children must still
+    count as 2 levels deep (nested lines start with "│   ", not spaces)."""
+    code, out = run(ROOT/"evals/fixtures/good-5fw-last-branch-leaf.md")
+    assert code == 0, out
