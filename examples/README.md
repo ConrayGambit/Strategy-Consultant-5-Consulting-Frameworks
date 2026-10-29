@@ -16,7 +16,7 @@ This is the canonical example — it walks through a complete output of the mast
 
 ## Showcase — actual outputs from skill testing
 
-[`showcase/`](./showcase/) contains real outputs produced during end-to-end skill testing — not curated demos, but the raw responses agents gave when handed a SKILL.md and a real business problem. Every 5-framework output here passed the eval suite at 6/6; the 7-framework run produces all seven sections (the scorer only grades the 5-section contract). **Use this folder to see what the skills actually produce before you install.**
+[`showcase/`](./showcase/) contains real outputs produced during end-to-end skill testing — not curated demos, but the raw responses agents gave when handed a SKILL.md and a real business problem. Every 5-framework output here passed the eval suite at 6/6; the 7-framework run scores 8/8 in `--mode 7`. **Use this folder to see what the skills actually produce before you install.**
 
 | File | Skill | Problem |
 |---|---|---|

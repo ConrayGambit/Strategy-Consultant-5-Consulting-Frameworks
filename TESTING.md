@@ -128,7 +128,7 @@ Smaller models (under ~7B parameters) may struggle with the full 5-section struc
 | Skill not found in Claude Code autocomplete | Skills directory wrong, or app not restarted | Re-check install path; quit and relaunch the app |
 | Output is prose, no visual structure | System prompt wasn't applied (paste-based installs) | Re-paste; in some chat UIs, you have to send before it takes effect |
 | Some sections missing (e.g., no Issue Tree) | Model truncated, or system prompt was too long combined with question | Try sub-skills individually, or use a model with a larger context window |
-| ASCII tree renders as boxes / question marks | Renderer doesn't support box-drawing characters | Skill should auto-fall back to indented dashes — if not, ask explicitly: "use indented dashes for the tree" |
+| ASCII tree renders as boxes / question marks | Renderer doesn't support box-drawing characters | Ask for Slack mode: "use indented dashes for the tree" or name Slack/Teams/email as the destination — the skills switch only when told |
 | Insight is vague / unassignable | Model dropped the assignability requirement | Add to your prompt: "make the Insight specific enough to assign to a person with a deadline" |
 | Reframe missing on a problem that obviously deserves one | Model interpreted the problem too literally | Add: "before applying the frameworks, check whether the framing of the problem is itself the issue" |
 

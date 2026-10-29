@@ -76,6 +76,8 @@ Defaults: 4–7 variables. **Always include at least one control row** — somet
 
 **Carry forward:** derive the hypothesis from the dominant branch of the §2 issue tree; the table's variables should be that branch's leaves.
 
+If the user has multiple competing hypotheses, output multiple tables — don't mash them together.
+
 ---
 
 ### 4. Pareto Focus (80/20)

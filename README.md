@@ -186,7 +186,7 @@ A few decisions worth surfacing — in case you're forking and wondering why thi
 - **Visual structure is non-negotiable.** Every framework has a strict output format (nested bullets, ASCII tree, table, blockquote, three labeled sections). Prose-only answers are a failure mode. This is the entire value of the skill.
 - **Five frameworks, applied in order.** MECE → Issue Tree → Hypothesis → Pareto → So What is the canonical sequence. Skipping or reordering breaks the logic chain. The 7-framework variant adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What) — also applied in strict order.
 - **Defaults are flexible, MECE is not.** Sub-skills say "3–6 categories" or "4–7 variables" — but tell the model to flex with judgment. The one rule that doesn't flex: categories must be Mutually Exclusive and Collectively Exhaustive. That's the foundation; everything else is style.
-- **Three masters, not one.** Sequential works everywhere. Sub-agent works only in agent-capable environments. The 7-framework variant is for high-stakes work. Shipping all three lets users pick without losing reach.
+- **Three generic masters plus eight industry masters, not one.** Sequential works everywhere. Sub-agent works only in agent-capable environments. The 7-framework variant is for high-stakes work. The industry packs are the same five-section contract with insider vocabulary and priors. Shipping all of them lets users pick without losing reach.
 - **Dual format (skills + plain prompts).** Anthropic Skills format works in Claude Code/Cowork. Plain prompts work in everything else. Same content, two distributions.
 - **Reframe-the-question is built in.** Sometimes the user's stated problem isn't the real problem. The masters ask one reframe question max before applying the frameworks — pushing back is part of the consultant role.
 
@@ -278,7 +278,7 @@ The two additional frameworks in the 7-framework variant — **5 Whys** (Sakichi
 
 Built and packaged by **Nathaniel Bricknell** ([@ConrayGambit](https://github.com/ConrayGambit) on GitHub).
 
-For walkthroughs, demos, and more AI/LLM tooling, check out the [**ConrayGambit**](https://youtube.com/@conraygambit) YouTube channel — including a video walking through this repo and giving full credit to **Analyst Academy** for the original framework framing.
+For walkthroughs, demos, and more AI/LLM tooling, check out the [**ConrayGambit**](https://youtube.com/@conraygambit) YouTube channel — where a video walking through this repo (with full credit to **Analyst Academy** for the original framework framing) is on the roadmap.
 
 ---
 

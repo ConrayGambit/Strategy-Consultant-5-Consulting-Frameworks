@@ -1,6 +1,6 @@
 ---
 name: sc-edtech
-description: Tier-1 strategy-consultant analysis tailored for edtech / online-learning problems — activation, completion, learning outcomes, monetization. Same five frameworks with edtech-aware MECE defaults, vocabulary, and root-cause priors.
+description: Tier-1 strategy-consultant analysis tailored for edtech / online-learning problems — activation, completion, learning outcomes, monetization. Same five frameworks with edtech-aware MECE defaults, vocabulary, and root-cause priors. Use for edtech / online-learning problems; for cross-industry framing use `strategy-consultant`.
 ---
 
 # Strategy Consultant — Edtech Pack
@@ -146,7 +146,7 @@ Common reframes worth surfacing:
 - "We need more content" → often: "Completion of existing content is the constraint; new SKUs widen the leak"
 - "Improve marketing" → often: "Activation / onboarding is the leaky funnel; better acquisition floods a broken pipe"
 
-If the user's framing matches one of these patterns, surface the reframe.
+If the user's framing matches one of these patterns, **state the reframe in one sentence**, then ask whether to proceed with the original framing or the reframed one. One reframe attempt, max — if they confirm, proceed. If the problem is too vague to analyze (no specifics, no numbers, no context), ask **one** clarifying question, then proceed.
 
 ## Operating principles
 
@@ -158,6 +158,17 @@ Same as the generic master:
 - One reframe + one clarifying question, max
 - **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
 - **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
+
+## Example
+
+See [so-what-edtech.md](../../examples/single-frameworks/so-what-edtech.md) — a So What? block for bootcamp dropouts concentrating in weeks 3–5 (the pack produces this shape as §5, plus the other four sections). Every section in this pack's output must match the visual contract shown there.
+
+## When NOT to use this pack
+
+- The problem crosses industries or is framed above operations (corporate strategy, M&A, capital allocation) — use `strategy-consultant` or `strategy-consultant-7`.
+- The problem is K-12 district administration or university finance rather than a learning product.
+- The user only wants one framework — use the matching sub-skill (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`).
+- Pure factual questions ("what is NRR?") — answer directly.
 
 ## Follow-ups & multiple problems
 

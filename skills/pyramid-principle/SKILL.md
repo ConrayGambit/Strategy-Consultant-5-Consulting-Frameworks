@@ -56,7 +56,7 @@ If two arguments overlap, merge them. If an argument doesn't actually support th
 
 ## Example — sales reorg recommendation
 
-A continuation of the upstream analysis for a SaaS sales-cycle problem (sales cycle stretched 60 → 110 days, leadership considering reorg).
+A continuation of the upstream analysis in [`examples/example-analysis.md`](../../examples/example-analysis.md) — a SaaS sales-cycle problem (sales cycle stretched 60 → 110 days, leadership considering reorg).
 
 **Answer:** Do not reorganize the sales team — fix internal handoff bottlenecks (security review, legal redlines) within 90 days; revisit reorg only if the bottleneck thesis is invalidated.
 

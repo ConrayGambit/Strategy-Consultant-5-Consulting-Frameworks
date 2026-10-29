@@ -4,7 +4,7 @@ These are ACTUAL outputs produced by the skills during end-to-end testing. Not c
 
 Use this folder to (a) calibrate expectations of what the skills produce, (b) verify the visual contract is enforced consistently, and (c) showcase the skills to a stakeholder before they install.
 
-Every 5-framework master and industry-pack output below scored **6/6** on the [eval suite](../../evals/score.py). Sub-skill outputs are single-framework by design, and the 7-framework output produces all seven sections (the scorer grades the 5-section contract).
+Every 5-framework master and industry-pack output below scored **6/6** on the [eval suite](../../evals/score.py). Sub-skill outputs are single-framework by design; the 7-framework output scores **8/8** with `--mode 7`.
 
 ---
 
@@ -13,7 +13,7 @@ Every 5-framework master and industry-pack output below scored **6/6** on the [e
 | File | Skill | Test problem | Score |
 |---|---|---|---|
 | [cloud-cost.md](./cloud-cost.md) | `strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike at SaaS company | 6/6 ✅ |
-| [sc-7-bank-loan-cycle.md](./sc-7-bank-loan-cycle.md) | `strategy-consultant-7` (7-fw) | Regional bank: loan cycle 14 → 31 days, fintech threat | All 7 sections ✅ |
+| [sc-7-bank-loan-cycle.md](./sc-7-bank-loan-cycle.md) | `strategy-consultant-7` (7-fw) | Regional bank: loan cycle 14 → 31 days, fintech threat | 8/8 (`--mode 7`) ✅ |
 
 ## Sub-skills (standalone)
 

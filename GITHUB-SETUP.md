@@ -13,7 +13,7 @@ A user-friendly walkthrough for getting this folder onto GitHub. Pick the path t
 
 **Publishing:**
 
-1. Open GitHub Desktop → **File → Add Local Repository** → choose `C:\Claude Workspace\Personal Assistant\Strategy-Consultant-5-Consulting-Frameworks`.
+1. Open GitHub Desktop → **File → Add Local Repository** → choose the folder where you cloned or extracted this repo.
 2. It will say "this directory does not appear to be a Git repository — Create a Repository?" Click **Create a Repository**.
 3. Fill in:
    - **Name:** `Strategy-Consultant-5-Consulting-Frameworks`
@@ -46,7 +46,7 @@ Done. Your repo is live at `github.com/ConrayGambit/Strategy-Consultant-5-Consul
 **Publishing:**
 
 ```powershell
-cd "C:\Claude Workspace\Personal Assistant\Strategy-Consultant-5-Consulting-Frameworks"
+cd "C:\path\to\Strategy-Consultant-5-Consulting-Frameworks"
 
 # Initialize git
 git init
@@ -112,11 +112,11 @@ On your GitHub profile → "Customize your pins" → select this repo. Top-of-pr
 
 ### 4. Add a release
 
-Once you've used it for a few days and feel good about v1.0:
+Once you're happy with a version:
 
 - Repo page → **Releases** (right sidebar) → **Create a new release**
-- Tag: `v1.0.0`
-- Title: `v1.0.0 — Initial release`
+- Tag: `v1.3.0` (or whatever version you're shipping)
+- Title: `v1.3.0 — <one-line summary>`
 - Description: copy the highlights from your README
 
 Releases give people a stable artifact to install and a changelog over time.
@@ -132,7 +132,7 @@ If skill marketplaces or directories exist for Claude Skills (check [docs.claude
 When you make improvements:
 
 ```powershell
-cd "C:\Claude Workspace\Personal Assistant\Strategy-Consultant-5-Consulting-Frameworks"
+cd "C:\path\to\Strategy-Consultant-5-Consulting-Frameworks"
 git add .
 git commit -m "Tighten MECE description; add finance example"
 git push

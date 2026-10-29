@@ -11,7 +11,7 @@ Thanks for considering a contribution. The bar for changes is low for content (e
 - **Translations of the prompts.** Spanish, Mandarin, Japanese, Hindi, etc. Drop into `prompts/<lang>/` with the same filenames.
 - **Typos, broken links, formatting fixes.** Just open a PR.
 - **New install paths.** Cowork on Linux? VS Code MCP? Add a section to `INSTALLATION.md`.
-- **Bug reports.** If a skill produces output that violates its visual contract (e.g., MECE without a blockquote, So What? without an assignable Insight), open an issue with the prompt that triggered it.
+- **Bug reports.** If a skill produces output that violates its visual contract (e.g., Pareto without a blockquote, So What? without an assignable Insight), open an issue with the prompt that triggered it.
 
 ## What needs more discussion (open an issue first)
 
@@ -57,7 +57,7 @@ The "What to notice" section is the most useful part for readers. Don't skip it.
 
 - Keep `description:` fields under ~50 words.
 - Frame rules as defaults with explicit flex points where judgment matters; only mark a rule "doesn't flex" when it's load-bearing.
-- Include at least one concrete example in the SKILL.md body.
+- Include at least one concrete example in the SKILL.md body (industry packs may instead link to a run in `examples/` from an `## Example` section).
 - Add a footer linking to the LICENSE.
 
 ## Code of conduct

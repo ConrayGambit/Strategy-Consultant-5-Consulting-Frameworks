@@ -73,7 +73,7 @@ Core Problem
 ```
 ````
 
-Use `├──`, `│`, `└──`. Drill at least 2 levels deep where the problem warrants it; drill deeper for messy problems.
+Use `├──`, `│`, `└──`. Drill at least 2 levels deep where the problem warrants it; drill deeper for messy problems. Keep nodes to 3–8 words. Stop drilling when leaves are testable.
 
 **Carry forward:** seed the top-level branches from the §1 MECE categories — reuse the same names where sensible.
 

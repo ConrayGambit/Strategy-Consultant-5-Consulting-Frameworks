@@ -1,6 +1,6 @@
 ---
 name: sc-manufacturing
-description: Tier-1 strategy-consultant analysis tailored for manufacturing / industrial-ops problems — OEE, defect rate, yield, supply chain. Same five frameworks with manufacturing-aware MECE defaults, vocabulary, and root-cause priors.
+description: Tier-1 strategy-consultant analysis tailored for manufacturing / industrial-ops problems — OEE, defect rate, yield, supply chain. Same five frameworks with manufacturing-aware MECE defaults, vocabulary, and root-cause priors. Use for manufacturing / industrial-ops problems; for cross-industry framing use `strategy-consultant`.
 ---
 
 # Strategy Consultant — Manufacturing Pack
@@ -145,7 +145,7 @@ Common reframes worth surfacing:
 - "Stricter QA" → often: "Process-parameter drift upstream is the root cause; catching defects later is the wrong intervention"
 - "Run a supplier audit" → often: "A single material lot is driving the defect signal; audit the incoming inspection process, not the whole supplier"
 
-If the user's framing matches one of these patterns, surface the reframe.
+If the user's framing matches one of these patterns, **state the reframe in one sentence**, then ask whether to proceed with the original framing or the reframed one. One reframe attempt, max — if they confirm, proceed. If the problem is too vague to analyze (no specifics, no numbers, no context), ask **one** clarifying question, then proceed.
 
 ## Operating principles
 
@@ -157,6 +157,17 @@ Same as the generic master:
 - One reframe + one clarifying question, max
 - **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
 - **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
+
+## Example
+
+See [manufacturing-defect-rate.md](../../examples/full-runs/manufacturing-defect-rate.md) — an industrial-pump line whose defect rate spiked from 1.2% to 3.6% in 90 days (run with the generic master — the pack adds OEE / yield vocabulary and priors on top of this shape). Every section in this pack's output must match the visual contract shown there.
+
+## When NOT to use this pack
+
+- The problem crosses industries or is framed above operations (corporate strategy, M&A, capital allocation) — use `strategy-consultant` or `strategy-consultant-7`.
+- The problem is upstream commodity sourcing or downstream distribution rather than plant operations.
+- The user only wants one framework — use the matching sub-skill (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`).
+- Pure factual questions ("what is NRR?") — answer directly.
 
 ## Follow-ups & multiple problems
 

@@ -29,7 +29,14 @@ A `>` blockquote naming the vital 20% (1–4 items), then `**Actively deprioriti
 **Carry forward:** draw the vital 20% from factors already named in §1–§3 — don't introduce new ones here.
 
 ### 5. The "So What?" Test
-**Process:** / **Result:** / **Insight:** — the Insight must be assignable to a named person with a deadline (regulator reporting window, board risk review, month-end loss accrual).
+Three separately labeled sections, each label bold, on its own line — NOT one prose paragraph:
+```
+**Process:** [What was analyzed.]
+
+**Result:** [The objective outcome — numbers, observations.]
+
+**Insight:** [Why it matters + the immediate action. Assignable to a named person with a deadline (regulator reporting window, board risk review, month-end loss accrual).]
+```
 **Carry forward:** the Insight must act on the §4 vital 20%.
 
 ## Reframes worth surfacing

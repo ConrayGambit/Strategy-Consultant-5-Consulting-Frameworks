@@ -5,7 +5,7 @@ Variants of the master skill tailored to specific industries. Each pack adds:
 - **Industry-aware MECE categories** — defaults that fit the industry (e.g., a SaaS pack defaults to ARR/NRR/churn dimensions; a retail pack defaults to comp store / traffic / ticket / mix).
 - **Common root-cause patterns** — the diagnostic priors that experienced operators in that industry would carry into any problem.
 - **Native metric vocabulary** — the right terms (NRR, AOV, OTD, NPS, ALOS, SSS) so the output reads like an industry insider's analysis.
-- **Industry-specific examples** in the SKILL.md body.
+- **A linked worked example** — each pack's `## Example` section points to a real run in [`examples/`](../examples/) that shows the shape the pack must produce.
 
 These are **alternative masters**, not additional steps. Use the industry pack instead of the generic master when the problem is squarely within that industry.
 
@@ -72,4 +72,4 @@ In those cases, use `strategy-consultant` (5-framework) or `strategy-consultant-
 
 ## Additional packs
 
-All five originally-planned packs (fintech, manufacturing, nonprofit, government, edtech) shipped in v1.x. PRs welcome for further packs — e.g., insurance, real-estate, energy, telecom, hospitality, marketplaces. See [CONTRIBUTING.md](../CONTRIBUTING.md) for the recipe.
+All five originally-planned packs (fintech, manufacturing, nonprofit, government, edtech) shipped in v1.2. PRs welcome for further packs — e.g., insurance, real-estate, energy, telecom, hospitality, marketplaces. See [CONTRIBUTING.md](../CONTRIBUTING.md) for the recipe.

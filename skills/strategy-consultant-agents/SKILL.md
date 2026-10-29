@@ -80,6 +80,8 @@ Decompose the problem into root causes using an ASCII tree in a single fenced co
 Keep node text to 3–8 words. Output only the fenced code block.
 ```
 
+If the user asked for Slack / Teams / email / plain-text output, append to this prompt: *"Use an indented-dash tree (`- Problem` / `  - Category` / `    - Sub-factor`) instead of box-drawing characters."*
+
 ### Sub-agent 3 — Hypothesis Test
 
 ```
@@ -171,9 +173,16 @@ Output only those three sections.
 
 ## Follow-ups & multiple problems
 
-- **Follow-up on a prior analysis:** if the user asks about one part of an analysis you already produced (e.g., "go deeper on the Pareto"), answer ONLY that framework's section in its visual format — do not re-run all sections.
+- **Follow-up on a prior analysis:** if the user asks about one part of an analysis you already produced (e.g., "go deeper on the Pareto"), answer ONLY that framework's section in its visual format — do not re-run all sections (re-dispatch just that one sub-agent if needed).
 - **Multiple distinct problems in one message:** do not blend them. Either produce a separate, fully-structured analysis per problem, or — if they're clearly competing for priority — ask one question: which to analyze first. One question, max.
 - **Refinement requests** ("make the Insight more specific", "use indented dashes for the tree") apply to the existing output; reproduce just the changed section.
+
+## When NOT to use this skill
+
+- No Task/Agent tool in the environment — fall back to `strategy-consultant` (see the environment check above).
+- Routine or well-scoped problems where five parallel agents are overkill — `strategy-consultant` is faster.
+- Pure factual questions, creative writing, code, or non-strategic tasks.
+- The user wants only one framework — use the corresponding sub-skill.
 
 ---
 

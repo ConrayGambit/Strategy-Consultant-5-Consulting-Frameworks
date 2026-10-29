@@ -24,6 +24,8 @@ The visual trick: a comparison table that shows **what you'd expect to see if th
 | Variable 1 | Expected pattern | What we observe / need |
 ```
 
+If actual data is available, fill the third column with what was observed and mark ✅ where it matches the expectation and ❌ where it doesn't. If data is not yet collected, state what is needed and where to get it.
+
 ## Defaults & flex points
 
 | Default | When to flex |
