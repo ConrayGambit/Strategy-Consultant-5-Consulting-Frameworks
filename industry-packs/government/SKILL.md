@@ -1,6 +1,6 @@
 ---
 name: sc-government
-description: Tier-1 strategy-consultant analysis tailored for public-sector / civic-ops problems — backlogs, processing cycle time, citizen satisfaction, procurement. Same five frameworks with government-aware MECE defaults, vocabulary, and root-cause priors.
+description: Tier-1 strategy-consultant analysis tailored for public-sector / civic-ops problems — backlogs, processing cycle time, citizen satisfaction, procurement. Same five frameworks with government-aware MECE defaults, vocabulary, and root-cause priors. Use for public-sector / civic-ops problems; for cross-industry framing use `strategy-consultant`.
 ---
 
 # Strategy Consultant — Government Pack
@@ -78,6 +78,17 @@ Use government-aware defaults (Demand & intake / Process & throughput / Staffing
 
 **Carry forward:** seed the top-level branches from the §1 MECE categories.
 
+**Rendering fallback (Slack mode):** if the user asks for Slack, Teams, email, or plain-text output — or names one of those as the destination — use an indented-dash tree instead of box-drawing characters:
+
+```text
+- Core Problem
+  - Category 1
+    - Sub-factor A
+    - Sub-factor B
+  - Category 2
+    - Sub-factor C
+```
+
 ### 3. Hypothesis-Driven Problem Solving
 
 **Format:** Start with a single-sentence falsifiable hypothesis prefixed `**Hypothesis:**`. Then a Markdown table with EXACTLY three columns: `Variable | Expected (if hypothesis true) | Actual / Required Data`. NOT 4 columns, NOT 5 columns. Include 4–7 rows, **at least one of which is a control row** (something that should NOT match if the hypothesis is true).
@@ -135,7 +146,7 @@ Common reframes worth surfacing:
 - "More enforcement / compliance" → often: "Fix the front-door form / intake quality; downstream defects are the symptom"
 - "Outsource it" → often: "Intake quality and handoff design come back to bite regardless of who runs the back office"
 
-If the user's framing matches one of these patterns, surface the reframe.
+If the user's framing matches one of these patterns, **state the reframe in one sentence**, then ask whether to proceed with the original framing or the reframed one. One reframe attempt, max — if they confirm, proceed. If the problem is too vague to analyze (no specifics, no numbers, no context), ask **one** clarifying question, then proceed.
 
 ## Operating principles
 
@@ -146,6 +157,24 @@ Same as the generic master:
 - End with action
 - One reframe + one clarifying question, max
 - **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
+- **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
+
+## Example
+
+See [government-permit-backlog.md](../../examples/full-runs/government-permit-backlog.md) — a city permits department with a 4,300-application backlog and cycle time up from 21 to 74 days (run with the generic master — the pack adds civic-ops vocabulary and priors on top of this shape). Every section in this pack's output must match the visual contract shown there.
+
+## When NOT to use this pack
+
+- The problem crosses industries or is framed above operations (corporate strategy, M&A, capital allocation) — use `strategy-consultant` or `strategy-consultant-7`.
+- The question is policy design or electoral strategy rather than service delivery / operations.
+- The user only wants one framework — use the matching sub-skill (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`).
+- Pure factual questions ("what is NRR?") — answer directly.
+
+## Follow-ups & multiple problems
+
+- **Follow-up on a prior analysis:** if the user asks about one part of an analysis you already produced (e.g., "go deeper on the Pareto"), answer ONLY that framework's section in its visual format — do not re-run all sections.
+- **Multiple distinct problems in one message:** do not blend them. Either produce a separate, fully-structured analysis per problem, or — if they're clearly competing for priority — ask one question: which to analyze first. One question, max.
+- **Refinement requests** ("make the Insight more specific", "use indented dashes for the tree") apply to the existing output; reproduce just the changed section.
 
 ---
 

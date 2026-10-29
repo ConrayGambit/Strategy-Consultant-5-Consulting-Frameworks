@@ -73,23 +73,28 @@ The scorer is a deterministic, regex-based check — not an LLM-as-judge. It cat
 python -m pytest evals/test_scorer.py -v
 ```
 
-Expected output: 4 fixture tests, all passing. CI also runs the full suite — see below.
+Expected output: all tests passing — 5 fixture tests (bad prose, good-5fw, good-7fw explicit and auto-detect, last-branch-leaf tree regression) plus one test per real example file (see below). Run `python -m pytest evals -v` to include the judge tests too.
 
 ### CI scoring of real output samples
 
-The pytest harness now scores real output files on every push/PR (not just synthetic fixtures): `examples/showcase/cloud-cost.md` and `examples/showcase/sc-saas-nrr-decline.md` are scored in 5-framework mode; `examples/showcase/sc-7-bank-loan-cycle.md` is scored in 7-framework mode (explicit `--mode 7`); and every `.md` file in `examples/full-runs/` is auto-discovered and scored at 5-framework pass threshold. New full-run examples are picked up automatically with no test changes required.
+The pytest harness now scores real output files on every push/PR (not just synthetic fixtures): the 5-framework showcase masters/packs (`cloud-cost.md`, `sc-saas-nrr-decline.md`, `sc-saas-churn-followup.md`, `sc-fintech-bnpl-fpd-slack.md` — the last one exercises the indented-dash Slack-mode path) are scored in 5-framework mode; the 7-framework showcases (`sc-7-bank-loan-cycle.md`, `sc-7-ambulance-response-time.md`) are scored with explicit `--mode 7`; and every `.md` file in `examples/full-runs/` is auto-discovered and scored at 5-framework pass threshold. New full-run examples are picked up automatically with no test changes required.
 
 ---
 
 ## Files
 
-- [`score.py`](./score.py) — the scorer. ~479 lines of pure stdlib Python (no dependencies).
-- [`test_scorer.py`](./test_scorer.py) — pytest harness; 4 tests covering bad fixture, good-5fw, good-7fw (explicit mode), and good-7fw (auto-detect).
+- [`score.py`](./score.py) — the structural scorer. Pure stdlib Python (no dependencies).
+- [`judge.py`](./judge.py) — LLM-as-judge prompt emitter + grader (see below). Pure stdlib.
+- [`check_links.py`](./check_links.py) — relative-link checker for every `.md` file; run by CI.
+- [`test_scorer.py`](./test_scorer.py) — pytest harness for the scorer: fixture tests plus every real example in `examples/showcase/` (masters/packs) and `examples/full-runs/`.
+- [`test_judge.py`](./test_judge.py) — pytest harness for the judge (emit + grade modes).
 - [`RUBRIC.md`](./RUBRIC.md) — manual rubric for content-quality assessment (what the regex can't see).
 - [`fixtures/`](./fixtures/) — known-good and known-bad output samples for testing the scorer itself.
   - `bad-prose-only.md` — should score 1 (always fails)
   - `good-5fw.md` — canonical 5-framework output; should score 6/6
+  - `good-5fw-last-branch-leaf.md` — 5-framework output whose last issue-tree branch has no children; should score 6/6 (depth-counting regression)
   - `good-7fw.md` — canonical 7-framework output; should score 8/8
+  - `judge-sample.json` — a valid judge reply for `judge.py --grade`
 
 ---
 
@@ -169,4 +174,4 @@ Expected output: 3 tests, all passing.
 
 - [x] LLM-as-judge mode — `judge.py` emits a rubric-based judging prompt and grades the JSON reply (content quality 1–5). Dependency-free, no API key. ✅
 - [ ] Multi-provider comparison harness (run the same prompt against Claude, GPT, Gemini, score each)
-- [ ] CI integration — GitHub Action that scores PR-changed output samples automatically
+- [x] CI integration — [`.github/workflows/checks.yml`](../.github/workflows/checks.yml) runs the link-checker and the full pytest harness (fixtures + every real example) on every push / PR. ✅

@@ -78,6 +78,17 @@ Use retail-aware defaults (Local market / Customer behavior / Product / Operatio
 
 **Carry forward:** seed the top-level branches from the §1 MECE categories.
 
+**Rendering fallback (Slack mode):** if the user asks for Slack, Teams, email, or plain-text output — or names one of those as the destination — use an indented-dash tree instead of box-drawing characters:
+
+```text
+- Core Problem
+  - Category 1
+    - Sub-factor A
+    - Sub-factor B
+  - Category 2
+    - Sub-factor C
+```
+
 ### 3. Hypothesis-Driven Problem Solving
 
 **Format:** Start with a single-sentence falsifiable hypothesis prefixed `**Hypothesis:**`. Then a Markdown table with EXACTLY three columns: `Variable | Expected (if hypothesis true) | Actual / Required Data`. NOT 4 columns, NOT 5 columns. Include 4–7 rows, **at least one a control row** (something that should NOT match if the hypothesis is true — e.g., a daypart or store cohort that should be unaffected).
@@ -134,10 +145,35 @@ Common reframes worth surfacing:
 - "Pricing is too high" → often: "Value perception (mix + service) is the problem, not price level"
 - "We need to relaunch the brand" → often: "Local relevance and operational consistency is the issue"
 
+If the user's framing matches one of these patterns, **state the reframe in one sentence**, then ask whether to proceed with the original framing or the reframed one. One reframe attempt, max — if they confirm, proceed. If the problem is too vague to analyze (no specifics, no numbers, no context), ask **one** clarifying question, then proceed.
+
 ## Operating principles
 
-Same as the generic master.
+Same as the generic master:
+- Visual structure is non-negotiable
+- Be specific to the user's actual situation
+- Prioritize ruthlessly in Pareto
+- End with action
+- One reframe + one clarifying question, max
 - **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
+- **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
+
+## Example
+
+See [retail-comp-store-decline.md](../../examples/full-runs/retail-comp-store-decline.md) — a 47-location coffee chain with a 6% same-store-sales decline (run with the generic master — the pack adds retail vocabulary and priors on top of this shape). Every section in this pack's output must match the visual contract shown there.
+
+## When NOT to use this pack
+
+- The problem crosses industries or is framed above operations (corporate strategy, M&A, capital allocation) — use `strategy-consultant` or `strategy-consultant-7`.
+- The business is e-commerce-only with no physical stores (use `strategy-consultant` or `sc-saas`).
+- The user only wants one framework — use the matching sub-skill (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`).
+- Pure factual questions ("what is NRR?") — answer directly.
+
+## Follow-ups & multiple problems
+
+- **Follow-up on a prior analysis:** if the user asks about one part of an analysis you already produced (e.g., "go deeper on the Pareto"), answer ONLY that framework's section in its visual format — do not re-run all sections.
+- **Multiple distinct problems in one message:** do not blend them. Either produce a separate, fully-structured analysis per problem, or — if they're clearly competing for priority — ask one question: which to analyze first. One question, max.
+- **Refinement requests** ("make the Insight more specific", "use indented dashes for the tree") apply to the existing output; reproduce just the changed section.
 
 ---
 

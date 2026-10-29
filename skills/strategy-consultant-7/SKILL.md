@@ -114,7 +114,7 @@ Use `├──`, `│`, `└──`. Drill at least 2 levels deep where the prob
 **Root cause:** [One-sentence structural cause, addressable as a system change.]
 ```
 
-The root cause from this step becomes the basis for the hypothesis in step 4.
+**Carry forward:** the starting problem is the dominant branch of the §2 issue tree. The root cause from this step becomes the basis for the hypothesis in step 4.
 
 ---
 
@@ -134,6 +134,8 @@ The root cause from this step becomes the basis for the hypothesis in step 4.
 ```
 
 **Defaults (flex with judgment):** 4–7 variables. Always include at least one row that should NOT match if the hypothesis is true (a control). The point of the table is to make divergence visually obvious.
+
+**Carry forward:** the hypothesis is the §3 root cause stated as a falsifiable claim; the table's variables are that chain's observable leaves.
 
 If the user has multiple competing hypotheses, output multiple tables — don't mash them together.
 

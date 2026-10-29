@@ -12,7 +12,7 @@
 
 The idea: most LLMs answer business questions in flowing prose that sounds smart but doesn't actually structure your thinking. This repo gives Claude (or any LLM) a strict visual contract: every business problem produces exactly five sections — a MECE breakdown, an ASCII issue tree, a hypothesis-test table, a Pareto blockquote, and a Process/Result/Insight closer. Whiteboard-style, every time. The frameworks aren't new — they're standard McKinsey/BCG/Bain practice — but baking them into a deterministic skill format means you stop getting fluffy answers and start getting consultant-grade ones.
 
-The repo ships several flavors. A **sequential** master that works in any LLM (Claude.ai, ChatGPT, Gemini, anywhere you can paste a system prompt). A **sub-agent** master for Claude Code or Cowork environments that support parallel agent delegation. A **7-framework variant** that adds 5 Whys and Pyramid Principle on top of the canonical five for high-stakes work. And three **industry packs** (SaaS, retail, healthcare) with industry-aware vocabulary and root-cause priors. See the Master Variants table below for which to pick.
+The repo ships several flavors. A **sequential** master that works in any LLM (Claude.ai, ChatGPT, Gemini, anywhere you can paste a system prompt). A **sub-agent** master for Claude Code or Cowork environments that support parallel agent delegation. A **7-framework variant** that adds 5 Whys and Pyramid Principle on top of the canonical five for high-stakes work. And eight **industry packs** (SaaS, retail, healthcare, fintech, manufacturing, nonprofit, government, edtech) with industry-aware vocabulary and root-cause priors. See the Master Variants table below for which to pick.
 
 ---
 
@@ -28,7 +28,7 @@ It gives you back, in one response:
 4. **Pareto Focus** — the 20% of drivers responsible for 80% of the churn, called out in a blockquote, with the deprioritized 80% explicitly named
 5. **So What?** — Process / Result / Insight, with an action specific enough to assign to a person with a deadline
 
-**See it in action.** Browse [`examples/showcase/`](./examples/showcase/) for 10 real outputs across industries — every one produced by an agent reading a SKILL.md and applying it to a fresh business problem. Or read the canonical end-to-end walk-through: [`examples/example-analysis.md`](./examples/example-analysis.md).
+**See it in action.** Browse [`examples/showcase/`](./examples/showcase/) for 13 real outputs across industries — every one produced by an agent reading a SKILL.md and applying it to a fresh business problem. Or read the canonical end-to-end walk-through: [`examples/example-analysis.md`](./examples/example-analysis.md).
 
 ---
 
@@ -82,20 +82,29 @@ Strategy-Consultant-5-Consulting-Frameworks/
 │   ├── so-what-test/                      # Sub-skill: So What?
 │   ├── five-whys/                         # Sub-skill: 5 Whys
 │   └── pyramid-principle/                 # Sub-skill: Pyramid Principle
-├── industry-packs/                        # Industry-tailored master variants
+├── industry-packs/                        # Industry-tailored master variants (8 packs)
 │   ├── saas/SKILL.md                      # sc-saas
 │   ├── retail/SKILL.md                    # sc-retail
-│   └── healthcare/SKILL.md                # sc-healthcare
-├── prompts/                               # LLM-agnostic plain prompts (one per skill)
+│   ├── healthcare/SKILL.md                # sc-healthcare
+│   ├── fintech/SKILL.md                   # sc-fintech
+│   ├── manufacturing/SKILL.md             # sc-manufacturing
+│   ├── nonprofit/SKILL.md                 # sc-nonprofit
+│   ├── government/SKILL.md                # sc-government
+│   └── edtech/SKILL.md                    # sc-edtech
+├── prompts/                               # LLM-agnostic plain prompts (one per skill + one per pack)
 ├── examples/
 │   ├── example-analysis.md                # Featured walk-through
-│   ├── full-runs/                         # 5 industries: retail, nonprofit, manufacturing, government, logistics
+│   ├── full-runs/                         # 9 industries: retail, nonprofit, manufacturing, government, logistics, biotech, gaming, sports, agriculture
 │   ├── single-frameworks/                 # 5 standalone-skill demos in different industries
-│   └── showcase/                          # 10 real outputs from end-to-end skill testing
-├── evals/                                 # Automated structural scorer + manual rubric
-│   ├── score.py                           # Python scorer (no dependencies)
+│   └── showcase/                          # 13 real outputs from end-to-end skill testing (incl. Slack mode + a follow-up turn)
+├── evals/                                 # Automated structural scorer + LLM-as-judge + manual rubric
+│   ├── score.py                           # Structural scorer (no dependencies)
+│   ├── judge.py                           # LLM-as-judge prompt emitter + grader (no dependencies)
+│   ├── check_links.py                     # Relative-link checker used in CI
+│   ├── test_scorer.py / test_judge.py     # pytest harness (scores fixtures + real example outputs)
 │   ├── RUBRIC.md                          # Manual content-quality rubric
-│   └── fixtures/                          # Known-bad samples for regression testing
+│   └── fixtures/                          # Known-good / known-bad samples for regression testing
+├── .github/workflows/checks.yml           # CI: link check + pytest on every push / PR
 ├── INSTALLATION.md                        # Per-platform install guide
 ├── TESTING.md                             # Canonical test prompt + per-platform pass criteria
 ├── CONTRIBUTING.md                        # How to add frameworks, examples, industry packs
@@ -114,7 +123,7 @@ The repo only really has three things that matter:
 - **`prompts/<skill-name>.md`** — A condensed, paste-ready version of each skill: it keeps the full output contract (exact section headers, formats, defaults, the control-row rule) but drops the frontmatter, worked examples, and meta sections. For pasting into ChatGPT, Claude.ai, Gemini, custom GPTs, etc.
 - **`examples/`** — Real input/output pairs you can read to calibrate what good output looks like.
 
-The three master skills (`strategy-consultant`, `strategy-consultant-agents`, and `strategy-consultant-7`) are self-contained — they walk through all five (or all seven) frameworks in one response. The seven sub-skills (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `five-whys`, `pyramid-principle`) are alternatives for when you only want one framework. The industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) are alternative masters with industry-aware MECE defaults and vocabulary. Each also ships a paste-ready prompt in `prompts/`.
+The three master skills (`strategy-consultant`, `strategy-consultant-agents`, and `strategy-consultant-7`) are self-contained — they walk through all five (or all seven) frameworks in one response. The seven sub-skills (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`, `five-whys`, `pyramid-principle`) are alternatives for when you only want one framework. The eight industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`, `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`) are alternative masters with industry-aware MECE defaults and vocabulary. Each also ships a paste-ready prompt in `prompts/`.
 
 ---
 
@@ -138,7 +147,7 @@ The repo ships several master skills. Pick the one that fits your need:
 
 All variants produce the same output structure (visual contract). They differ in (a) depth of analysis, (b) industry vocabulary, and (c) common root-cause priors.
 
-> **Note:** the industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`) live in [`industry-packs/`](./industry-packs/), not `skills/`. The Quick-start `cp -r skills/*` does **not** install them — see [`industry-packs/README.md`](./industry-packs/README.md) for one-line install commands.
+> **Note:** the industry packs (`sc-saas`, `sc-retail`, `sc-healthcare`, `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`) live in [`industry-packs/`](./industry-packs/), not `skills/`. The Quick-start `cp -r skills/*` does **not** install them — see [`industry-packs/README.md`](./industry-packs/README.md) for one-line install commands.
 
 ---
 
@@ -177,7 +186,7 @@ A few decisions worth surfacing — in case you're forking and wondering why thi
 - **Visual structure is non-negotiable.** Every framework has a strict output format (nested bullets, ASCII tree, table, blockquote, three labeled sections). Prose-only answers are a failure mode. This is the entire value of the skill.
 - **Five frameworks, applied in order.** MECE → Issue Tree → Hypothesis → Pareto → So What is the canonical sequence. Skipping or reordering breaks the logic chain. The 7-framework variant adds 5 Whys (between Issue Tree and Hypothesis) and Pyramid Principle (after So What) — also applied in strict order.
 - **Defaults are flexible, MECE is not.** Sub-skills say "3–6 categories" or "4–7 variables" — but tell the model to flex with judgment. The one rule that doesn't flex: categories must be Mutually Exclusive and Collectively Exhaustive. That's the foundation; everything else is style.
-- **Three masters, not one.** Sequential works everywhere. Sub-agent works only in agent-capable environments. The 7-framework variant is for high-stakes work. Shipping all three lets users pick without losing reach.
+- **Three generic masters plus eight industry masters, not one.** Sequential works everywhere. Sub-agent works only in agent-capable environments. The 7-framework variant is for high-stakes work. The industry packs are the same five-section contract with insider vocabulary and priors. Shipping all of them lets users pick without losing reach.
 - **Dual format (skills + plain prompts).** Anthropic Skills format works in Claude Code/Cowork. Plain prompts work in everything else. Same content, two distributions.
 - **Reframe-the-question is built in.** Sometimes the user's stated problem isn't the real problem. The masters ask one reframe question max before applying the frameworks — pushing back is part of the consultant role.
 
@@ -209,8 +218,15 @@ A few decisions worth surfacing — in case you're forking and wondering why thi
 - [x] **Slack-formatted output mode** — request "Slack mode" / plain-text (or name Slack/Teams/email as the destination) and the skill renders indented-dash trees instead of box-drawing chars. ✅
 - [x] **LLM-as-judge eval mode** — `evals/judge.py` emits a rubric-based judging prompt for any LLM and grades the JSON reply (content quality 1–5). Dependency-free, no API key. ✅
 - [x] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech — shipped as `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`. ✅
-- [x] **More example industries** — biotech, gaming, sports, agriculture (added to `examples/full-runs/`); the repo now ships 25 example files in total. ✅
+- [x] **More example industries** — biotech, gaming, sports, agriculture (added to `examples/full-runs/`); the repo now ships 28 example files in total. ✅
 - [x] **CI scores real output samples** — the pytest harness scores showcase masters/packs (5-mode), the 7-fw showcase (7-mode), and every file in `examples/full-runs/` on every PR. ✅
+
+**Shipped in v1.3 (consistency pass):**
+
+- [x] **Slack mode + follow-up handling in every industry pack** — the eight `sc-*` skills and their paste prompts now carry the same Slack/plain-text rendering rule and follow-up / multi-problem / refinement protocol as the masters. ✅
+- [x] **Scorer fix** — the issue-tree depth check no longer fails a valid tree whose last top-level branch has no children; regression fixture added. ✅
+- [x] **Docs reconciled** — install, testing, contributing, and eval docs now describe all eight packs, the judge, the link-checker, and CI. ✅
+- [x] **Three new showcase runs** exercising the v1.3 changes — `sc-fintech` in Slack mode, `strategy-consultant-7` end-to-end, and an `sc-saas` run with a follow-up turn — all scored by CI. ✅
 
 **Still in flight:**
 
@@ -263,7 +279,7 @@ The two additional frameworks in the 7-framework variant — **5 Whys** (Sakichi
 
 Built and packaged by **Nathaniel Bricknell** ([@ConrayGambit](https://github.com/ConrayGambit) on GitHub).
 
-For walkthroughs, demos, and more AI/LLM tooling, check out the [**ConrayGambit**](https://youtube.com/@conraygambit) YouTube channel — including a video walking through this repo and giving full credit to **Analyst Academy** for the original framework framing.
+For walkthroughs, demos, and more AI/LLM tooling, check out the [**ConrayGambit**](https://youtube.com/@conraygambit) YouTube channel — where a video walking through this repo (with full credit to **Analyst Academy** for the original framework framing) is on the roadmap.
 
 ---
 

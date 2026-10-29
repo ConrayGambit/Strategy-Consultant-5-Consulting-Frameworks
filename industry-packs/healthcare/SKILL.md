@@ -80,6 +80,17 @@ Use healthcare-aware defaults (Patient population / Care quality / Throughput / 
 
 **Carry forward:** seed the top-level branches from the §1 MECE categories.
 
+**Rendering fallback (Slack mode):** if the user asks for Slack, Teams, email, or plain-text output — or names one of those as the destination — use an indented-dash tree instead of box-drawing characters:
+
+```text
+- Core Problem
+  - Category 1
+    - Sub-factor A
+    - Sub-factor B
+  - Category 2
+    - Sub-factor C
+```
+
 ### 3. Hypothesis-Driven Problem Solving
 
 **Format:** Start with a single-sentence falsifiable hypothesis prefixed `**Hypothesis:**`. Then a Markdown table with EXACTLY three columns: `Variable | Expected (if hypothesis true) | Actual / Required Data`. NOT 4 columns, NOT 5 columns. Include 4–7 rows, **at least one a control row** (e.g., a different service line or patient cohort that should be unaffected if the hypothesis is true).
@@ -136,6 +147,8 @@ Common reframes worth surfacing:
 - "We need a new EHR module" → often: "Workflow standardization first, technology after"
 - "Patient experience is suffering — train the staff" → often: "Specific operational pain points (wait times, discharge speed, communication cadence) drive 80% of HCAHPS scores"
 
+If the user's framing matches one of these patterns, **state the reframe in one sentence**, then ask whether to proceed with the original framing or the reframed one. One reframe attempt, max — if they confirm, proceed. If the problem is too vague to analyze (no specifics, no numbers, no context), ask **one** clarifying question, then proceed.
+
 ## Special considerations
 
 - **Regulatory implications:** changes to clinical pathways, documentation, or discharge criteria may trigger compliance, accreditation (Joint Commission), or payor-policy review. Surface these implications when relevant.
@@ -144,8 +157,32 @@ Common reframes worth surfacing:
 
 ## Operating principles
 
-Same as the generic master, plus: healthcare changes have higher implementation friction than most industries. Insights should anticipate the 30-60-90-day clinical-governance cycle.
+Same as the generic master:
+- Visual structure is non-negotiable
+- Be specific to the user's actual situation
+- Prioritize ruthlessly in Pareto
+- End with action
+- One reframe + one clarifying question, max
+- Healthcare changes have higher implementation friction than most industries — Insights should anticipate the 30-60-90-day clinical-governance cycle
 - **Continuity.** Each section builds on the previous — a reader should trace the Insight back through Pareto → Hypothesis → Issue Tree → MECE. Weave this naturally; do NOT insert boilerplate cross-references like "as established in §1."
+- **Output mode (Slack / plain-text).** If the user requests Slack, Teams, email, or "plain-text"/"no box characters" output — or names one of those as the destination — switch to Slack-safe rendering: use the indented-dash issue tree (not box-drawing `├── │ └──`) and keep tables narrow. Box-drawing is the default everywhere else.
+
+## Example
+
+See [issue-trees-healthcare.md](../../examples/single-frameworks/issue-trees-healthcare.md) — an issue tree for 30-day cardiology readmissions rising from 11.2% to 16.8% (the pack produces this shape as §2, plus the other four sections). Every section in this pack's output must match the visual contract shown there.
+
+## When NOT to use this pack
+
+- The problem crosses industries or is framed above operations (corporate strategy, M&A, capital allocation) — use `strategy-consultant` or `strategy-consultant-7`.
+- The problem is on the payor / health-plan side, or is pharma / biotech commercial rather than care delivery.
+- The user only wants one framework — use the matching sub-skill (`mece-framework`, `issue-trees`, `hypothesis-driven`, `pareto-principle`, `so-what-test`).
+- Pure factual questions ("what is NRR?") — answer directly.
+
+## Follow-ups & multiple problems
+
+- **Follow-up on a prior analysis:** if the user asks about one part of an analysis you already produced (e.g., "go deeper on the Pareto"), answer ONLY that framework's section in its visual format — do not re-run all sections.
+- **Multiple distinct problems in one message:** do not blend them. Either produce a separate, fully-structured analysis per problem, or — if they're clearly competing for priority — ask one question: which to analyze first. One question, max.
+- **Refinement requests** ("make the Insight more specific", "use indented dashes for the tree") apply to the existing output; reproduce just the changed section.
 
 ---
 

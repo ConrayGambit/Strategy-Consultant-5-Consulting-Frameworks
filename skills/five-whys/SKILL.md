@@ -1,6 +1,6 @@
 ---
 name: five-whys
-description: Apply the 5 Whys technique to drill from a surface problem to a root cause. Outputs five sequentially numbered "Why?" lines with brief answers, ending in a root-cause statement. Use after an issue tree to drill the critical branch deeper, or any time the user wants to test whether the apparent cause is the actual cause.
+description: Apply the 5 Whys technique to drill from a surface problem to a root cause. Outputs five sequentially numbered "Why?" lines ending in a root-cause statement. Use after an issue tree to drill the critical branch deeper, or to test whether the apparent cause is the actual cause.
 ---
 
 # 5 Whys
@@ -9,7 +9,7 @@ description: Apply the 5 Whys technique to drill from a surface problem to a roo
 
 Toyota's Sakichi Toyoda popularized the 5 Whys: take any apparent cause and ask "Why?" five times in succession. Each answer becomes the new statement; you drill until you hit a root cause that isn't itself a symptom of something deeper.
 
-In the consulting toolkit, 5 Whys complements issue trees. Issue trees go *wide* (every plausible cause). 5 Whys goes *deep* on one branch — the one you suspect dominates. It's especially useful after a Pareto step has named the vital 20%, before committing to interventions.
+In the consulting toolkit, 5 Whys complements issue trees. Issue trees go *wide* (every plausible cause). 5 Whys goes *deep* on one branch — the one you suspect dominates. It's especially useful right after the issue tree, on the branch you suspect dominates — before you design the hypothesis test.
 
 Five is a heuristic, not a magic number. Sometimes you reach root cause at three; sometimes you have to push to seven. The discipline is asking "why" until the answer stops being a symptom and starts being something structural.
 

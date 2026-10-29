@@ -40,10 +40,26 @@ def test_showcase_sc_saas_nrr_decline_5fw_passes():
     assert code == 0, out
 
 
+def test_showcase_sc_fintech_slack_mode_5fw_passes():
+    """Slack-mode output: indented-dash tree, no box-drawing chars."""
+    code, out = run(SHOWCASE / "sc-fintech-bnpl-fpd-slack.md")
+    assert code == 0, out
+
+
+def test_showcase_sc_saas_followup_5fw_passes():
+    code, out = run(SHOWCASE / "sc-saas-churn-followup.md")
+    assert code == 0, out
+
+
 # --- Showcase 7-framework output (must explicitly use --mode 7) ---
 
 def test_showcase_sc7_bank_loan_cycle_7fw_passes():
     code, out = run(SHOWCASE / "sc-7-bank-loan-cycle.md", "--mode", "7")
+    assert code == 0, out
+
+
+def test_showcase_sc7_ambulance_7fw_passes():
+    code, out = run(SHOWCASE / "sc-7-ambulance-response-time.md", "--mode", "7")
     assert code == 0, out
 
 
@@ -52,4 +68,11 @@ def test_showcase_sc7_bank_loan_cycle_7fw_passes():
 @pytest.mark.parametrize("path", FULL_RUNS, ids=[p.name for p in FULL_RUNS])
 def test_full_run_scores_6_of_6(path):
     code, out = run(path)
+    assert code == 0, out
+
+
+def test_tree_depth_counts_nested_lines_under_nonfinal_branches():
+    """Regression: a tree whose last top-level branch has no children must still
+    count as 2 levels deep (nested lines start with "│   ", not spaces)."""
+    code, out = run(ROOT/"evals/fixtures/good-5fw-last-branch-leaf.md")
     assert code == 0, out

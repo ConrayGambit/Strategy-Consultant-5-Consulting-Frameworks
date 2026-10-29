@@ -58,7 +58,7 @@ Nested Markdown bullets. Top-level bullets are categories in **bold**; nested bu
   - Driver turnover and onboarding ramp time
   - Overtime caps from new labor agreement
   - Sick days / absenteeism trend
-- **External**
+- **Road & weather conditions**
   - Construction zones in two metro areas
   - Two consecutive months of unusual weather
 ```

@@ -128,7 +128,7 @@ Smaller models (under ~7B parameters) may struggle with the full 5-section struc
 | Skill not found in Claude Code autocomplete | Skills directory wrong, or app not restarted | Re-check install path; quit and relaunch the app |
 | Output is prose, no visual structure | System prompt wasn't applied (paste-based installs) | Re-paste; in some chat UIs, you have to send before it takes effect |
 | Some sections missing (e.g., no Issue Tree) | Model truncated, or system prompt was too long combined with question | Try sub-skills individually, or use a model with a larger context window |
-| ASCII tree renders as boxes / question marks | Renderer doesn't support box-drawing characters | Skill should auto-fall back to indented dashes — if not, ask explicitly: "use indented dashes for the tree" |
+| ASCII tree renders as boxes / question marks | Renderer doesn't support box-drawing characters | Ask for Slack mode: "use indented dashes for the tree" or name Slack/Teams/email as the destination — the skills switch only when told |
 | Insight is vague / unassignable | Model dropped the assignability requirement | Add to your prompt: "make the Insight specific enough to assign to a person with a deadline" |
 | Reframe missing on a problem that obviously deserves one | Model interpreted the problem too literally | Add: "before applying the frameworks, check whether the framing of the problem is itself the issue" |
 
@@ -149,6 +149,23 @@ If you want to test each sub-skill individually, use these one-line prompts:
 | `pyramid-principle` | "Structure an exec recommendation arguing we should NOT acquire competitor X." |
 
 Each should produce ONLY the visual format of that single framework — no other sections.
+
+## Industry-pack tests
+
+Industry packs produce the same five sections as `strategy-consultant` (same pass criteria as above), but with industry vocabulary and MECE defaults. One prompt per pack:
+
+| Skill | Test prompt |
+|---|---|
+| `sc-saas` | "$40M ARR PLG SaaS: NRR fell from 124% to 108% over three quarters while logo retention held flat." |
+| `sc-retail` | "47-location coffee chain, same-store sales down 6% YoY; traffic down 9%, ticket up 3%." |
+| `sc-healthcare` | "30-day cardiology readmissions jumped from 11.2% to 16.8% in two quarters." |
+| `sc-fintech` | "Card decline rate jumped from 4.1% to 7.8% two weeks after a fraud-model deploy." |
+| `sc-manufacturing` | "Industrial-pump line defect rate spiked 1.2% → 3.6% in 90 days with no supplier change." |
+| `sc-nonprofit` | "We lost 23% of recurring monthly donors this year; one-off gifts are flat." |
+| `sc-government` | "City building-permit backlog is 4,300 applications; cycle time went 21 → 74 days." |
+| `sc-edtech` | "Course completion fell from 61% to 44% after we compressed the backend modules into weeks 3–5." |
+
+The output should read like an industry insider wrote it (correct metric vocabulary) and still pass `python evals/score.py` at 6/6.
 
 ---
 

@@ -18,6 +18,7 @@ Nested Markdown bullets — top-level categories in **bold**, nested sub-factors
 ### 2. Issue Tree
 Fenced ```text code block, ASCII tree using `├──`, `│`, `└──`. Drill 2+ levels. Leaves testable from LMS event logs, product analytics (Mixpanel / Amplitude), assessment / quiz data, and support-ticket trends.
 **Carry forward:** seed the top-level branches from the §1 MECE categories.
+**Slack mode:** if the destination is Slack / Teams / email / plain-text, use an indented-dash tree (`- Core Problem` / `  - Category` / `    - Sub-factor`) instead of box-drawing characters.
 
 ### 3. Hypothesis-Driven Problem Solving
 One-sentence falsifiable `**Hypothesis:**` then a 3-column table `Variable | Expected (if hypothesis true) | Actual / Required Data`, 4–7 rows, ≥1 control row that should NOT match if the hypothesis is true.
@@ -28,13 +29,25 @@ A `>` blockquote naming the vital 20% (1–4 items), then `**Actively deprioriti
 **Carry forward:** draw the vital 20% from factors already named in §1–§3 — don't introduce new ones here.
 
 ### 5. The "So What?" Test
-**Process:** / **Result:** / **Insight:** — the Insight must be assignable to a named person with a deadline (term/semester cycle, annual contract renewal (B2B), school-year calendar).
+Three separately labeled sections, each label bold, on its own line — NOT one prose paragraph:
+```
+**Process:** [What was analyzed.]
+
+**Result:** [The objective outcome — numbers, observations.]
+
+**Insight:** [Why it matters + the immediate action. Assignable to a named person with a deadline (term/semester cycle, annual contract renewal (B2B), school-year calendar).]
+```
 **Carry forward:** the Insight must act on the §4 vital 20%.
 
 ## Reframes worth surfacing
 "Students aren't motivated" → often "a specific module / week is the drop-off; the curriculum, not the learner, is the issue"; "lower the price" → "perceived value / outcome credibility is the issue, not price level"; "we need more content" → "completion of existing content is the constraint; new SKUs widen the leak"; "improve marketing" → "activation / onboarding is the leaky funnel; better acquisition floods a broken pipe".
 
 Be specific to the user's situation. Prioritize ruthlessly. End with action. One reframe + one clarifying question, max. Build each section on the previous — the Insight should trace back through Pareto → Hypothesis → Tree → MECE; weave it naturally, no boilerplate.
+
+## Follow-ups & multiple problems
+- **Follow-up on a prior analysis** ("go deeper on the Pareto"): answer ONLY that framework's section in its visual format — do not re-run all five.
+- **Multiple distinct problems in one message:** do not blend them — one fully-structured analysis per problem, or ask one question about which to analyze first. One question, max.
+- **Refinement requests** ("make the Insight more specific", "use indented dashes for the tree"): apply to the existing output; reproduce just the changed section.
 
 ---
 

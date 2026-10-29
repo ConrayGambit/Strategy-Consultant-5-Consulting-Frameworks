@@ -78,7 +78,7 @@ Conversion 3.2% → 1.9%
     └── Recommendation algorithm retrained
 ```
 
-Every leaf is concrete. Each one could be assigned to someone with "validate this in 3 days." That's the bar.
+Every leaf is concrete. Each one could be assigned to someone with "validate this in 1–3 days." That's the bar.
 
 ## Common mistakes
 

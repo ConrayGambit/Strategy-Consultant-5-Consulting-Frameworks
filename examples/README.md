@@ -16,13 +16,16 @@ This is the canonical example — it walks through a complete output of the mast
 
 ## Showcase — actual outputs from skill testing
 
-[`showcase/`](./showcase/) contains real outputs produced during end-to-end skill testing — not curated demos, but the raw responses agents gave when handed a SKILL.md and a real business problem. Every 5-framework output here passed the eval suite at 6/6; the 7-framework run produces all seven sections (the scorer only grades the 5-section contract). **Use this folder to see what the skills actually produce before you install.**
+[`showcase/`](./showcase/) contains 13 real outputs produced during end-to-end skill testing — not curated demos, but the raw responses agents gave when handed a SKILL.md and a real business problem. Every 5-framework output here passed the eval suite at 6/6; the 7-framework run scores 8/8 in `--mode 7`. **Use this folder to see what the skills actually produce before you install.**
 
 | File | Skill | Problem |
 |---|---|---|
 | [showcase/cloud-cost.md](./showcase/cloud-cost.md) | `strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike |
 | [showcase/sc-7-bank-loan-cycle.md](./showcase/sc-7-bank-loan-cycle.md) | `strategy-consultant-7` (7-fw) | Bank loan cycle 14 → 31 days, fintech threat |
 | [showcase/sc-saas-nrr-decline.md](./showcase/sc-saas-nrr-decline.md) | `sc-saas` (industry pack) | $40M ARR PLG SaaS, NRR 124% → 108% |
+| [showcase/sc-saas-churn-followup.md](./showcase/sc-saas-churn-followup.md) | `sc-saas` + follow-up turn | Dental SaaS churn 8% → 14%; follow-up reproduces only §3 |
+| [showcase/sc-fintech-bnpl-fpd-slack.md](./showcase/sc-fintech-bnpl-fpd-slack.md) | `sc-fintech` (Slack mode) | BNPL first-payment default 2.1% → 3.9%; indented-dash tree |
+| [showcase/sc-7-ambulance-response-time.md](./showcase/sc-7-ambulance-response-time.md) | `strategy-consultant-7` (7-fw) | Ambulance P1 compliance 91% → 78%; board wants 15 vehicles |
 | [showcase/mece-ecommerce-conversion.md](./showcase/mece-ecommerce-conversion.md) | `mece-framework` | DTC e-commerce conversion drop |
 | [showcase/issue-tree-oee.md](./showcase/issue-tree-oee.md) | `issue-trees` | Manufacturing OEE 78% → 61% |
 | [showcase/hypothesis-marketplace-ranking.md](./showcase/hypothesis-marketplace-ranking.md) | `hypothesis-driven` | Marketplace ranking-algorithm conversion drop |
@@ -90,10 +93,12 @@ The "What to notice" section is the most useful part — it teaches you how to e
 
 ## Want to contribute an example?
 
-PRs welcome. Pick an industry not yet represented (logistics, biotech, gaming, government, sports, agriculture, etc.) and submit:
+PRs welcome. Pick an industry not yet represented above (e.g., insurance, real estate, energy, telecom, hospitality, marketplaces) and submit:
 
 1. A realistic 2–3 sentence problem statement as input
 2. The output produced by running the master skill (or one sub-skill) on that input
 3. A short "What to notice" section calling out judgment calls or framework flexes worth highlighting
+
+Full-run examples are scored by CI (`python evals/score.py your-file.md` must pass 6/6), so check that before opening the PR.
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md), or just open a PR.

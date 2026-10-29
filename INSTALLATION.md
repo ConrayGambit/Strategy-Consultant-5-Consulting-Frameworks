@@ -28,6 +28,14 @@ Restart Claude Code. The skills will appear in autocomplete:
 - `/so-what-test` — So What? only
 - `/pyramid-principle` — Pyramid Principle only
 
+**Industry packs** (`sc-saas`, `sc-retail`, `sc-healthcare`, `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`) live in `industry-packs/`, not `skills/`, so the command above does not install them. Add them with:
+
+```bash
+for p in industry-packs/*/; do cp -r "$p" ~/.claude/skills/sc-$(basename "$p"); done
+```
+
+See [`industry-packs/README.md`](./industry-packs/README.md) for single-pack installs and when to use a pack instead of the generic master.
+
 ---
 
 ## Option 1b: Claude Code on Windows (PowerShell)
@@ -51,6 +59,12 @@ Get-ChildItem $skillsPath
 ```
 
 You should see ten folders listed: the three masters + seven framework sub-skills. Restart Claude Code and try `/strategy-consultant`.
+
+To add the industry packs as well:
+
+```powershell
+Get-ChildItem .\industry-packs -Directory | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$skillsPath\sc-$($_.Name)" -Recurse -Force }
+```
 
 **If you don't have git installed:** download the repo as a ZIP from GitHub (green "Code" button → "Download ZIP"), extract it, then:
 
@@ -138,4 +152,6 @@ git pull
 cp -r skills/* ~/.claude/skills/
 ```
 
-For prompt-based installs (ChatGPT, Claude.ai), re-copy the latest [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md).
+If you installed industry packs, re-run the pack copy loop from Option 1 as well.
+
+For prompt-based installs (ChatGPT, Claude.ai), re-copy the latest [`prompts/strategy-consultant.md`](./prompts/strategy-consultant.md) (or the `prompts/sc-<industry>.md` you use).

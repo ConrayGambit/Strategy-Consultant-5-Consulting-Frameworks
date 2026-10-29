@@ -5,7 +5,7 @@ Variants of the master skill tailored to specific industries. Each pack adds:
 - **Industry-aware MECE categories** — defaults that fit the industry (e.g., a SaaS pack defaults to ARR/NRR/churn dimensions; a retail pack defaults to comp store / traffic / ticket / mix).
 - **Common root-cause patterns** — the diagnostic priors that experienced operators in that industry would carry into any problem.
 - **Native metric vocabulary** — the right terms (NRR, AOV, OTD, NPS, ALOS, SSS) so the output reads like an industry insider's analysis.
-- **Industry-specific examples** in the SKILL.md body.
+- **A linked worked example** — each pack's `## Example` section points to a real run in [`examples/`](../examples/) that shows the shape the pack must produce.
 
 These are **alternative masters**, not additional steps. Use the industry pack instead of the generic master when the problem is squarely within that industry.
 
@@ -40,11 +40,23 @@ cp -r industry-packs/saas ~/.claude/skills/sc-saas
 Copy-Item -Path .\industry-packs\saas\ -Destination "$env:USERPROFILE\.claude\skills\sc-saas\" -Recurse
 ```
 
-Then invoke `/sc-saas` (or `/sc-retail`, `/sc-healthcare`) and paste your problem.
+Then invoke `/sc-saas` (or `/sc-retail`, `/sc-healthcare`, `/sc-fintech`, `/sc-manufacturing`, `/sc-nonprofit`, `/sc-government`, `/sc-edtech`) and paste your problem.
 
-You can install all three industry packs alongside the generic `strategy-consultant` master — they don't conflict.
+To install every pack at once:
 
-Paste-ready prompts for non-Claude-Code users live in [`prompts/sc-saas.md`](../prompts/sc-saas.md), [`prompts/sc-retail.md`](../prompts/sc-retail.md), and [`prompts/sc-healthcare.md`](../prompts/sc-healthcare.md).
+**macOS / Linux:**
+```bash
+for p in industry-packs/*/; do cp -r "$p" ~/.claude/skills/sc-$(basename "$p"); done
+```
+
+**Windows (PowerShell):**
+```powershell
+Get-ChildItem .\industry-packs -Directory | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$env:USERPROFILE\.claude\skills\sc-$($_.Name)" -Recurse -Force }
+```
+
+You can install all eight industry packs alongside the generic `strategy-consultant` master — they don't conflict.
+
+Paste-ready prompts for non-Claude-Code users live in `prompts/sc-<industry>.md` — one per pack: [`sc-saas`](../prompts/sc-saas.md), [`sc-retail`](../prompts/sc-retail.md), [`sc-healthcare`](../prompts/sc-healthcare.md), [`sc-fintech`](../prompts/sc-fintech.md), [`sc-manufacturing`](../prompts/sc-manufacturing.md), [`sc-nonprofit`](../prompts/sc-nonprofit.md), [`sc-government`](../prompts/sc-government.md), [`sc-edtech`](../prompts/sc-edtech.md).
 
 ---
 
@@ -60,4 +72,4 @@ In those cases, use `strategy-consultant` (5-framework) or `strategy-consultant-
 
 ## Additional packs
 
-All five originally-planned packs (fintech, manufacturing, nonprofit, government, edtech) shipped in v1.x. PRs welcome for further packs — e.g., insurance, real-estate, energy, telecom, hospitality, marketplaces. See [CONTRIBUTING.md](../CONTRIBUTING.md) for the recipe.
+All five originally-planned packs (fintech, manufacturing, nonprofit, government, edtech) shipped in v1.2. PRs welcome for further packs — e.g., insurance, real-estate, energy, telecom, hospitality, marketplaces. See [CONTRIBUTING.md](../CONTRIBUTING.md) for the recipe.
