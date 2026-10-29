@@ -28,7 +28,7 @@ It gives you back, in one response:
 4. **Pareto Focus** — the 20% of drivers responsible for 80% of the churn, called out in a blockquote, with the deprioritized 80% explicitly named
 5. **So What?** — Process / Result / Insight, with an action specific enough to assign to a person with a deadline
 
-**See it in action.** Browse [`examples/showcase/`](./examples/showcase/) for 10 real outputs across industries — every one produced by an agent reading a SKILL.md and applying it to a fresh business problem. Or read the canonical end-to-end walk-through: [`examples/example-analysis.md`](./examples/example-analysis.md).
+**See it in action.** Browse [`examples/showcase/`](./examples/showcase/) for 13 real outputs across industries — every one produced by an agent reading a SKILL.md and applying it to a fresh business problem. Or read the canonical end-to-end walk-through: [`examples/example-analysis.md`](./examples/example-analysis.md).
 
 ---
 
@@ -96,7 +96,7 @@ Strategy-Consultant-5-Consulting-Frameworks/
 │   ├── example-analysis.md                # Featured walk-through
 │   ├── full-runs/                         # 9 industries: retail, nonprofit, manufacturing, government, logistics, biotech, gaming, sports, agriculture
 │   ├── single-frameworks/                 # 5 standalone-skill demos in different industries
-│   └── showcase/                          # 10 real outputs from end-to-end skill testing
+│   └── showcase/                          # 13 real outputs from end-to-end skill testing (incl. Slack mode + a follow-up turn)
 ├── evals/                                 # Automated structural scorer + LLM-as-judge + manual rubric
 │   ├── score.py                           # Structural scorer (no dependencies)
 │   ├── judge.py                           # LLM-as-judge prompt emitter + grader (no dependencies)
@@ -218,7 +218,7 @@ A few decisions worth surfacing — in case you're forking and wondering why thi
 - [x] **Slack-formatted output mode** — request "Slack mode" / plain-text (or name Slack/Teams/email as the destination) and the skill renders indented-dash trees instead of box-drawing chars. ✅
 - [x] **LLM-as-judge eval mode** — `evals/judge.py` emits a rubric-based judging prompt for any LLM and grades the JSON reply (content quality 1–5). Dependency-free, no API key. ✅
 - [x] **More industry packs** — fintech, manufacturing, nonprofit, government, edtech — shipped as `sc-fintech`, `sc-manufacturing`, `sc-nonprofit`, `sc-government`, `sc-edtech`. ✅
-- [x] **More example industries** — biotech, gaming, sports, agriculture (added to `examples/full-runs/`); the repo now ships 25 example files in total. ✅
+- [x] **More example industries** — biotech, gaming, sports, agriculture (added to `examples/full-runs/`); the repo now ships 28 example files in total. ✅
 - [x] **CI scores real output samples** — the pytest harness scores showcase masters/packs (5-mode), the 7-fw showcase (7-mode), and every file in `examples/full-runs/` on every PR. ✅
 
 **Shipped in v1.3 (consistency pass):**
@@ -226,6 +226,7 @@ A few decisions worth surfacing — in case you're forking and wondering why thi
 - [x] **Slack mode + follow-up handling in every industry pack** — the eight `sc-*` skills and their paste prompts now carry the same Slack/plain-text rendering rule and follow-up / multi-problem / refinement protocol as the masters. ✅
 - [x] **Scorer fix** — the issue-tree depth check no longer fails a valid tree whose last top-level branch has no children; regression fixture added. ✅
 - [x] **Docs reconciled** — install, testing, contributing, and eval docs now describe all eight packs, the judge, the link-checker, and CI. ✅
+- [x] **Three new showcase runs** exercising the v1.3 changes — `sc-fintech` in Slack mode, `strategy-consultant-7` end-to-end, and an `sc-saas` run with a follow-up turn — all scored by CI. ✅
 
 **Still in flight:**
 

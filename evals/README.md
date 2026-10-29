@@ -77,7 +77,7 @@ Expected output: all tests passing — 5 fixture tests (bad prose, good-5fw, goo
 
 ### CI scoring of real output samples
 
-The pytest harness now scores real output files on every push/PR (not just synthetic fixtures): `examples/showcase/cloud-cost.md` and `examples/showcase/sc-saas-nrr-decline.md` are scored in 5-framework mode; `examples/showcase/sc-7-bank-loan-cycle.md` is scored in 7-framework mode (explicit `--mode 7`); and every `.md` file in `examples/full-runs/` is auto-discovered and scored at 5-framework pass threshold. New full-run examples are picked up automatically with no test changes required.
+The pytest harness now scores real output files on every push/PR (not just synthetic fixtures): the 5-framework showcase masters/packs (`cloud-cost.md`, `sc-saas-nrr-decline.md`, `sc-saas-churn-followup.md`, `sc-fintech-bnpl-fpd-slack.md` — the last one exercises the indented-dash Slack-mode path) are scored in 5-framework mode; the 7-framework showcases (`sc-7-bank-loan-cycle.md`, `sc-7-ambulance-response-time.md`) are scored with explicit `--mode 7`; and every `.md` file in `examples/full-runs/` is auto-discovered and scored at 5-framework pass threshold. New full-run examples are picked up automatically with no test changes required.
 
 ---
 

@@ -14,6 +14,7 @@ Every 5-framework master and industry-pack output below scored **6/6** on the [e
 |---|---|---|---|
 | [cloud-cost.md](./cloud-cost.md) | `strategy-consultant` (5-fw) | $180K → $340K/mo cloud cost spike at SaaS company | 6/6 ✅ |
 | [sc-7-bank-loan-cycle.md](./sc-7-bank-loan-cycle.md) | `strategy-consultant-7` (7-fw) | Regional bank: loan cycle 14 → 31 days, fintech threat | 8/8 (`--mode 7`) ✅ |
+| [sc-7-ambulance-response-time.md](./sc-7-ambulance-response-time.md) | `strategy-consultant-7` (7-fw) | Ambulance service: P1 8-minute compliance 91% → 78%, board wants 15 more vehicles | 8/8 (`--mode 7`) ✅ |
 
 ## Sub-skills (standalone)
 
@@ -32,6 +33,8 @@ Every 5-framework master and industry-pack output below scored **6/6** on the [e
 | File | Skill | Test problem | Score |
 |---|---|---|---|
 | [sc-saas-nrr-decline.md](./sc-saas-nrr-decline.md) | `sc-saas` | $40M ARR PLG SaaS: NRR 124% → 108% | 6/6 ✅ |
+| [sc-saas-churn-followup.md](./sc-saas-churn-followup.md) | `sc-saas` + follow-up turn | $25M ARR dental SaaS: logo churn 8% → 14% after a price rise and a billing migration; then "go deeper on the hypothesis" | 6/6 ✅ (follow-up reproduces §3 only) |
+| [sc-fintech-bnpl-fpd-slack.md](./sc-fintech-bnpl-fpd-slack.md) | `sc-fintech` (Slack mode) | BNPL lender: first-payment default 2.1% → 3.9% after a model deploy and a retailer launch | 6/6 ✅ (indented-dash tree) |
 
 ---
 

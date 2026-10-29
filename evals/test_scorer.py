@@ -40,10 +40,26 @@ def test_showcase_sc_saas_nrr_decline_5fw_passes():
     assert code == 0, out
 
 
+def test_showcase_sc_fintech_slack_mode_5fw_passes():
+    """Slack-mode output: indented-dash tree, no box-drawing chars."""
+    code, out = run(SHOWCASE / "sc-fintech-bnpl-fpd-slack.md")
+    assert code == 0, out
+
+
+def test_showcase_sc_saas_followup_5fw_passes():
+    code, out = run(SHOWCASE / "sc-saas-churn-followup.md")
+    assert code == 0, out
+
+
 # --- Showcase 7-framework output (must explicitly use --mode 7) ---
 
 def test_showcase_sc7_bank_loan_cycle_7fw_passes():
     code, out = run(SHOWCASE / "sc-7-bank-loan-cycle.md", "--mode", "7")
+    assert code == 0, out
+
+
+def test_showcase_sc7_ambulance_7fw_passes():
+    code, out = run(SHOWCASE / "sc-7-ambulance-response-time.md", "--mode", "7")
     assert code == 0, out
 
 
